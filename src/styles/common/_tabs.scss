@@ -1,0 +1,98 @@
+.content-tabs-holder
+{
+    margin-bottom: 1px;
+    padding:0;
+    border-bottom: 1px solid white;
+}
+
+.nav-tabs
+{
+    border-bottom: 1px solid white;
+
+    &.pull-right
+    {
+        border: none;
+    }
+
+    li
+    {
+        margin-bottom: -1px;
+        display: block;
+
+        a
+        {
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #999999;
+            @include transition(all .3s);
+            @include border-radius(0);
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            border-bottom: 1px solid white;
+
+            &:hover
+            {
+                background-color:transparent;
+                color: #666666;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: 1px solid white;
+            }
+
+            &:focus
+            {
+                background-color:transparent;
+                color: black;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: 1px solid white;
+            }
+
+            i
+            {
+                margin-right: 5px;
+            }
+        }
+
+        &.active
+        {
+            a
+            {
+                color: black;
+                background-color: transparent;
+
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: 1px solid $pink;
+
+                &:hover
+                {
+                    background-color:transparent;
+                    color: #666666;
+                    border-top: none;
+                    border-right: none;
+                    border-left: none;
+                    border-bottom: 1px solid $pink;
+                }
+
+                &:focus
+                {
+                    background-color:transparent;
+                    color: black;
+                    border-top: none;
+                    border-right: none;
+                    border-left: none;
+                    border-bottom: 1px solid $pink;
+                }
+            }
+        }
+    }
+}
+
+@import "tabs_768";
