@@ -60,6 +60,7 @@
     "redux-thunk": "^2.0.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
+    "vrc-common-styles": "git@github.com:TouchFrame/VRC-common-styles.git",
     "webpack": "^1.12.13",
     "webpack-config-loader": "^0.1.0",
     "webpack-dev-server": "^1.14.1",
