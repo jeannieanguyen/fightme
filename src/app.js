@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { setError, clearError } from './actions/index';
 import s from './styles/styles.scss';
+import * as selectors from './selectors'; 
 
 class App extends Component {
 
@@ -45,7 +46,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        appdata: state.appData
+        appdata: selectors.getAppData(state)
     }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "react-base",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Base",
   "main": "index.js",
   "author": "Simon Chelebyan <schelebyan@gmail.com>",
@@ -58,6 +58,7 @@
     "redux": "^3.3.1",
     "redux-promise": "^0.5.1",
     "redux-thunk": "^2.0.1",
+    "reselect": "^3.0.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "vrc-common-styles": "git@github.com:Victorious/VRC-common-styles.git",
