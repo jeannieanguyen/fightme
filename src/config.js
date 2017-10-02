@@ -1,6 +1,6 @@
 module.exports = {
     local: {
-        apiBase: "https://vapi-dev.getvictorious.com"
+        apiBase: "https://jsonplaceholder.typicode.com"
     },
     dev: {
         apiBase: "https://vapi-dev.getvictorious.com"

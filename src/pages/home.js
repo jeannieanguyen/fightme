@@ -43,7 +43,7 @@ class HomePage extends Component {
         return (
             <div className="page" id="home">
                 <h1><i className="fa fa-home"></i> VRC Component Boilerplate</h1>
-                {this.props.data}
+                {this.props.data.length}
             </div>
         );
     }

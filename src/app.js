@@ -4,7 +4,6 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { setError, clearError } from './actions/index';
 import s from './styles/styles.scss';
-import * as selectors from './selectors'; 
 
 class App extends Component {
 
@@ -19,27 +18,27 @@ class App extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(_.has(nextProps.appdata, 'error')) {
-            if(_.has(nextProps.appdata.error, 'reason')) {
-                switch(nextProps.appdata.error.reason) {
-                    default :
-                        // Handle different errors here
-                    break;
-                }
-            }
-        }
+        // if(_.has(nextProps.appdata, 'error')) {
+        //     if(_.has(nextProps.appdata.error, 'reason')) {
+        //         switch(nextProps.appdata.error.reason) {
+        //             default :
+        //                 // Handle different errors here
+        //             break;
+        //         }
+        //     }
+        // }
     }
 
     render() {
-        const { children, appdata } = this.props;
+        const { children } = this.props;
         console.log(this.props);
         
         return (
             <div className="col-xs-12 no-pad">
-                { appdata.error && <div className="app-alert alert alert-danger danger-bg" onClick={this.dismissAlert}><i className="fa fa-times"></i> {appdata.error.message}</div> }
-                <div className={ appdata.error ? 'content-wrapper has-error' : 'content-wrapper'}>
+                {/* { appdata.error && <div className="app-alert alert alert-danger danger-bg" onClick={this.dismissAlert}><i className="fa fa-times"></i> {appdata.error.message}</div> }
+                <div className={ appdata.error ? 'content-wrapper has-error' : 'content-wrapper'}> */}
                     {children}
-                </div>
+                {/* </div> */}
             </div>
         );
     }
@@ -47,7 +46,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        appdata: state
+        // appdata: state
     }
 }
 

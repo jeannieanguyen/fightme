@@ -1,7 +1,7 @@
 import * as types from './types';
 
 const INITIAL_STATE = {
-    data: '',
+    data: [],
     counter: 0
 };
 
