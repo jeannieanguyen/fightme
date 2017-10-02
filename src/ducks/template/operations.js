@@ -1,7 +1,7 @@
 import * as actions from './actions';
 
 export const fetchData = function() {
-    return (dispatch) => {dispatch(actions.fetchData({data: 'one111'}))};
+    return (dispatch) => {dispatch(actions.fetchData('one111'))};
 }
 
 export const incrementCounter = function(incrementAmount) {
