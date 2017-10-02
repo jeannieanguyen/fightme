@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import config from 'webpack-config-loader!../config.js';
 import { connect } from 'react-redux';
 import { setError, clearError } from '../actions/index';
+import { templateOperations } from 'ducks/template';
+
+let { fetchData, incrementCounter } = templateOperations;
 
 class HomePage extends Component {
     constructor(props) {
@@ -10,6 +13,8 @@ class HomePage extends Component {
 
     componentWillMount() {
         const { setError, clearError } = this.props;
+        this.props.fetchData();
+        this.props.incrementCounter(2);
         // clearError();
     }
 
@@ -42,4 +47,4 @@ class HomePage extends Component {
     }
 }
 
-export default connect(null, { setError, clearError })(HomePage);
+export default connect(null, { setError, clearError, fetchData, incrementCounter })(HomePage);

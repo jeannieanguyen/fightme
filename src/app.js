@@ -32,6 +32,7 @@ class App extends Component {
 
     render() {
         const { children, appdata } = this.props;
+        console.log(this.props);
         
         return (
             <div className="col-xs-12 no-pad">
@@ -46,7 +47,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        appdata: selectors.getAppData(state)
+        appdata: state
     }
 }
 

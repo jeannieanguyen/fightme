@@ -6,9 +6,10 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import reducers from './reducers/index';
-import routes from './routes';
+import reducers from 'reducers/index';
+import routes from 'routes';
 import promise from 'redux-promise';
+import templateReducer from 'ducks/template/reducers';
 
 
 const createStoreWithMiddleware = applyMiddleware(
