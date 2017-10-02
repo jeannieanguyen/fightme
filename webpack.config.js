@@ -18,19 +18,24 @@ var config = {
         publicPath: '/'
     },
     module: {
-        loaders: [{
-            test: /\.js$/,
-            loaders: ['babel'],
-            include: path.join(__dirname, 'src'),
-        }, {
-            test: /\.scss$/,
-            loaders: ['style','css','sass'],
-            include: path.join(__dirname, 'src/styles')
-        }]
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader'
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
+        ],
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
     loader: {
         configEnvironment: env
