@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import config from 'webpack-config-loader!../config.js';
 import { connect } from 'react-redux';
-import { templateEpics, templateSelectors } from 'ducks/template';
+import { templateSelectors, templateActions } from 'ducks/template';
 
-let { startFetchData } = templateEpics;
+let { startFetchData, incrementCounter } = templateActions;
 
 class HomePage extends Component {
     constructor(props) {
@@ -12,7 +12,6 @@ class HomePage extends Component {
 
     componentWillMount() {
         this.props.startFetchData();
-        //this.props.incrementCounter(2);
         // clearError();
     }
 
@@ -36,12 +35,22 @@ class HomePage extends Component {
         
     }
 
+    onCounterButtonClick(){
+        this.props.incrementCounter(2);
+    }
+
     render() {
-        console.log(this.props);
         return (
             <div className="page" id="home">
                 <h1><i className="fa fa-home"></i> VRC Component Boilerplate</h1>
-                {this.props.data.length}
+                <h3> 
+                    DATA LENGTH: 
+                    {this.props.data.length}
+                </h3>
+                <button onClick={::this.onCounterButtonClick}>SPAM ME</button>
+                <h3> 
+                    COUNT : {this.props.count}
+                </h3>
             </div>
         );
     }
@@ -49,8 +58,9 @@ class HomePage extends Component {
 
 export function mapStateToProps(state){
     return {
-        data: templateSelectors.getData(state)
+        data: templateSelectors.getData(state), 
+        count: templateSelectors.getCounter(state)
     }
 }
 
-export default connect(mapStateToProps, { startFetchData })(HomePage);
+export default connect(mapStateToProps, { startFetchData, incrementCounter })(HomePage);

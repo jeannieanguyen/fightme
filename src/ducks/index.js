@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { combineEpics } from 'redux-observable';
 import { routerReducer } from 'react-router-redux';
-import templateReducer, { fetchDataEpic } from 'ducks/template/index';
+import templateReducer, { templateEpics } from 'ducks/template/index';
 
 const rootReducer = combineReducers({
     routing: routerReducer,
@@ -9,9 +9,8 @@ const rootReducer = combineReducers({
 });
 
 export const rootEpic = combineEpics(
-    fetchDataEpic
+    templateEpics
 );
 
-console.log({rootEpic});
 
 export default rootReducer;
