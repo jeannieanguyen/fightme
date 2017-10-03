@@ -1,6 +1,7 @@
 import * as types from './types';
 
 export function setData(data) {
+	console.log('SET DATA', data); 
     return {
         type: types.FETCH_DATA_SUCCESS,
         data: data

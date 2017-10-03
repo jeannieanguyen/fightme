@@ -11,9 +11,8 @@ class HomePage extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props);
         this.props.startFetchData();
-        this.props.incrementCounter(2);
+        //this.props.incrementCounter(2);
         // clearError();
     }
 
@@ -38,7 +37,7 @@ class HomePage extends Component {
     }
 
     render() {
-        
+        console.log(this.props);
         return (
             <div className="page" id="home">
                 <h1><i className="fa fa-home"></i> VRC Component Boilerplate</h1>

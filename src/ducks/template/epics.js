@@ -8,7 +8,7 @@ export const startFetchData = function() {
 }
 
 export const fetchData = function() {
-    apiInstance.get(`/posts`,{
+    return apiInstance.get(`/posts`,{
     })
     .then(response => {
         const { data } = response; 
