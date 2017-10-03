@@ -59,7 +59,7 @@ class HomePage extends Component {
 export function mapStateToProps(state){
     return {
         data: templateSelectors.getData(state), 
-        count: templateSelectors.getCounter(state)
+        count: templateSelectors.getCounter(state), 
     }
 }
 

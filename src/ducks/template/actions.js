@@ -52,3 +52,11 @@ export function sendMessage(message){
 	}
 }
 
+export function receiveMessage(message){
+	console.log('receiving', message);
+	return {
+		type: types.SOCKET_SEND_MESSAGE_SUCCESS,
+		data: message 
+
+	}
+}

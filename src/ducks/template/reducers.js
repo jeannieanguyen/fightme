@@ -2,7 +2,8 @@ import * as types from './types';
 
 const INITIAL_STATE = {
     data: [],
-    counter: 0
+    counter: 0, 
+    messages: []
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -16,6 +17,11 @@ export default function (state = INITIAL_STATE, action) {
             return {
                 ...state,
                 counter: state.counter + action.incrAmt
+            };
+        case types.SOCKET_SEND_MESSAGE_SUCCESS:
+            return {
+                ...state, 
+                messages: [...state.messages, action.data]
             };
         default:
             return state;

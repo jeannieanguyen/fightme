@@ -44,8 +44,9 @@ export const connectSocketEpic = (action$) => action$.ofType(types.SOCKET_CONNEC
         ));
 
 export const sendSocketMessageEpic = (action$) => action$.ofType(types.SOCKET_SEND_MESSAGE)
-    .mergeMap(action => socket$.next(action.data))
-    .skip();
+    .map(action => socket$.next(action.data))
+    .map(JSON.stringify)
+    .map(payload => {console.log(payload); return actions.receiveMessage(payload)});
 
 export default combineEpics(
     fetchDataEpic, 

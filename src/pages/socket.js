@@ -1,14 +1,19 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux'; 
-import { templateActions } from 'ducks/template';
+import { templateActions, templateSelectors } from 'ducks/template';
 
 let { connectSocket, disconnectSocket, sendMessage } = templateActions; 
 
 class SocketMessages extends Component {
+	getMessages(){
+		return this.props.messages.map(message => {return (
+			<span>{message}</span>
+		)});
+	}
 	render(){
 		return (
 			<div>
-				<h2>MESSAGES HERE YO</h2>
+				<h2>{this.getMessages()}</h2>
 			</div>
 		);
 	}
@@ -52,14 +57,16 @@ class SocketTestPage extends Component {
 				<button 
 					className="btn primary-btn" 
 					onClick={::this.sendMessage}> SEND MESSAGE</button>
-				<SocketMessages />
+				<SocketMessages messages={this.props.messages}/>
 			</div>
 		);
 	}
 }
 
 function mapStateToProps(state){
-	return {}; 
+	return {
+		messages: templateSelectors.getMessages(state)
+	}; 
 }
 
 export default connect(mapStateToProps, { connectSocket, disconnectSocket, sendMessage })(SocketTestPage); 
