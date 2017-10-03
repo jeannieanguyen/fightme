@@ -8,6 +8,8 @@ import apiInstance from 'api/test';
 import { combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
 
+const socket$ = Observable.webSocket("wss://echo.websocket.org");
+
 export const fetchData = function() {
     return apiInstance.get(`/posts`,{
     })
@@ -32,7 +34,22 @@ export const incrementCounterEpic = (action$) =>
         .debounceTime(1000)
         .map((action) => actions.setCounter(action.incrAmt));
 
+
+
+export const connectSocketEpic = (action$) => action$.ofType(types.SOCKET_CONNECT)
+    .mergeMap(action => 
+        socket$.map(payload => console.log('huh', payload))
+        .takeUntil(
+          action$.ofType(types.SOCKET_DISCONNECT)
+        ));
+
+export const sendSocketMessageEpic = (action$) => action$.ofType(types.SOCKET_SEND_MESSAGE)
+    .mergeMap(action => socket$.next(action.data))
+    .skip();
+
 export default combineEpics(
     fetchDataEpic, 
-    incrementCounterEpic
+    incrementCounterEpic, 
+    connectSocketEpic, 
+    sendSocketMessageEpic
 );

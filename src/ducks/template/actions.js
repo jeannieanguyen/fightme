@@ -25,9 +25,30 @@ export const incrementCounter = function(incrementAmt) {
 }
 
 export function setCounter(incrementAmt) {
-	console.log('incremting? spellign')
     return {
     	type: types.INCREMENT_COUNTER_SUCCESS,
     	incrAmt: incrementAmt
     };
 };
+
+export function connectSocket(){
+	return {
+		type: types.SOCKET_CONNECT
+	};
+}
+
+export function disconnectSocket(){
+	return {
+		type: types.SOCKET_DISCONNECT
+	};
+}
+
+export function sendMessage(message){
+	return (dispatch) => {
+		dispatch({
+			type: types.SOCKET_SEND_MESSAGE, 
+			data: message
+		})
+	}
+}
+
