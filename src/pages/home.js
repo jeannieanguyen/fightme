@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import config from 'webpack-config-loader!../config.js';
 import { connect } from 'react-redux';
-import { setError, clearError } from '../actions/index';
-import { templateOperations, templateSelectors } from 'ducks/template';
+import { templateEpics, templateSelectors } from 'ducks/template';
 
-let { fetchData, incrementCounter } = templateOperations;
+let { startFetchData } = templateEpics;
 
 class HomePage extends Component {
     constructor(props) {
@@ -12,8 +11,8 @@ class HomePage extends Component {
     }
 
     componentWillMount() {
-        const { setError, clearError } = this.props;
-        this.props.fetchData();
+        console.log(this.props);
+        this.props.startFetchData();
         this.props.incrementCounter(2);
         // clearError();
     }
@@ -55,4 +54,4 @@ export function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { setError, clearError, fetchData, incrementCounter })(HomePage);
+export default connect(mapStateToProps, { startFetchData })(HomePage);

@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { setError, clearError } from './actions/index';
 import s from './styles/styles.scss';
 
 class App extends Component {
@@ -50,4 +49,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { setError, clearError })(App);
+export default connect(mapStateToProps, { })(App);
