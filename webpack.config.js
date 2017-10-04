@@ -25,8 +25,18 @@ var config = {
         rules: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: path.join(__dirname, 'node_modules'),
             },
+            {
+                test: /\.json$/,
+                loader: 'json-loader', 
+                exclude: path.join(__dirname, 'node_modules')
+            },{
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                exclude: path.join(__dirname, 'node_modules'),  // <------ I have forgot it and got "Cannot read property 'crypto' of undefined"
+              },
             {
                 test: /\.scss$/,
                 use: [
