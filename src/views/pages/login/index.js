@@ -1,24 +1,71 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'; 
+import { authActions } from 'ducks/auth'; 
+
+let { registerUser } = authActions;
 
 class LoginPage extends Component {
-	onLoginClick() {
-		console.log('clicked');
+	componentWillMount(){
+		this.setState({
+			email: '', 
+			password: ''
+		})
+	}
+	updateField(e){
+		this.setState({
+			[e.target.name] : e.target.value
+		});
+	}
+	onLogin(){
+		//this.props.loginUser(this.state);
+	}
+	onRegister(){
+		console.log('registering again');
+		this.props.registerUser(this.state);
 	}
 	render(){
-
+		let { email, password } = this.state;
 		return (
 			<div>
-				<h1>Please log in</h1>
-				<label htmlFor="email_field">E-mail</label>
-				<input type="text" name="email_field" placeholder="E-mail address"/>
-				<br />
-				<label htmlFor="password">Password</label>
-				<input type="text" name="password" placeholder="Password"/>
-				<br />
-				<button onClick={ ::this.onLoginClick }> Log In</button>
+				<div>
+					<h1>REGISTER USER</h1>
+					<label htmlFor="email_field">E-mail</label>
+					<input type="text" 
+						name="email" 
+						placeholder="E-mail address"
+						onChange={::this.updateField}
+						value={email}/>
+					<label htmlFor="password">Password</label>
+					<input type="password" 
+						name="password" 
+						placeholder="Password"
+						onChange={::this.updateField}
+						value={password}/>
+					<button onClick={ ::this.onRegister }>Register</button>
+				</div>
+				<div>
+					<h1>LOGIN USER</h1>
+					<label htmlFor="email_field">E-mail</label>
+					<input type="text" 
+						name="email" 
+						placeholder="E-mail address"
+						onChange={::this.updateField}
+						value={email}/>
+					<label htmlFor="password">Password</label>
+					<input type="password" 
+						name="password" 
+						placeholder="Password"
+						onChange={::this.updateField}
+						value={password}/>
+					<button onClick={ ::this.onLogin }>Register</button>
+				</div>
 			</div>
 		);
 	}
 }
 
-export default LoginPage;
+function mapStateToProps(state){
+	return {}; 
+}
+
+export default connect(mapStateToProps, {registerUser})(LoginPage);

@@ -58,7 +58,7 @@ export function register({email, password}){
 		    }
 		    res({email});
 		})
-	})
+	}).catch(err => err);
 	return p;
 };
 
