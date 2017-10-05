@@ -8,18 +8,6 @@ import { combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
 import { login, register, getVictoriousUser } from 'api/aws';
 
-export const fetchData = function() {
-    return apiInstance.get(`/posts`,{
-    })
-    .then(response => {
-        const { data } = response; 
-        return data;
-    })
-    .catch(err => {
-        console.error("fail", err);
-    });
-}
-
 export const setRegisteredUser = (user) => {
 	console.log('set registered user', user);
 	return {

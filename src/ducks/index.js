@@ -18,10 +18,4 @@ export const rootEpic = (action$, store) => combineEpics(
 		error: error => console.error('ERROR: ', error)
 	});
 
-// (action$, store) =>
-//   combineEpics(firstEpic, secondEpic)(action$, store)
-//     .do({
-//       error: error => console.error('ERROR: ', error)
-//     });
-
 export default rootReducer;
