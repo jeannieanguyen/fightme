@@ -2,9 +2,15 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import s from './styles/styles.scss';
 
-class App extends Component {
+function mapStateToProps(state) {
+    return {
+        // appdata: state
+    }
+}
+
+@connect(mapStateToProps, { })
+export default class App extends Component {
 
     constructor(props) {
         super(props);
@@ -42,11 +48,3 @@ class App extends Component {
         );
     }
 }
-
-function mapStateToProps(state) {
-    return {
-        // appdata: state
-    }
-}
-
-export default connect(mapStateToProps, { })(App);
