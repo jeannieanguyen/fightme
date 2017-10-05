@@ -4,10 +4,12 @@
 
 import * as types from './types';
 
-export function authenticateUser(data) {
-    return {
-        type: types.AUTHENTICATE_USER,
-        data: data
-    }
+export function registerUser(data) {
+	return (dispatch) => {
+		dispatch({
+	        type: types.REGISTER_USER,
+	        data: data
+    	});
+	};
 };
 

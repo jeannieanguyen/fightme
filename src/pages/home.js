@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import config from 'webpack-config-loader!../config.js';
 import { connect } from 'react-redux';
 import { templateSelectors, templateActions } from 'ducks/template';
+import { login, register, getVictoriousUser } from 'api/aws';
 
 let { startFetchData, incrementCounter } = templateActions;
 
