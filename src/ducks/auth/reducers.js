@@ -6,11 +6,12 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
     switch(action.type) {
-        // case types.FETCH_DATA_SUCCESS:
-        //     return {
-        //         ...state,
-        //         data: action.data
-        //     };
+        case types.LOGIN_USER_SUCCESS:
+            console.log(action);
+            return {
+                ...state,
+                user: action.data
+            };
         default:
             return state;
     }

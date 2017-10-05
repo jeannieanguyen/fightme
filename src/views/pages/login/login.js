@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 import { authActions } from 'ducks/auth'; 
 
-let { registerUser } = authActions;
+let { loginUser } = authActions;
 
-class RegisterPage extends Component {
+class LoginPage extends Component {
 	componentWillMount(){
 		this.setState({
 			email: '', 
@@ -16,15 +16,15 @@ class RegisterPage extends Component {
 			[e.target.name] : e.target.value
 		});
 	}
-	onRegister(){
-		this.props.registerUser(this.state);
+	onLogin(){
+		this.props.loginUser(this.state);
 	}
 	render(){
 		let { email, password } = this.state;
 		return (
 			<div>
 				<div>
-					<h1>REGISTER USER</h1>
+					<h1>LOGIN USER</h1>
 					<label htmlFor="email_field">E-mail</label>
 					<input type="text" 
 						name="email" 
@@ -37,7 +37,7 @@ class RegisterPage extends Component {
 						placeholder="Password"
 						onChange={::this.updateField}
 						value={password}/>
-					<button onClick={ ::this.onRegister }>Register</button>
+					<button onClick={ ::this.onLogin }>Login</button>
 				</div>
 			</div>
 		);
@@ -48,4 +48,4 @@ function mapStateToProps(state){
 	return {}; 
 }
 
-export default connect(mapStateToProps, {registerUser})(RegisterPage);
+export default connect(mapStateToProps, {loginUser})(LoginPage);
