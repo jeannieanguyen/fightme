@@ -5,6 +5,14 @@ import LoginPage from 'views/pages/login';
 import { authSelectors } from 'ducks/auth';
 
 export function withAuthentication ( WrappedComponent) {
+
+	function mapStateToProps (state) {
+		return {
+			user: authSelectors.getUser(state)
+		}
+	}
+
+	@connect( mapStateToProps )
 	class AuthenticatedComponent extends Component {
 		componentWillMount() {
 			let { user } = this.props;
@@ -17,12 +25,5 @@ export function withAuthentication ( WrappedComponent) {
 		}
 	}
 
-	function mapStateToProps (state) {
-		return {
-			user: authSelectors.getUser(state)
-		}
-	}
-
-	return connect ( mapStateToProps )(AuthenticatedComponent);
-	// return WrappedComponent;
+	return AuthenticatedComponent;
 }
