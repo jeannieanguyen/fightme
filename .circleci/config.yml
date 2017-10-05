@@ -7,3 +7,4 @@ jobs:
        - checkout
        - run: echo "hello000ooo000 world"
        - run: npm install
+       - run: eslint src
