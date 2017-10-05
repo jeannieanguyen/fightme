@@ -1,6 +1,7 @@
 module.exports = {
     local: {
-        apiBase: "https://vapi-dev.getvictorious.com"
+        apiBase: "https://jsonplaceholder.typicode.com", 
+        socketUrl: "wss://echo.websocket.org"
     },
     dev: {
         apiBase: "https://vapi-dev.getvictorious.com"

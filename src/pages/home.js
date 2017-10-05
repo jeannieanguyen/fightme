@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import config from 'webpack-config-loader!../config.js';
 import { connect } from 'react-redux';
-import { setError, clearError } from '../actions/index';
+import { templateSelectors, templateActions } from 'ducks/template';
+import { login, register, getVictoriousUser } from 'api/aws';
+
+let { startFetchData, incrementCounter } = templateActions;
 
 class HomePage extends Component {
     constructor(props) {
@@ -9,7 +12,7 @@ class HomePage extends Component {
     }
 
     componentWillMount() {
-        const { setError, clearError } = this.props;
+        this.props.startFetchData();
         // clearError();
     }
 
@@ -33,13 +36,32 @@ class HomePage extends Component {
         
     }
 
+    onCounterButtonClick(){
+        this.props.incrementCounter(2);
+    }
+
     render() {
         return (
             <div className="page" id="home">
                 <h1><i className="fa fa-home"></i> VRC Component Boilerplate</h1>
+                <h3> 
+                    DATA LENGTH: 
+                    {this.props.data.length}
+                </h3>
+                <button onClick={::this.onCounterButtonClick}>SPAM ME</button>
+                <h3> 
+                    COUNT : {this.props.count}
+                </h3>
             </div>
         );
     }
 }
 
-export default connect(null, { setError, clearError })(HomePage);
+export function mapStateToProps(state){
+    return {
+        data: templateSelectors.getData(state), 
+        count: templateSelectors.getCounter(state), 
+    }
+}
+
+export default connect(mapStateToProps, { startFetchData, incrementCounter })(HomePage);

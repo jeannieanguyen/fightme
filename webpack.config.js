@@ -17,20 +17,39 @@ var config = {
         filename: 'bundle.js',
         publicPath: '/'
     },
+    resolve: {
+        modules: ['node_modules', './src'],
+        extensions: ['.js', '.jsx']
+    },
     module: {
-        loaders: [{
-            test: /\.js$/,
-            loaders: ['babel'],
-            include: path.join(__dirname, 'src'),
-        }, {
-            test: /\.scss$/,
-            loaders: ['style','css','sass'],
-            include: path.join(__dirname, 'src/styles')
-        }]
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: path.join(__dirname, 'node_modules'),
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader', 
+                exclude: path.join(__dirname, 'node_modules')
+            },{
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                exclude: path.join(__dirname, 'node_modules'),  // <------ I have forgot it and got "Cannot read property 'crypto' of undefined"
+              },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
+        ],
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
     loader: {
         configEnvironment: env
