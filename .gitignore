@@ -3,3 +3,4 @@ npm-debug.log
 .DS_Store
 content/bundle.js
 app/src/config.js
+.tmp/
