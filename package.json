@@ -8,18 +8,21 @@
   "scripts": {
     "start": "./node_modules/.bin/babel-node server",
     "dev": "WEBPACK_ENV=dev npm start",
-    "qa": "WEBPACK_ENV=qa npm start",
-    "stage": "WEBPACK_ENV=stage npm start",
     "prod": "WEBPACK_ENV=production npm start",
     "dev_build": "WEBPACK_ENV=dev npm run bundle",
-    "qa_build": "WEBPACK_ENV=qa npm run bundle",
-    "stage_build": "WEBPACK_ENV=stage npm run bundle",
     "prod_build": "WEBPACK_ENV=production npm run bundle",
     "bundle": "./node_modules/.bin/webpack --config webpack.config.js",
-    "clean": "rm -rf content/bundle.js content/bundle.js.map npm-debug.log"
+    "clean": "rm -rf content/bundle.js content/bundle.js.map npm-debug.log",
+    "test": "mocha --require babel-register ./testSetup.js 'src/**/*tests.js'",
+    "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
-    "express": "^4.13.4"
+    "chai": "^4.1.2",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.1",
+    "express": "^4.13.4",
+    "mocha": "^4.0.0",
+    "react-test-renderer": "^16.0.0"
   },
   "dependencies": {
     "@ava/babel-preset-stage-4": "^1.1.0",
@@ -56,6 +59,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.4.0",
+    "jsdom": "^11.3.0",
     "json-loader": "^0.5.4",
     "lodash": "^4.12.0",
     "mime": "^1.3.4",
