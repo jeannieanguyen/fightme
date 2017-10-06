@@ -22,6 +22,10 @@ export const loginUserEpic = (action$) =>
 		.map((payload) => {
 			return actions.setLoggedInUser(payload);
 		})
+		.catch((error, source) => {
+			// Need to do something about restarting the epic?
+			return Observable.of(actions.setUserLoginError());
+		})
 	});
 
 export default combineEpics(

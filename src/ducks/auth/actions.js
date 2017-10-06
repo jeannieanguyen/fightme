@@ -35,3 +35,9 @@ export function loginUser(data){
 	};
 };
 
+export function setUserLoginError(){
+	return {
+		type: types.LOGIN_USER_ERROR
+	};
+}
+

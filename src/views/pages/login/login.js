@@ -26,6 +26,11 @@ class LoginPage extends Component {
 			<div>
 				<div>
 					<h1>LOGIN USER</h1>
+					<div>
+						{this.props.error &&
+							<h3>{this.props.error}</h3>
+						}
+					</div>
 					<label htmlFor="email_field">E-mail</label>
 					<input type="text" 
 						name="email" 
@@ -55,7 +60,8 @@ class LoginPage extends Component {
 
 function mapStateToProps(state){
 	return {
-		user: authSelectors.getUser(state)
+		user: authSelectors.getUser(state),
+		error: authSelectors.getAuthError(state),
 	}; 
 }
 

@@ -16,6 +16,9 @@ export const rootEpic = (action$, store) => combineEpics(
 )(action$, store)
 	.do({
 		error: error => console.error('ERROR: ', error)
+	})
+	.catch((error, source) => {
+		console.log('error in root epic');
 	});
 
 export default rootReducer;
