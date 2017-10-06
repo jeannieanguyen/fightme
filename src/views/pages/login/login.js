@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
-import { authActions } from 'ducks/auth'; 
+import { authActions, authSelectors } from 'ducks/auth'; 
+import { Link } from 'react-router';
 
 let { loginUser } = authActions;
 
@@ -39,13 +40,20 @@ class LoginPage extends Component {
 						value={password}/>
 					<button onClick={ ::this.onLogin }>Login</button>
 				</div>
+				<div>
+					{this.props.user &&
+						<Link to="/hello_world">YAY LETS GO TO HELLO WORLD.</Link>
+					}
+				</div>
 			</div>
 		);
 	}
 }
 
 function mapStateToProps(state){
-	return {}; 
+	return {
+		user: authSelectors.getUser(state)
+	}; 
 }
 
 export default connect(mapStateToProps, {loginUser})(LoginPage);
