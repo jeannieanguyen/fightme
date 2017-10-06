@@ -39,6 +39,9 @@ class LoginPage extends Component {
 						onChange={::this.updateField}
 						value={password}/>
 					<button onClick={ ::this.onLogin }>Login</button>
+					<button>
+						<Link to="/register">REGISTER INSTEAD</Link>
+					</button>
 				</div>
 				<div>
 					{this.props.user &&
