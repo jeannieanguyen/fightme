@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
-import LoginPage from './login';
+import { LoginPage } from './login';
 
 describe('Login Page Component', () => {
 
@@ -16,6 +14,6 @@ describe('Login Page Component', () => {
   it('renders an email input', () => {
     const el = shallow(<LoginPage {...props} />);
 
-    expect(el.find('input[name=email]')).to.have.length(1);
+    expect(el.find('.email-login')).to.have.length(1);
   });
 });

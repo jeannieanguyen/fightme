@@ -4,7 +4,7 @@ import { authActions } from 'ducks/auth';
 
 const { loginUser } = authActions;
 
-class LoginPage extends Component {
+export class LoginPage extends Component {
   componentWillMount() {
     this.setState({
       email: '',
@@ -30,7 +30,8 @@ class LoginPage extends Component {
             name="email" 
             placeholder="E-mail address"
             onChange={::this.updateField}
-            value={email}/>
+            value={email}
+            className="email-login" />
             <label htmlFor="password">Password</label>
             <input type="password" 
               name="password" 
