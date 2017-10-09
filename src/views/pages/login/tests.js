@@ -8,7 +8,7 @@ describe('Login Page Component', () => {
   }
 
   const props = {
-    loginUser: logUser
+    loginUser: {}
   };
 
   it('renders an email input', () => {

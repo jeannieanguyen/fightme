@@ -31,7 +31,7 @@ export class LoginPage extends Component {
 						name="email" 
 						placeholder="E-mail address"
 						onChange={::this.updateField}
-            className="email-login"
+						className="email-login"
 						value={email}/>
 					<label htmlFor="password">Password</label>
 					<input type="password" 
