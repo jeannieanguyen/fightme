@@ -8,18 +8,40 @@
   "scripts": {
     "start": "./node_modules/.bin/babel-node server",
     "dev": "WEBPACK_ENV=dev npm start",
-    "qa": "WEBPACK_ENV=qa npm start",
-    "stage": "WEBPACK_ENV=stage npm start",
     "prod": "WEBPACK_ENV=production npm start",
     "dev_build": "WEBPACK_ENV=dev npm run bundle",
-    "qa_build": "WEBPACK_ENV=qa npm run bundle",
-    "stage_build": "WEBPACK_ENV=stage npm run bundle",
     "prod_build": "WEBPACK_ENV=production npm run bundle",
     "bundle": "./node_modules/.bin/webpack --config webpack.config.js",
-    "clean": "rm -rf content/bundle.js content/bundle.js.map npm-debug.log"
+    "clean": "rm -rf content/bundle.js content/bundle.js.map npm-debug.log",
+    "test": "nyc mocha-webpack --webpack-config webpack.config-test.babel.js --require babel-register --require ./testSetup.js 'src/**/*tests.js'",
+    "test:watch": "npm run test -- --watch"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
   },
   "devDependencies": {
-    "express": "^4.13.4"
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^4.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "cross-env": "^5.0.5",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.1",
+    "express": "^4.13.4",
+    "mocha": "^4.0.1",
+    "mocha-webpack": "^0.7.0",
+    "nyc": "^11.2.1",
+    "react-test-renderer": "^16.0.0",
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
     "@ava/babel-preset-stage-4": "^1.1.0",
@@ -29,7 +51,7 @@
     "axios": "^0.9.1",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.4.5",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^6.2.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-es5-property-mutators": "^6.24.1",
@@ -56,6 +78,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.4.0",
+    "jsdom": "^11.3.0",
     "json-loader": "^0.5.4",
     "lodash": "^4.12.0",
     "mime": "^1.3.4",

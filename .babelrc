@@ -1,5 +1,5 @@
 {
 	"presets": ["env", "es2017", "stage-0", "stage-1", "stage-2", "react"], 
 	"compact": false,
-	"plugins": ["transform-es5-property-mutators", "transform-decorators-legacy"]	
+	"plugins": ["transform-es5-property-mutators", "transform-decorators-legacy", "istanbul"]
 }
