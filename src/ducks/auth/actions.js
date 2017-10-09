@@ -1,7 +1,6 @@
 // ACTIONS
 // Should contain action definitions 
 // and pure action dispatches
-import { browserHistory } from 'react-router';
 import * as types from './types';
 
 export const setRegisteredUser = (user) => {
@@ -21,7 +20,6 @@ export function registerUser(data) {
 };
 
 export const setLoggedInUser = (user) => {
-	browserHistory.push('/hello_world');
 	return {
 		type: types.LOGIN_USER_SUCCESS, 
 		data: user

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 import { authActions } from 'ducks/auth'; 
+import { Link } from 'react-router';
 
 let { registerUser } = authActions;
 
@@ -38,6 +39,7 @@ class RegisterPage extends Component {
 						onChange={::this.updateField}
 						value={password}/>
 					<button onClick={ ::this.onRegister }>Register</button>
+					<button><Link to="/login">LOGIN</Link></button>
 				</div>
 			</div>
 		);
