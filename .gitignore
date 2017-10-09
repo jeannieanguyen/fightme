@@ -4,3 +4,5 @@ npm-debug.log
 content/bundle.js
 app/src/config.js
 .tmp/
+.nyc_output
+coverage/

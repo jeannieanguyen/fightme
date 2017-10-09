@@ -13,8 +13,19 @@
     "prod_build": "WEBPACK_ENV=production npm run bundle",
     "bundle": "./node_modules/.bin/webpack --config webpack.config.js",
     "clean": "rm -rf content/bundle.js content/bundle.js.map npm-debug.log",
-    "test": "mocha-webpack --webpack-config webpack.config-test.babel.js --require babel-register --require ./testSetup.js 'src/**/*tests.js'",
+    "test": "nyc mocha-webpack --webpack-config webpack.config-test.babel.js --require babel-register --require ./testSetup.js 'src/**/*tests.js'",
     "test:watch": "npm run test -- --watch"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
   },
   "devDependencies": {
     "chai": "^4.1.2",
