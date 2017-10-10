@@ -2,11 +2,11 @@
 // Should contain observable definitions
 // and any async / side-effect handlers
 
+import { Observable } from 'rxjs';
+import { combineEpics } from 'redux-observable';
+import apiInstance from 'api/test';
 import * as actions from './actions';
 import * as types from './types';
-import apiInstance from 'api/test';
-import { combineEpics } from 'redux-observable';
-import { Observable } from 'rxjs';
 
 export const fetchData = function () {
   return apiInstance.get('/posts', {
