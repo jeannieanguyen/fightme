@@ -15,7 +15,6 @@ class HomePage extends Component {
 
   componentWillMount() {
     this.props.startFetchData();
-    // clearError();
   }
 
   componentDidMount() {

@@ -19,14 +19,16 @@ class RegisterPage extends Component {
       password: '',
     });
   }
+  onRegister() {
+    this.props.registerUser(this.state);
+  }
+
   updateField(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
-  onRegister() {
-    this.props.registerUser(this.state);
-  }
+
   render() {
     const { email, password } = this.state;
     return (

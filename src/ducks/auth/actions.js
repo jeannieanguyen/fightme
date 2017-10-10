@@ -1,5 +1,5 @@
 // ACTIONS
-// Should contain action definitions 
+// Should contain action definitions
 // and pure action dispatches
 import * as types from './types';
 
@@ -11,9 +11,9 @@ export const setRegisteredUser = user => ({
 export function registerUser(data) {
   return (dispatch) => {
     dispatch({
-	        type: types.REGISTER_USER,
-	        data,
-    	});
+      type: types.REGISTER_USER,
+      data,
+    });
   };
 }
 
@@ -30,4 +30,3 @@ export function loginUser(data) {
     });
   };
 }
-
