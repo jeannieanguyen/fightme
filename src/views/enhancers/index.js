@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import LoginPage from 'views/pages/login';
 import { authSelectors } from 'ducks/auth';
+import { getGeneralErrorSelector } from 'ducks/errors';
 
 export function withAuthentication ( WrappedComponent) {
 
@@ -26,4 +27,34 @@ export function withAuthentication ( WrappedComponent) {
 	}
 
 	return AuthenticatedComponent;
+}
+
+export function withErrorHandling ( WrappedComponent ) {
+
+	function mapStateToProps (state) {
+		return {
+			error: getGeneralErrorSelector(state)
+		}
+	}
+
+	@connect( mapStateToProps )
+	class ErrorHandledComponent extends Component {
+		componentWillMount() {
+			let { error } = this.props;
+		}
+		render () {
+			return (
+				<div>
+					<div>
+						{this.props.error &&
+							<h3>{this.props.error}</h3>
+						}
+					</div>
+					<WrappedComponent />
+				</div>
+			);
+		}
+	}
+
+	return ErrorHandledComponent;
 }
