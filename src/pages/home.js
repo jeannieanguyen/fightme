@@ -9,6 +9,8 @@ let { startFetchData, incrementCounter } = templateActions;
 class HomePage extends Component {
     constructor(props) {
         super(props);
+
+        this.onCounterButtonClick = this.onCounterButtonClick.bind(this);
     }
 
     componentWillMount() {
@@ -25,15 +27,15 @@ class HomePage extends Component {
     }
 
     componentWillUpdate() {
-        
+
     }
 
     componentDidUpdate() {
-        
+
     }
 
     componentWillUnmount() {
-        
+
     }
 
     onCounterButtonClick(){
@@ -44,12 +46,12 @@ class HomePage extends Component {
         return (
             <div className="page" id="home">
                 <h1><i className="fa fa-home"></i> VRC Component Boilerplate</h1>
-                <h3> 
-                    DATA LENGTH: 
+                <h3>
+                    DATA LENGTH:
                     {this.props.data.length}
                 </h3>
-                <button onClick={::this.onCounterButtonClick}>SPAM ME</button>
-                <h3> 
+                <button onClick={this.onCounterButtonClick}>SPAM ME</button>
+                <h3>
                     COUNT : {this.props.count}
                 </h3>
             </div>
@@ -59,8 +61,8 @@ class HomePage extends Component {
 
 export function mapStateToProps(state){
     return {
-        data: templateSelectors.getData(state), 
-        count: templateSelectors.getCounter(state), 
+        data: templateSelectors.getData(state),
+        count: templateSelectors.getCounter(state),
     }
 }
 

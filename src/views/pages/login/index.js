@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'; 
-import { authActions } from 'ducks/auth'; 
+import { connect } from 'react-redux';
+import { authActions } from 'ducks/auth';
 import { Link } from 'react-router';
 
 let { registerUser } = authActions;
 
 class RegisterPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.updateField = this.updateField.bind(this);
+    this.onRegister = this.onRegister.bind(this);
+  }
+
 	componentWillMount(){
 		this.setState({
-			email: '', 
+			email: '',
 			password: ''
 		})
 	}
@@ -27,18 +34,18 @@ class RegisterPage extends Component {
 				<div>
 					<h1>REGISTER USER</h1>
 					<label htmlFor="email_field">E-mail</label>
-					<input type="text" 
-						name="email" 
+					<input type="text"
+						name="email"
 						placeholder="E-mail address"
-						onChange={::this.updateField}
+						onChange={this.updateField}
 						value={email}/>
 					<label htmlFor="password">Password</label>
-					<input type="password" 
-						name="password" 
+					<input type="password"
+						name="password"
 						placeholder="Password"
-						onChange={::this.updateField}
+						onChange={this.updateField}
 						value={password}/>
-					<button onClick={ ::this.onRegister }>Register</button>
+					<button onClick={this.onRegister}>Register</button>
 					<button><Link to="/login">LOGIN</Link></button>
 				</div>
 			</div>
@@ -46,8 +53,8 @@ class RegisterPage extends Component {
 	}
 }
 
-function mapStateToProps(state){
-	return {}; 
+function mapStateToProps(state) {
+  return {};
 }
 
-export default connect(mapStateToProps, {registerUser})(RegisterPage);
+export default connect(mapStateToProps, { registerUser })(RegisterPage);
