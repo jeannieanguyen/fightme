@@ -4,6 +4,7 @@
   "plugins": ["react", "mocha", "json"],
   "extends": "airbnb",
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}]
+    "import/no-extraneous-dependencies": ["warn", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
 }

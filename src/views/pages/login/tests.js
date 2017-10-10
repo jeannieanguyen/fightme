@@ -7,9 +7,7 @@ describe('Login Page Component', () => {
     console.log('yo');
   }
 
-  const props = {
-    loginUser: {}
-  };
+  const props = LoginPage.defaultProps;
 
   it('renders an email input', () => {
     const el = shallow(<LoginPage {...props} />);

@@ -85,6 +85,7 @@
     "moment": "^2.13.0",
     "node-sass": "3.4.2",
     "node-uuid": "^1.4.7",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-bootstrap": "^0.28.5",
     "react-cookie": "^0.4.5",
