@@ -1,11 +1,11 @@
 // ACTIONS
-// Should contain action definitions 
+// Should contain action definitions
 // and pure action dispatches
 import * as types from './types';
 
 export const setRegisteredUser = (user) => {
 	return {
-		type: types.REGISTER_USER_SUCCESS, 
+		type: types.REGISTER_USER_SUCCESS,
 		data: user
 	};
 };
@@ -21,7 +21,7 @@ export function registerUser(data) {
 
 export const setLoggedInUser = (user) => {
 	return {
-		type: types.LOGIN_USER_SUCCESS, 
+		type: types.LOGIN_USER_SUCCESS,
 		data: user
 	};
 }
@@ -29,15 +29,10 @@ export const setLoggedInUser = (user) => {
 export function loginUser(data){
 	return (dispatch) => {
 		dispatch({
-			type: types.LOGIN_USER, 
+			type: types.LOGIN_USER,
 			data: data
 		});
 	};
 };
 
-export function setUserLoginError(){
-	return {
-		type: types.LOGIN_USER_ERROR
-	};
-}
 
