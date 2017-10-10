@@ -1,6 +1,6 @@
 import reducer from 'ducks/template/reducers';
 import * as templateSelectors from 'ducks/template/selectors';
-//import { fetchDataEpic } from './epics';
+// import { fetchDataEpic } from './epics';
 import templateEpics from './epics';
 import * as templateActions from './actions';
 
@@ -8,9 +8,9 @@ import * as templateActions from './actions';
 // console.log({templateEpics});
 
 export {
-    templateEpics,
-    templateSelectors, 
-    templateActions
+  templateEpics,
+  templateSelectors,
+  templateActions,
 };
 
 export default reducer;

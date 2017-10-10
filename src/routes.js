@@ -8,14 +8,14 @@ import RegisterPage from 'views/pages/login/index';
 import HelloWorldPage from 'views/pages/hello_world';
 import { withAuthentication } from 'views/enhancers';
 
-let authenticatedHelloWorldPage = withAuthentication(HelloWorldPage);
+const authenticatedHelloWorldPage = withAuthentication(HelloWorldPage);
 
 export default (
-    <Route path="/" component={App}>
-        <IndexRoute component={HomePage} />
-        <Route path="/home" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/register" component={RegisterPage} />
-        <Route path="/hello_world" component={authenticatedHelloWorldPage} />
-    </Route>
+  <Route path="/" component={App}>
+    <IndexRoute component={HomePage} />
+    <Route path="/home" component={HomePage} />
+    <Route path="/login" component={LoginPage} />
+    <Route path="/register" component={RegisterPage} />
+    <Route path="/hello_world" component={authenticatedHelloWorldPage} />
+  </Route>
 );

@@ -3,23 +3,22 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { authSelectors } from 'ducks/auth';
 
-export function withAuthentication ( WrappedComponent) {
-
-  function mapStateToProps (state) {
+export function withAuthentication(WrappedComponent) {
+  function mapStateToProps(state) {
     return {
-      user: authSelectors.getUser(state)
-    }
+      user: authSelectors.getUser(state),
+    };
   }
 
-  @connect( mapStateToProps )
+  @connect(mapStateToProps)
   class AuthenticatedComponent extends Component {
     componentWillMount() {
-      let { user } = this.props;
+      const { user } = this.props;
       if (!user) {
         browserHistory.push('/login');
       }
     }
-    render () {
+    render() {
       return <WrappedComponent />;
     }
   }

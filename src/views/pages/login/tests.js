@@ -2,7 +2,6 @@ import { shallow, mount, render } from 'enzyme';
 import { LoginPage } from './login';
 
 describe('Login Page Component', () => {
-
   function logUser() {
     console.log('yo');
   }

@@ -17,7 +17,7 @@ const createStoreWithMiddleware = applyMiddleware(
   epicMiddleware,
   thunk,
   promise,
-  routerMiddleware(browserHistory)
+  routerMiddleware(browserHistory),
 )(createStore);
 
 const store = createStoreWithMiddleware(reducers);
@@ -50,8 +50,7 @@ if (module.hot) {
   render = (routes, revision) => {
     try {
       renderApp(routes, revision);
-    }
-    catch (err) {
+    } catch (err) {
       renderError(err);
     }
   };
