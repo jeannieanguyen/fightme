@@ -7,7 +7,7 @@ const REGION = "us-west-2";
 const USER_POOL_ID = 'us-west-2_3GGBN3zzD';
 const CLIENT_ID = '5v62ihet3f1816vn6939li7ntn';
 
-AWS.config.update({
+AWSCognito.config.update({
 	region: REGION
 });
 const userData = {

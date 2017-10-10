@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { authActions, authSelectors } from 'ducks/auth'; 
 import { Link } from 'react-router';
 
-let { loginUser } = authActions;
+const { loginUser } = authActions;
 
-class LoginPage extends Component {
+export class LoginPage extends Component {
 	componentWillMount(){
 		this.setState({
 			email: '', 
@@ -36,6 +36,7 @@ class LoginPage extends Component {
 						name="email" 
 						placeholder="E-mail address"
 						onChange={::this.updateField}
+						className="email-login"
 						value={email}/>
 					<label htmlFor="password">Password</label>
 					<input type="password" 
@@ -65,4 +66,4 @@ function mapStateToProps(state){
 	}; 
 }
 
-export default connect(mapStateToProps, {loginUser})(LoginPage);
+export default connect(mapStateToProps, { loginUser })(LoginPage);
