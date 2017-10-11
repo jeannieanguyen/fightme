@@ -28,10 +28,6 @@ var config = {
                 loader: 'babel-loader',
                 exclude: path.join(__dirname, 'node_modules'),
             },
-            // {
-            //     test: require.resolve('src/lib/gateway/apigClient'), 
-            //     loader: ['import-loader?define=false, exports-loader?apigClient']
-            // },
             {
                 test: /\.json$/,
                 loader: 'json-loader',
