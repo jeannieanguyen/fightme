@@ -13,9 +13,6 @@ const rootReducer = combineReducers({
 export const rootEpic = (action$, store) => combineEpics(
   templateEpics,
   authEpics,
-)(action$, store)
-  .do({
-    error: error => console.error('ERROR: ', error),
-  });
+)(action$, store);
 
 export default rootReducer;

@@ -35,7 +35,7 @@ var config = {
             },{
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                exclude: path.join(__dirname, 'node_modules'),  // <------ I have forgot it and got "Cannot read property 'crypto' of undefined"
+                exclude: path.join(__dirname, 'node_modules'),  
               },
             {
                 test: /\.scss$/,
@@ -44,7 +44,7 @@ var config = {
                     'css-loader',
                     'sass-loader'
                 ]
-            }
+            },
         ],
     },
     plugins: [

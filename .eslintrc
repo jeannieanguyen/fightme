@@ -22,5 +22,9 @@
     "it": true,
     "describe": true,
     "window": true,
-    }
+    "localStorage": true,
+    "apigClientFactory": true, 
+    "document": true, 
+    "AWS": true
+  }
 }

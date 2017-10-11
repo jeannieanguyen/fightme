@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { authSelectors } from 'ducks/auth';
+import PropTypes from 'prop-types';
 
 export function withAuthentication(WrappedComponent) {
   function mapStateToProps(state) {
@@ -23,5 +24,11 @@ export function withAuthentication(WrappedComponent) {
     }
   }
 
+  AuthenticatedComponent.propTypes = {
+    user: PropTypes.object,
+  };
+
   return AuthenticatedComponent;
 }
+
+export default withAuthentication;

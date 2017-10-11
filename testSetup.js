@@ -14,3 +14,6 @@ global.document = doc;
 global.window = win;
 global.React = React;
 global.expect = expect;
+global.apigClientFactory = { 
+	newClient: () => {}
+};

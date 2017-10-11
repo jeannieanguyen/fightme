@@ -64,7 +64,7 @@ RegisterPage.propTypes = {
   registerUser: PropTypes.func.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {};
 }
 
