@@ -1,10 +1,10 @@
 import axios from 'axios';
-import apiConfig from 'webpack-config-loader!../config'; 
+import apiConfig from 'webpack-config-loader!../config';
 
-let instance = axios.create({
+const instance = axios.create({
   baseURL: apiConfig.apiBase,
-  headers: { 
-  }
+  headers: {
+  },
 });
 
 export default instance;

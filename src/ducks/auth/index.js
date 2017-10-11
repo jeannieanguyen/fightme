@@ -7,9 +7,9 @@ import * as authActions from './actions';
 // console.log({templateEpics});
 
 export {
-    authEpics,
-    authSelectors, 
-    authActions
+  authEpics,
+  authSelectors,
+  authActions,
 };
 
 export default reducer;

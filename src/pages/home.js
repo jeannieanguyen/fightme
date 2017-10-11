@@ -4,64 +4,65 @@ import { connect } from 'react-redux';
 import { templateSelectors, templateActions } from 'ducks/template';
 import { login, register, getVictoriousUser } from 'api/aws';
 
-let { startFetchData, incrementCounter } = templateActions;
+const { startFetchData, incrementCounter } = templateActions;
 
 class HomePage extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
 
-    componentWillMount() {
-        this.props.startFetchData();
-        // clearError();
-    }
+    this.onCounterButtonClick = this.onCounterButtonClick.bind(this);
+  }
 
-    componentDidMount() {
+  componentWillMount() {
+    this.props.startFetchData();
+  }
 
-    }
+  componentDidMount() {
 
-    componentWillReceiveProps() {
+  }
 
-    }
+  componentWillReceiveProps() {
 
-    componentWillUpdate() {
-        
-    }
+  }
 
-    componentDidUpdate() {
-        
-    }
+  componentWillUpdate() {
 
-    componentWillUnmount() {
-        
-    }
+  }
 
-    onCounterButtonClick(){
-        this.props.incrementCounter(2);
-    }
+  componentDidUpdate() {
 
-    render() {
-        return (
-            <div className="page" id="home">
-                <h1><i className="fa fa-home"></i> VRC Component Boilerplate</h1>
-                <h3> 
-                    DATA LENGTH: 
-                    {this.props.data.length}
-                </h3>
-                <button onClick={::this.onCounterButtonClick}>SPAM ME</button>
-                <h3> 
+  }
+
+  componentWillUnmount() {
+
+  }
+
+  onCounterButtonClick() {
+    this.props.incrementCounter(2);
+  }
+
+  render() {
+    return (
+      <div className="page" id="home">
+        <h1><i className="fa fa-home" /> VRC Component Boilerplate</h1>
+        <h3>
+                    DATA LENGTH:
+          {this.props.data.length}
+        </h3>
+        <button onClick={this.onCounterButtonClick}>SPAM ME</button>
+        <h3>
                     COUNT : {this.props.count}
-                </h3>
-            </div>
-        );
-    }
+        </h3>
+      </div>
+    );
+  }
 }
 
-export function mapStateToProps(state){
-    return {
-        data: templateSelectors.getData(state), 
-        count: templateSelectors.getCounter(state), 
-    }
+export function mapStateToProps(state) {
+  return {
+    data: templateSelectors.getData(state),
+    count: templateSelectors.getCounter(state),
+  };
 }
 
 export default connect(mapStateToProps, { startFetchData, incrementCounter })(HomePage);

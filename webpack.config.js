@@ -30,7 +30,7 @@ var config = {
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader', 
+                loader: 'json-loader',
                 exclude: path.join(__dirname, 'node_modules')
             },{
                 test: /\.jsx?$/,
