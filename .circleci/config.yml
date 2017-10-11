@@ -9,35 +9,36 @@ defaults: &defaults
 
 version: 2
 jobs:
-   run_tests:
-     <<: *defaults
-     steps:
-       - checkout
-       - restore_cache:
+  run_tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-       - run: npm install
-       - save_cache:
+      - run: npm install
+      - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-       - run: npm test
-       - run:
+      - run: npm test
+      - run: npm test
+      - run:
           name: Generate code coverage
           command: './node_modules/.bin/nyc report --reporter=text-lcov'
-       - store_artifacts:
+      - store_artifacts:
           path: coverage
           prefix: coverage
-   build_image:
-     <<: *defaults
-     steps:
-       - checkout
-       - setup_remote_docker:
+  build_image:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker:
           version: 17.06.0-ce
-       - run:
+      - run:
           name: Build Docker Image
           command: |
             docker build . -t $AWS_ACCOUNT_ID.$AWS_ECR_ADDRESS/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
-       - run:
+      - run:
           name: Push Image to ECR
           command: |
             sudo apt install python-pip python-dev
