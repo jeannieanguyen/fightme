@@ -64,8 +64,3 @@ workflows:
       - build_image:
           requires:
             - run_tests
-          filters:
-              branches:
-                  only:
-                      - staging
-                      - master
