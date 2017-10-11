@@ -6,3 +6,4 @@ app/src/config.js
 .tmp/
 .nyc_output
 coverage/
+lint.txt

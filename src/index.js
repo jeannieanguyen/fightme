@@ -9,7 +9,6 @@ import { createEpicMiddleware } from 'redux-observable';
 import reducers, { rootEpic } from 'ducks/index';
 import routes from 'routes';
 import promise from 'redux-promise';
-import templateReducer from 'ducks/template/reducers';
 
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
@@ -26,13 +25,13 @@ const history = syncHistoryWithStore(browserHistory, store);
 const rootEl = document.getElementById('root');
 
 // renders the app inside the root element.
-let render = (routes, revision) => ReactDOM.render(
+let render = (approutes, revision) => ReactDOM.render(
   <Provider store={store} key={revision}>
     <Router
       onUpdate={() => window.scrollTo(0, 0)}
       history={history}
     >
-      {routes}
+      {approutes}
     </Router>
   </Provider>,
   rootEl,
@@ -47,9 +46,9 @@ if (module.hot) {
     const RedBox = require('redbox-react');
     ReactDOM.render(<RedBox error={err} />, rootEl);
   };
-  render = (routes, revision) => {
+  render = (approutes, revision) => {
     try {
-      renderApp(routes, revision);
+      renderApp(approutes, revision);
     } catch (err) {
       renderError(err);
     }
@@ -64,8 +63,8 @@ if (module.hot) {
   // all the routes without refreshing the page. the redux store
   // remains the same, so the session is preserved.
   module.hot.accept('./routes', () => {
-    const routes = require('./routes').default;
-    setTimeout(() => render(routes, ++revision));
+    const approutes = require('./routes').default;
+    setTimeout(() => render(approutes, ++revision));
   });
 }
 
