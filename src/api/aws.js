@@ -1,6 +1,6 @@
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import 'amazon-cognito-js';
-import { userPool, USERPOOL_ID } from 'config/aws';
+import { userPool, USERPOOL_ID } from '../config/aws';
 
 export function register({ email, password }) {
   // instantiate a promise so we can work with this async easily
