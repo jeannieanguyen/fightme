@@ -5,5 +5,17 @@ jobs:
        - image: circleci/node:7
      steps:
        - checkout
-       - run: echo "hello000ooo000 world"
+       - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
        - run: npm install
+       - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+       - run: npm test
+       - run:
+          name: Generate code coverage
+          command: './node_modules/.bin/nyc report --reporter=text-lcov'
+       - store_artifacts:
+          path: coverage
+          prefix: coverage

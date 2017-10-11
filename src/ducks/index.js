@@ -6,18 +6,18 @@ import authReducer, { authEpics } from 'ducks/auth/index';
 import errorReducer from 'ducks/errors';
 
 const rootReducer = combineReducers({
-    routing: routerReducer,
-    template: templateReducer,
-    auth: authReducer,
-    errors: errorReducer,
+  routing: routerReducer,
+  template: templateReducer,
+  auth: authReducer,
+  errors: errorReducer,
 });
 
 export const rootEpic = (action$, store) => combineEpics(
-    templateEpics,
-    authEpics
+  templateEpics,
+  authEpics,
 )(action$, store)
-	.do({
-		error: error => console.error('ERROR: ', error)
-	});
+  .do({
+    error: error => console.error('ERROR: ', error),
+  });
 
 export default rootReducer;

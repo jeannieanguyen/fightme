@@ -9,28 +9,22 @@ import { Observable } from 'rxjs';
 import { login, register, getVictoriousUser } from 'api/aws';
 import { setGeneralError, clearGeneralError } from 'ducks/errors';
 
-export const registerUserEpic = (action$) =>
+export const registerUserEpic = action$ =>
   action$.ofType(types.REGISTER_USER)
-  .mergeMap((action) => {
-    return Observable.from(register(action.data))
-      .map((payload) => actions.setRegisteredUser(payload))
-  });
+    .mergeMap(action => Observable.from(register(action.data))
+      .map(payload => actions.setRegisteredUser(payload)));
 
-export const loginUserEpic = (action$) =>
+export const loginUserEpic = action$ =>
   action$.ofType(types.LOGIN_USER)
-  .mergeMap((action) => {
-    return Observable.from(login(action.data))
-    .map((payload) => {
-      return actions.setLoggedInUser(payload);
-    })
-    .concat( Observable.of(clearGeneralError()))// Clears error after setting a logged in user
-    .catch((error, source) => {
-      // Note: the stream seems ok if you encounter an error and then put in the right e-mail and password combo
-      return Observable.of(setGeneralError(error.message));
-    })
-  });
+    .mergeMap(action =>
+      Observable.from(login(action.data))
+      .map(payload => actions.setLoggedInUser(payload))
+      .concat( Observable.of(clearGeneralError()))// Clears error after setting a logged in user
+      .catch((error, source) => Observable.of(setGeneralError(error.message))// Note: the stream seems ok if you encounter an error and then put in the right e-mail and password combo
+      )
+    );
 
 export default combineEpics(
   registerUserEpic,
-  loginUserEpic
+  loginUserEpic,
 );

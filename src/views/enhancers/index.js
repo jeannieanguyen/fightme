@@ -14,7 +14,7 @@ export function withAuthentication(WrappedComponent) {
   @connect(mapStateToProps)
   class AuthenticatedComponent extends Component {
     componentWillMount() {
-      let { user } = this.props;
+      const { user } = this.props;
       if (!user) {
         browserHistory.push('/login');
       }
@@ -31,7 +31,7 @@ export function errorHandlingDecorator() {
   return (InnerComponent) => {
     function mapStateToProps(state) {
       return {
-        error: getGeneralErrorSelector(state)
+        error: getGeneralErrorSelector(state),
       };
     }
 
@@ -49,7 +49,7 @@ export function errorHandlingDecorator() {
           </div>
         );
       }
-    };
+    }
 
     return ErrorHandlingHoc;
   };

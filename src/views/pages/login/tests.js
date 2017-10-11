@@ -1,15 +1,8 @@
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import { LoginPage } from './login';
 
 describe('Login Page Component', () => {
-
-  function logUser() {
-    console.log('yo');
-  }
-
-  const props = {
-    loginUser: {}
-  };
+  const props = LoginPage.defaultProps;
 
   it('renders an email input', () => {
     const el = shallow(<LoginPage {...props} />);
