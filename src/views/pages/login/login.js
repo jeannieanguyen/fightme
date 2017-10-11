@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authActions, authSelectors } from 'ducks/auth';
 import { Link } from 'react-router';
+import { errorHandlingDecorator } from 'views/enhancers/index';
 
 const { loginUser } = authActions;
 
+function mapStateToProps(state){
+	return {
+		user: authSelectors.getUser(state),
+	};
+}
+
+@errorHandlingDecorator()
+@connect(mapStateToProps, { loginUser })
 export class LoginPage extends Component {
 	componentWillMount(){
 		this.setState({
@@ -54,10 +63,4 @@ export class LoginPage extends Component {
 	}
 }
 
-function mapStateToProps(state){
-	return {
-		user: authSelectors.getUser(state),
-	};
-}
-
-export default connect(mapStateToProps, { loginUser })(LoginPage);
+export default LoginPage;

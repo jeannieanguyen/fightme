@@ -3,9 +3,20 @@ import config from 'webpack-config-loader!../config.js';
 import { connect } from 'react-redux';
 import { templateSelectors, templateActions } from 'ducks/template';
 import { login, register, getVictoriousUser } from 'api/aws';
+import { errorHandlingDecorator } from 'views/enhancers/index';
 
 let { startFetchData, incrementCounter } = templateActions;
 
+
+export function mapStateToProps(state){
+    return {
+        data: templateSelectors.getData(state),
+        count: templateSelectors.getCounter(state),
+    }
+}
+
+@errorHandlingDecorator()
+@connect(mapStateToProps, { startFetchData, incrementCounter })
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -25,15 +36,15 @@ class HomePage extends Component {
     }
 
     componentWillUpdate() {
-        
+
     }
 
     componentDidUpdate() {
-        
+
     }
 
     componentWillUnmount() {
-        
+
     }
 
     onCounterButtonClick(){
@@ -44,12 +55,12 @@ class HomePage extends Component {
         return (
             <div className="page" id="home">
                 <h1><i className="fa fa-home"></i> VRC Component Boilerplate</h1>
-                <h3> 
-                    DATA LENGTH: 
+                <h3>
+                    DATA LENGTH:
                     {this.props.data.length}
                 </h3>
                 <button onClick={::this.onCounterButtonClick}>SPAM ME</button>
-                <h3> 
+                <h3>
                     COUNT : {this.props.count}
                 </h3>
             </div>
@@ -57,11 +68,4 @@ class HomePage extends Component {
     }
 }
 
-export function mapStateToProps(state){
-    return {
-        data: templateSelectors.getData(state), 
-        count: templateSelectors.getCounter(state), 
-    }
-}
-
-export default connect(mapStateToProps, { startFetchData, incrementCounter })(HomePage);
+export default HomePage;
