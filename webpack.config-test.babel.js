@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-require('./lib/gateway/apigClient');
+
 var env = process.env.WEBPACK_ENV || 'local';
 
 if (env === 'production' || env === 'stage')
@@ -21,7 +21,7 @@ module.exports = {
         loader: "babel-loader",
         query:
             {
-                presets: ["env", "es2017", "stage-0", "stage-1", "stage-2", "react"],
+                presets: ["env", "es2017", "stage-0", "stage-1", "stage-2", "react"]
             },
       },
     ]

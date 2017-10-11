@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import s from 'styles/styles.scss';
 
 function mapStateToProps(state) {
   return {
