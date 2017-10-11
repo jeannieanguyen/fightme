@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'ducks/auth';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 
 const { registerUser } = authActions;
 
@@ -58,6 +59,10 @@ class RegisterPage extends Component {
     );
   }
 }
+
+RegisterPage.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   return {};

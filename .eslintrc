@@ -14,5 +14,12 @@
         "paths": ["src"]
       }
     }
-  }
+  },
+  "globals": {
+    "expect": true,
+    "React": true,
+    "it": true,
+    "describe": true,
+    "window": true,
+    }
 }

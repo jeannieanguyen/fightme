@@ -1,12 +1,11 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-
-import App from './app';
-import HomePage from './pages/home';
+import { withAuthentication } from 'views/enhancers';
 import LoginPage from 'views/pages/login/login';
 import RegisterPage from 'views/pages/login/index';
 import HelloWorldPage from 'views/pages/hello_world';
-import { withAuthentication } from 'views/enhancers';
+import App from './app';
+import HomePage from './pages/home';
 
 const authenticatedHelloWorldPage = withAuthentication(HelloWorldPage);
 
