@@ -30,3 +30,19 @@ export function loginUser(data) {
     });
   };
 }
+
+export function getSampleService(){
+	console.log('dispatchign sample service');
+	return (dispatch) => {
+		dispatch({
+			type: types.SAMPLE_GET
+		});
+	}
+}
+
+export function setSampleData(data){
+	return {
+		type: types.SAMPLE_GET_SUCCESS,
+		data
+	}
+}

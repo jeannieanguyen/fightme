@@ -36,7 +36,6 @@ export default class App extends Component {
   render() {
     const { children } = this.props;
     console.log(this.props);
-
     return (
       <div className="col-xs-12 no-pad">
         {/* { appdata.error && <div className="app-alert alert alert-danger danger-bg" onClick={this.dismissAlert}><i className="fa fa-times"></i> {appdata.error.message}</div> }
