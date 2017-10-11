@@ -1,6 +1,5 @@
 import AWSCognito from 'aws-sdk';
-import { AuthenticationDetails, CognitoUserPool, CognitoUser } from 'amazon-cognito-identity-js';
-import amazonCognitoJS from 'amazon-cognito-js';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 
 const REGION = 'us-west-2';

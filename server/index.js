@@ -30,6 +30,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../content/index.html'));
 });
 
+
 app.listen(port, address, err => {
 	if (err) {
 		console.log(err);
