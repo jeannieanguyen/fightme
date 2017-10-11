@@ -1,8 +1,16 @@
+defaults: &defaults
+  docker:
+      #create custom image with aws cli installed
+      - image: circleci/node:boron
+
+#  working_directory: ~/the-quacken
+  environment:
+      AWS_ECR_ADDRESS: dkr.ecr.us-west-1.amazonaws.com
+
 version: 2
 jobs:
-   build:
-     docker:
-       - image: circleci/node:7
+   run_tests:
+     <<: *defaults
      steps:
        - checkout
        - restore_cache:
@@ -19,3 +27,40 @@ jobs:
        - store_artifacts:
           path: coverage
           prefix: coverage
+   build_image:
+     <<: *defaults
+     steps:
+       - checkout
+       - setup_remote_docker:
+          version: 17.06.0-ce
+       - run:
+          name: Build Docker Image
+          command: |
+            docker build . -t $AWS_ACCOUNT_ID.$AWS_ECR_ADDRESS/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+       - run:
+          name: Push Image to ECR
+          command: |
+            sudo apt install python-pip python-dev
+            sudo pip install awscli
+            eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email | sed 's|https://||' | sed -e 's/-e none//g')
+            docker push $AWS_ACCOUNT_ID.$AWS_ECR_ADDRESS/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+
+workflows:
+  version: 2
+  build_and_dockerize:
+    jobs:
+      - run_tests:
+          filters:
+              branches:
+                  ignore:
+                      - staging
+                      - master
+
+      - build_image:
+          requires:
+            - run_tests
+          filters:
+              branches:
+                  only:
+                      - staging
+                      - master
