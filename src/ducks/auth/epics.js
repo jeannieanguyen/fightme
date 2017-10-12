@@ -6,6 +6,7 @@
 import { combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
 import { login, register } from 'api/aws';
+import { setGeneralError, clearGeneralError } from 'ducks/errors';
 import * as actions from './actions';
 import * as types from './types';
 
@@ -18,8 +19,12 @@ export const registerUserEpic = action$ =>
 
 export const loginUserEpic = action$ =>
   action$.ofType(types.LOGIN_USER)
-    .mergeMap(action => Observable.from(login(action.data))
-      .map(payload => actions.setLoggedInUser(payload)));
+    .mergeMap(action =>
+      Observable.from(login(action.data))
+      .map(payload => actions.setLoggedInUser(payload))
+      .catch((error, source) => Observable.of(setGeneralError(error.message))// Note: the stream seems ok if you encounter an error and then put in the right e-mail and password combo
+      )
+    );
 
 export const sampleEpic = action$ =>
   action$.ofType(types.SAMPLE_GET)

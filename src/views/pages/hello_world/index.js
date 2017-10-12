@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authSelectors, authActions } from 'ducks/auth';
 import PropTypes from 'prop-types';
+import { authSelectors, authActions } from 'ducks/auth';
 
 const { getSampleService } = authActions;
 
@@ -41,7 +41,7 @@ class HelloWorldPage extends Component {
           </div>
         </div>
         {this.displaySampleData()}
-        
+
       </div>
     );
   }
