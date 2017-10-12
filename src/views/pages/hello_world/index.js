@@ -16,9 +16,25 @@ class HelloWorldPage extends Component {
   componentWillMount() {
     this.props.getSampleService();
   }
+  displaySampleData(){
+    const { sample } = this.props;
+    if(this.props.sample){
+      return (
+        <div>
+          <h2>SAMPLE DATA RETURNED : </h2>
+          <h4>{ `ID : ${sample.id}` }</h4>
+          <h4>{ `PRICE : ${sample.price}` }</h4>
+          <h4>{ `TYPE : ${sample.type}` }</h4>
+        </div>
+      );
+    }
+  }
   render() {
     return (
-      <h1>here is my home page</h1>
+      <div>
+        <h1>here is my home page</h1>
+        {this.displaySampleData()}
+      </div>
     );
   }
 }

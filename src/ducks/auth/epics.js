@@ -27,17 +27,6 @@ export const sampleEpic = action$ =>
       Observable.from(apigClient.sampleServiceGet({ david: localStorage.getItem('user_token') }))
         .map(payload => actions.setSampleData(payload)));
 
-// export const sampleEpic = (action$) => {
-//  action$.ofType(types.SAMPLE_GET)
-//  .mergeMap((action) => {
-//    return Observable.from(apigClient.sampleServiceGet())
-//    .map((payload) => {
-//      console.log(payload);
-//      return actions.setSampleData(payload);
-//    })
-//  })
-// }
-
 export default combineEpics(
   registerUserEpic,
   loginUserEpic,
