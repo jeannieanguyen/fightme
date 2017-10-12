@@ -35,7 +35,7 @@ export class LoginPage extends Component {
 
   render() {
     const { email, password } = this.state;
-    if(this.props.user.email){
+    if(this.props.user){
       return (
         <h1>
           <Link to="/hello_world">YAY LETS GO TO HELLO WORLD.</Link>

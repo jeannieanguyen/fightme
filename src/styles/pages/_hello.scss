@@ -1,26 +1,26 @@
 .content-wrapper {
-	overflow: hidden; 
-	width: 100%; 
-	margin: 0 auto; 
-	padding: 50px; 
-	font-family: 'Helvetica'; 
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px;
+  font-family: 'Helvetica';
 
-	a {
-  	text-decoration: none; 
-  	color: #000;
+  a {
+    text-decoration: none;
+    color: #000;
   }
 }
 
 .form-container {
-	h1 {
-		margin-bottom: 50px;
-	}
-	label {
-		display: block;
-		text-transform: uppercase;
-	}
-	input.form-input{
-		display: block;
+  h1 {
+    margin-bottom: 50px;
+  }
+  label {
+    display: block;
+    text-transform: uppercase;
+  }
+  input.form-input{
+    display: block;
     padding: 15px;
     width: 500px;
     margin: 15px auto 35px 0px;
@@ -28,10 +28,10 @@
     background: none;
     text-align: left;
     border: 1px solid #ededed;
-	}
+  }
 
-	button {
-		padding: 15px 25px;
+  button {
+    padding: 15px 25px;
     border-radius: 100px;
     outline: none;
     border: none;
@@ -41,40 +41,40 @@
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 2px;
-    margin-right: 30px; 
+    margin-right: 30px;
 
     &:hover {
-    	background: #cdcdcd;
+      background: #cdcdcd;
     }
 
     a {
-	  	text-decoration: none; 
-	  	color: #fff;
-	  }
-	}
+      text-decoration: none;
+      color: #fff;
+    }
+  }
 
 }
 
 .hello-world-container {
-	.inline {
-		display: inline-block; 
-		vertical-align: middle;
-	}
-	h2 {
-		font-weight: 200; 
-		font-size: 20px; 
-		margin-top: 25px;
-	}
-	.details {
-		border: 1px solid #000;
-		border-radius: 4px;
-		padding: 25px;
-		width: 100%; 
-		width: 500px;
-	}
-	img {
-		width: 90px; 
-		margin: 0 25px 50px auto; 
-		vertical-align: middle;
-	}
+  .inline {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  h2 {
+    font-weight: 200;
+    font-size: 20px;
+    margin-top: 25px;
+  }
+  .details {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 25px;
+    width: 100%;
+    width: 500px;
+  }
+  img {
+    width: 90px;
+    margin: 0 25px 50px auto;
+    vertical-align: middle;
+  }
 }
