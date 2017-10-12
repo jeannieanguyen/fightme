@@ -22,7 +22,6 @@ export const loginUserEpic = action$ =>
     .mergeMap(action =>
       Observable.from(login(action.data))
       .map(payload => actions.setLoggedInUser(payload))
-      .concat( Observable.of(clearGeneralError()))// Clears error after setting a logged in user
       .catch((error, source) => Observable.of(setGeneralError(error.message))// Note: the stream seems ok if you encounter an error and then put in the right e-mail and password combo
       )
     );

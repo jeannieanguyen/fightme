@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { errorHandlingDecorator } from 'views/enhancers/index';
-import s from 'styles/styles.scss';
+import s from 'styles/styles.scss'; // Leaving this import for now, in case error handling HOC gets moved to not wrap app.js
 
 function mapStateToProps(state) {
   return {

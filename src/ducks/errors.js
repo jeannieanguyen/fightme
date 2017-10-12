@@ -1,16 +1,9 @@
 export const CATCHALL_ERROR = 'CATCHALL_ERROR';
-export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const setGeneralError = (errorMessage) => {
     return {
         type: CATCHALL_ERROR,
         error: errorMessage,
-    }
-}
-
-export const clearGeneralError = () => {
-    return {
-        type: CLEAR_ERROR,
     }
 }
 

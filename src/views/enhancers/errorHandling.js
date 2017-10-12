@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getGeneralErrorSelector } from 'ducks/errors';
+import s from 'styles/styles.scss';
 
 export default function errorHandlingDecorator() {
   return (InnerComponent) => {
@@ -17,7 +18,7 @@ export default function errorHandlingDecorator() {
           <div>
             <div>
               {this.props.error &&
-                <h3>{this.props.error}</h3>
+                <h4 className="error-message">{this.props.error}</h4>
               }
             </div>
             <InnerComponent {...this.props} />
