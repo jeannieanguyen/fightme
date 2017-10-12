@@ -21,19 +21,27 @@ class HelloWorldPage extends Component {
     if(this.props.sample){
       return (
         <div>
-          <h2>SAMPLE DATA RETURNED : </h2>
-          <h4>{ `ID : ${sample.id}` }</h4>
-          <h4>{ `PRICE : ${sample.price}` }</h4>
-          <h4>{ `TYPE : ${sample.type}` }</h4>
+          <div className="details">
+            <h4>{ `ID : ${sample.id}` }</h4>
+            <h4>{ `PRICE : ${sample.price}` }</h4>
+            <h4>{ `TYPE : ${sample.type}` }</h4>
+          </div>
         </div>
       );
     }
   }
   render() {
     return (
-      <div>
-        <h1>here is my home page</h1>
+      <div className="hello-world-container">
+        <div>
+          <img src='https://img07.deviantart.net/0a7b/i/2016/174/2/9/free_2_use_left_shark_by_syrcaid-da7dd49.png' />
+          <div className="inline">
+            <h1>Hello World</h1>
+            <h2>Here is your sample data. </h2>
+          </div>
+        </div>
         {this.displaySampleData()}
+        
       </div>
     );
   }
