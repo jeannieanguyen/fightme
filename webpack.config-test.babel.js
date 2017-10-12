@@ -22,6 +22,7 @@ module.exports = {
         query:
             {
                 presets: ["env", "es2017", "stage-0", "stage-1", "stage-2", "react"],
+                plugins: ['transform-decorators-legacy'],
             },
       }
     ]

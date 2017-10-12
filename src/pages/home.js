@@ -15,7 +15,6 @@ export function mapStateToProps(state) {
   };
 }
 
-@errorHandlingDecorator()
 @connect(mapStateToProps, { startFetchData, incrementCounter })
 class HomePage extends Component {
   constructor(props) {

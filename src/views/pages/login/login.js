@@ -13,8 +13,6 @@ function mapStateToProps(state) {
   };
 }
 
-@errorHandlingDecorator()
-@connect(mapStateToProps, { loginUser })
 export class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -96,5 +94,10 @@ LoginPage.defaultProps = {
   },
 };
 
-export default LoginPage;
+@connect(mapStateToProps, { loginUser })
+export default class LoginPageContainer extends Component{
+  render() {
+    return <LoginPage {...this.props} />
+  }
+}
 

@@ -25,13 +25,11 @@ export default function (state=INITIAL_STATE, action) {
                 ...state,
                 error: action.error,
             }
-        case CLEAR_ERROR:
+        default:
           return {
             ...state,
             error: null,
           }
-        default:
-            return state;
     }
 }
 

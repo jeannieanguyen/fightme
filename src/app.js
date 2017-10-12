@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { errorHandlingDecorator } from 'views/enhancers/index';
 
 function mapStateToProps(state) {
   return {
@@ -9,6 +10,7 @@ function mapStateToProps(state) {
   };
 }
 
+@errorHandlingDecorator()
 @connect(mapStateToProps, { })
 export default class App extends Component {
   constructor(props) {
