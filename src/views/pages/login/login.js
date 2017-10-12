@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { authActions, authSelectors } from 'ducks/auth';
 import { Link } from 'react-router';
+import {get} from 'lodash';
 
 const { loginUser } = authActions;
 
@@ -31,38 +32,44 @@ export class LoginPage extends Component {
     });
   }
 
+
+
   render() {
     const { email, password } = this.state;
+    if(get(this.props, 'user.email')){
+
+      return (
+        <h1>
+          <Link to="/hello_world">YAY LETS GO TO HELLO WORLD.</Link>
+        </h1>
+      );
+    }
     return (
-      <div>
+      <div className="form-container">
         <div>
           <h1>LOGIN USER</h1>
           <label htmlFor="email_field">E-mail</label>
           <input
             type="text"
             name="email"
+            className="form-input email-login"
             placeholder="E-mail address"
             onChange={this.updateField}
-            className="email-login"
             value={email}
           />
           <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
+            className="form-input"
             placeholder="Password"
             onChange={this.updateField}
             value={password}
           />
           <button onClick={this.onLogin}>Login</button>
           <button>
-            <Link to="/register">REGISTER INSTEAD</Link>
+            <Link to="/register">GO TO REGISTER</Link>
           </button>
-        </div>
-        <div>
-          {this.props.user &&
-          <Link to="/hello_world">YAY LETS GO TO HELLO WORLD.</Link>
-          }
         </div>
       </div>
     );

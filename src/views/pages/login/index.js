@@ -33,13 +33,14 @@ class RegisterPage extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
+      <div className="form-container">
         <div>
           <h1>REGISTER USER</h1>
           <label htmlFor="email_field">E-mail</label>
           <input
             type="text"
             name="email"
+            className="form-input"
             placeholder="E-mail address"
             onChange={this.updateField}
             value={email}
@@ -48,12 +49,13 @@ class RegisterPage extends Component {
           <input
             type="password"
             name="password"
+            className="form-input"
             placeholder="Password"
             onChange={this.updateField}
             value={password}
           />
           <button onClick={this.onRegister}>Register</button>
-          <button><Link to="/login">LOGIN</Link></button>
+          <button><Link to="/login">GO TO LOGIN</Link></button>
         </div>
       </div>
     );

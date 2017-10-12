@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import s from 'styles/styles.scss';
 
 function mapStateToProps(state) {
   return {
@@ -13,7 +14,9 @@ export default class App extends Component {
     const { children } = this.props;
     return (
       <div className="col-xs-12 no-pad">
-        {children}
+        <div className="content-wrapper">
+          {children}
+        </div>
       </div>
     );
   }
