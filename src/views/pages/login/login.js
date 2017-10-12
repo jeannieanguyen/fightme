@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { authActions, authSelectors } from 'ducks/auth';
 import { Link } from 'react-router';
+import {get} from 'lodash';
 
 const { loginUser } = authActions;
 
@@ -35,7 +36,8 @@ export class LoginPage extends Component {
 
   render() {
     const { email, password } = this.state;
-    if(this.props.user.email){
+    if(get(this.props, 'user.email')){
+
       return (
         <h1>
           <Link to="/hello_world">YAY LETS GO TO HELLO WORLD.</Link>
