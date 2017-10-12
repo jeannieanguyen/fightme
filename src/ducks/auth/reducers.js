@@ -1,7 +1,6 @@
 import * as types from './types';
 
 const INITIAL_STATE = {
-  user: null,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -10,6 +9,11 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         user: action.data,
+      };
+    case types.SAMPLE_GET_SUCCESS:
+      return {
+        ...state,
+        sample: action.data.data
       };
     default:
       return state;

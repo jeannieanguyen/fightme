@@ -2,12 +2,15 @@
 // Should contain observable definitions
 // and any async / side-effect handlers
 
-import * as actions from './actions';
-import * as types from './types';
+
 import { combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
-import { login, register, getVictoriousUser } from 'api/aws';
+import { login, register } from 'api/aws';
 import { setGeneralError, clearGeneralError } from 'ducks/errors';
+import * as actions from './actions';
+import * as types from './types';
+
+const apigClient = apigClientFactory.newClient();
 
 export const registerUserEpic = action$ =>
   action$.ofType(types.REGISTER_USER)
@@ -24,7 +27,14 @@ export const loginUserEpic = action$ =>
       )
     );
 
+export const sampleEpic = action$ =>
+  action$.ofType(types.SAMPLE_GET)
+    .mergeMap(() =>
+      Observable.from(apigClient.sampleServiceGet({ david: localStorage.getItem('user_token') }))
+        .map(payload => actions.setSampleData(payload)));
+
 export default combineEpics(
   registerUserEpic,
   loginUserEpic,
+  sampleEpic,
 );

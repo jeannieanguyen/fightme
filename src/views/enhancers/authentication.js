@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
 import { authSelectors } from 'ducks/auth';
 
-export default function withAuthentication(WrappedComponent) {
+export function withAuthentication(WrappedComponent) {
   function mapStateToProps(state) {
     return {
       user: authSelectors.getUser(state),
@@ -19,9 +20,15 @@ export default function withAuthentication(WrappedComponent) {
       }
     }
     render() {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent />;
     }
   }
 
+  AuthenticatedComponent.propTypes = {
+    user: PropTypes.object,
+  };
+
   return AuthenticatedComponent;
 }
+
+export default withAuthentication;

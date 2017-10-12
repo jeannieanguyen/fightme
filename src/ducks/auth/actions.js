@@ -8,25 +8,33 @@ export const setRegisteredUser = user => ({
   data: user,
 });
 
-export function registerUser(data) {
-  return (dispatch) => {
+export const registerUser = data =>
+  dispatch =>
     dispatch({
       type: types.REGISTER_USER,
       data,
     });
-  };
-}
+
 
 export const setLoggedInUser = user => ({
   type: types.LOGIN_USER_SUCCESS,
   data: user,
 });
 
-export function loginUser(data) {
-  return (dispatch) => {
+export const loginUser = data =>
+  dispatch =>
     dispatch({
       type: types.LOGIN_USER,
       data,
     });
-  };
-}
+
+export const getSampleService = () =>
+  dispatch =>
+    dispatch({
+      type: types.SAMPLE_GET,
+    });
+
+export const setSampleData = data => ({
+  type: types.SAMPLE_GET_SUCCESS,
+  data,
+});

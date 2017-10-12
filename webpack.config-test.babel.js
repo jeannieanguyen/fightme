@@ -11,8 +11,8 @@ module.exports = {
   target: 'node', // webpack should compile node compatible code
   externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
   resolve: {
-      modules: ['node_modules', './src'],
-      extensions: ['.js', '.jsx']
+    modules: ['node_modules', './src'],
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [
@@ -21,10 +21,10 @@ module.exports = {
         loader: "babel-loader",
         query:
             {
-                presets: ["env", "es2017", "stage-0", "stage-1", "stage-2", "react"],
-                plugins: ['transform-decorators-legacy'],
+              presets: ["env", "es2017", "stage-0", "stage-1", "stage-2", "react"],
+              plugins: ['transform-decorators-legacy'],
             },
-      }
+      },
     ]
   },
 };
