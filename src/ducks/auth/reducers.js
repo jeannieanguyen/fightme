@@ -5,6 +5,11 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
+    case types.REGISTER_USER_SUCCESS: 
+      return {
+        ...state, 
+        register: action.data
+      }
     case types.LOGIN_USER_SUCCESS:
       return {
         ...state,

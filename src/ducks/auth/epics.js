@@ -15,14 +15,17 @@ const apigClient = apigClientFactory.newClient();
 export const registerUserEpic = action$ =>
   action$.ofType(types.REGISTER_USER)
     .mergeMap(action => Observable.from(register(action.data))
-      .map(payload => actions.setRegisteredUser(payload)));
+      .map(payload => actions.setRegisteredUser(payload))
+      .catch((error, source) => {console.log(error); return Observable.of(setGeneralError(error.message))}
+      )
+    );
 
 export const loginUserEpic = action$ =>
   action$.ofType(types.LOGIN_USER)
     .mergeMap(action =>
       Observable.from(login(action.data))
       .map(payload => actions.setLoggedInUser(payload))
-      .catch((error, source) => Observable.of(setGeneralError(error.message))// Note: the stream seems ok if you encounter an error and then put in the right e-mail and password combo
+      .catch((error, source) => Observable.of(setGeneralError(error.datamessage))
       )
     );
 
