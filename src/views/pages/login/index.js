@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authActions } from 'ducks/auth';
+import { authActions, authSelectors } from 'ducks/auth';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 
@@ -36,6 +36,7 @@ class RegisterPage extends Component {
       <div className="form-container">
         <div>
           <h1>REGISTER USER</h1>
+          { this.props.register && <h2> You're registered! Go to Login. </h2> }
           <label htmlFor="email_field">E-mail</label>
           <input
             type="text"
@@ -66,8 +67,10 @@ RegisterPage.propTypes = {
   registerUser: PropTypes.func.isRequired,
 };
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    register: authSelectors.getRegister(state)
+  };
 }
 
 export default connect(mapStateToProps, { registerUser })(RegisterPage);

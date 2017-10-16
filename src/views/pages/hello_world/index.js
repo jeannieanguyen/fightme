@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { authSelectors, authActions } from 'ducks/auth';
+import PropTypes from 'prop-types';
 
 const { getSampleService } = authActions;
 
@@ -22,9 +22,7 @@ class HelloWorldPage extends Component {
       return (
         <div>
           <div className="details">
-            <h4>{ `ID : ${sample.id}` }</h4>
-            <h4>{ `PRICE : ${sample.price}` }</h4>
-            <h4>{ `TYPE : ${sample.type}` }</h4>
+            { JSON.stringify(sample)}
           </div>
         </div>
       );
@@ -41,7 +39,7 @@ class HelloWorldPage extends Component {
           </div>
         </div>
         {this.displaySampleData()}
-
+        
       </div>
     );
   }

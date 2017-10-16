@@ -15,7 +15,6 @@ export const registerUser = data =>
       data,
     });
 
-
 export const setLoggedInUser = user => ({
   type: types.LOGIN_USER_SUCCESS,
   data: user,
