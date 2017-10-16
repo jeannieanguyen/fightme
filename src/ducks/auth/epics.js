@@ -15,7 +15,7 @@ const apigClient = apigClientFactory.newClient();
 export const registerUserEpic = action$ =>
   action$.ofType(types.REGISTER_USER)
     .mergeMap(action => Observable.from(register(action.data))
-      .map(payload => actions.setRegisteredUser(payload))
+      .map(payload => actions.setRegisteredUser(payoad))
       .catch((error, source) => {console.log(error); return Observable.of(setGeneralError(error.message))}
       )
     );
@@ -32,7 +32,7 @@ export const loginUserEpic = action$ =>
 export const sampleEpic = action$ =>
   action$.ofType(types.SAMPLE_GET)
     .mergeMap(() =>
-      Observable.from(apigClient.sampleServiceGet({ david: localStorage.getItem('user_token') }))
+      Observable.from(apigClient.v1HelloworldGet({ 'dev-auth': localStorage.getItem('user_token') }))
         .map(payload => actions.setSampleData(payload)));
 
 export default combineEpics(

@@ -3,8 +3,8 @@ import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 
 const REGION = 'us-west-2';
-const USER_POOL_ID = 'us-west-2_3GGBN3zzD';
-const CLIENT_ID = '5v62ihet3f1816vn6939li7ntn';
+const USER_POOL_ID = 'us-west-2_g66KEU85e';
+const CLIENT_ID = '6o3eojh3upbnsmietk7pgck0hr';
 
 AWSCognito.config.update({
   region: REGION,
