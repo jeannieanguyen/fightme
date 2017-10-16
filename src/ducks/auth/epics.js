@@ -16,7 +16,7 @@ export const registerUserEpic = action$ =>
   action$.ofType(types.REGISTER_USER)
     .mergeMap(action => Observable.from(register(action.data))
       .map(payload => actions.setRegisteredUser(payoad))
-      .catch((error, source) => {console.log(error); return Observable.of(setGeneralError(error.message))}
+      .catch((error, source) =>  Observable.of(setGeneralError(error.message))
       )
     );
 
@@ -25,7 +25,7 @@ export const loginUserEpic = action$ =>
     .mergeMap(action =>
       Observable.from(login(action.data))
       .map(payload => actions.setLoggedInUser(payload))
-      .catch((error, source) => Observable.of(setGeneralError(error.datamessage))
+      .catch((error, source) => Observable.of(setGeneralError(error.message))
       )
     );
 
