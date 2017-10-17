@@ -1,0 +1,35 @@
+// ############################################################################
+//
+// Viewport :: 768
+//
+// Support devices with a viewport max width of 768 resolution.
+//
+// ########################################################################## */
+
+@media ( max-width: $screen-sm-max )
+{
+    .content-tabs-holder
+    {
+        // border-bottom-width:1px;
+    }
+    
+    .nav-tabs
+    {
+        // float: none !important;
+
+        li
+        {
+            // float: none;
+
+            a
+            {
+                // display: block;
+                // padding-left: 0;
+                span
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+}

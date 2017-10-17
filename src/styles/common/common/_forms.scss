@@ -1,0 +1,47 @@
+.form-control, .form-control:focus {
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: $grey3;
+}
+
+.form-control.disabled, .form-control[disabled] {
+  background-color: $grey5;
+  border-color: $grey4;
+  border-size: 2px;
+}
+
+.form-group
+{
+    label
+    {
+        font-size: 12px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        margin-bottom: 0;
+        // border-left: 1px solid $grey4;
+        padding: 0 0 0 0;
+        color: $grey1;
+    }
+}
+.form-control
+{
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    outline: none;
+    @include single-box-shadow(0, 0, 0, 0, #FFFFFF, false);
+    @include border-radius(0);
+    // border-left: 1px solid $grey4;
+    border-bottom: 1px solid $grey4;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    padding: 5px 40px 15px 0;
+}

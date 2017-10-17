@@ -1,0 +1,314 @@
+.toggle-holder
+{
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    margin-right: 15px;
+    margin-bottom: 0;
+    position: relative;
+    height: 30px;
+    overflow: hidden;
+    @extend .clearfix;
+
+    &:last-child
+    {
+        margin-right: 0;
+    }
+
+    span
+    {
+        position: relative;
+        top: -11px;
+    }
+
+    .react-toggle {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+        margin-left: 5px;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .react-toggle-screenreader-only {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .react-toggle--disabled {
+        opacity: 0.5;
+        -webkit-transition: opacity 0.25s;
+        transition: opacity 0.25s;
+    }
+
+    .react-toggle-track {
+        width: 68px;
+        height: 30px;
+        padding: 0;
+        border-radius: 30px;
+        background-color: $grey4;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    .react-toggle:hover .react-toggle-track {
+        background-color: #000000;
+    }
+
+    .react-toggle--checked .react-toggle-track {
+        background-color: $pink;
+    }
+
+    .react-toggle.react-toggle--checked:hover .react-toggle-track {
+        background-color: darken($pink, 20%);
+    }
+
+    .react-toggle-track-check {
+        position: absolute;
+        width: 14px;
+        height: 10px;
+        top: 0px;
+        bottom: 0px;
+        margin-top: auto;
+        margin-bottom: auto;
+        line-height: 0;
+        left: 8px;
+        opacity: 0;
+        -webkit-transition: opacity 0.25s ease;
+        -moz-transition: opacity 0.25s ease;
+        transition: opacity 0.25s ease;
+    }
+
+    .react-toggle--checked .react-toggle-track-check {
+        opacity: 1;
+        -webkit-transition: opacity 0.25s ease;
+        -moz-transition: opacity 0.25s ease;
+        transition: opacity 0.25s ease;
+    }
+
+    .react-toggle-track-x {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 0px;
+        bottom: 0px;
+        margin-top: auto;
+        margin-bottom: auto;
+        line-height: 0;
+        right: 10px;
+        opacity: 1;
+        -webkit-transition: opacity 0.25s ease;
+        -moz-transition: opacity 0.25s ease;
+        transition: opacity 0.25s ease;
+    }
+
+    .react-toggle--checked .react-toggle-track-x {
+        opacity: 0;
+    }
+
+    .react-toggle-thumb {
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        width: 28px;
+        height: 28px;
+        border: 1px solid $grey4;
+        border-radius: 50%;
+        background-color: #FAFAFA;
+
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        -webkit-transition: all 0.25s ease;
+        -moz-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+    }
+
+    .react-toggle--checked .react-toggle-thumb {
+        left: 38px;
+        border-color: $pink;
+    }
+}
+
+@media ( max-width: $screen-sm-max )
+{
+    .toggle-holder
+    {
+        display: inline-block;
+    }
+}
+
+
+/**
+ * Example of use:
+ *    <input id="ugcpermission" type="checkbox" class="vic-toggle" style="display:none" />
+ *    <label for="ugcpermission"></label>
+ */
+
+input.vic-toggle
+{
+    & + label
+    {
+        padding: 2px;
+        width: 60px;
+        height: 30px;
+        background-color: #dddddd;
+        border-radius: 30px;
+        transition: background 0.4s;
+        text-align: left;
+        font-size: 10px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin: 0 10px 0 0;
+        position: relative;
+
+        &.sortby, &.sortbydate
+        {
+            width: 120px;
+        }
+
+        &.whiteblack
+        {
+            width: 72px;
+        }
+
+        &:hover
+        {
+            cursor: pointer;
+        }
+
+        &:before, &:after
+        {
+            display: block;
+            position: absolute;
+            content: "";
+        }
+
+        &:before
+        {
+            top: 2px;
+            left: 2px;
+            bottom: 2px;
+            right: 2px;
+            background-color: #fff;
+            border-radius: 60px;
+            transition: background 0.4s;
+
+            padding: 5px 0px;
+            padding-left: 28px;
+            content: "off";
+        }
+
+        &.yesno:before {
+            content: "no";
+        }
+
+        &.whiteblack:before {
+            content: "white";
+        }
+
+        &.sortby:before {
+            content: "recent";
+            padding-left: 68px;
+        }
+
+        &.sortbydate:before {
+            content: "newest";
+            padding-left:68px;
+        }
+
+        &:after
+        {
+            top: 4px;
+            left: 4px;
+            bottom: 4px;
+            width: 24px;
+            background-color: #dddddd;
+            border-radius: 24px;
+            transition: margin 0.4s, background 0.4s;
+        }
+
+        &.sortby:after, &.sortbydate:after
+        {
+            width: 50px;
+        }
+    }
+
+    &:checked + label
+    {
+        &:not(.colorless)
+        {
+            background-color: $pink;
+            &::after
+            {
+                background-color: $pink;
+            }
+        }
+
+        &:after
+        {
+            margin-left: 28px;
+        }
+
+        &.sortby::after, &.sortbydate:after
+        {
+            margin-left: 61px;
+        }
+
+        &:before
+        {
+            padding: 5px 8px;
+            content: "on";
+        }
+
+        &.yesno:before
+        {
+            content: "yes";
+        }
+
+        &.whiteblack:before {
+            content: "black";
+        }
+
+        &.whiteblack:after
+        {
+            margin-left: 40px;
+        }
+
+        &.sortby:before
+        {
+            content: "popular";
+        }
+
+        &.sortbydate:before {
+            content: "oldest";
+        }
+    }
+
+    &:disabled + label
+    {
+        cursor: default;
+    }
+}
+
