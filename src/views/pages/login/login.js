@@ -38,12 +38,10 @@ export class LoginPage extends Component {
     });
   }
 
-
-
   render() {
     const { email, password } = this.state;
-    if(get(this.props, 'user.email')){
-
+    const { user } = this.props;
+    if (get(user, 'email')) {
       return (
         <h1>
           <Link to="/hello_world">YAY LETS GO TO HELLO WORLD.</Link>
@@ -101,9 +99,8 @@ LoginPage.defaultProps = {
 };
 
 @connect(mapStateToProps, { loginUser })
-export default class LoginPageContainer extends Component{
+export default class LoginPageContainer extends Component {
   render() {
-    return <LoginPage {...this.props} />
+    return <LoginPage {...this.props} />;
   }
 }
-

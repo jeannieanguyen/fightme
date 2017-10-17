@@ -36,7 +36,7 @@ class RegisterPage extends Component {
       <div className="form-container">
         <div>
           <h1>REGISTER USER</h1>
-          { this.props.register && <h2> You're registered! Go to Login. </h2> }
+          { this.props.register && <h2> You&apos;re registered! Go to Login. </h2> }
           <label htmlFor="email_field">E-mail</label>
           <input
             type="text"
@@ -69,7 +69,7 @@ RegisterPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    register: authSelectors.getRegister(state)
+    register: authSelectors.getRegister(state),
   };
 }
 

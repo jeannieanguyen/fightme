@@ -1,6 +1,0 @@
-export const FETCH_DATA = 'template/FETCH_DATA';
-export const FETCH_DATA_SUCCESS = 'template/FETCH_DATA_SUCCESS';
-export const FETCH_DATA_ERROR = 'template/FETCH_DATA_ERROR';
-export const INCREMENT_COUNTER = 'template/INCREMENT_COUNTER';
-export const INCREMENT_COUNTER_SUCCESS = 'template/INCREMENT_COUNTER_SUCCESS';
-export const INCREMENT_COUNTER_ERROR = 'template/INCREMENT_COUNTER_ERROR';

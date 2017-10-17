@@ -16,9 +16,9 @@ class HelloWorldPage extends Component {
   componentWillMount() {
     this.props.getSampleService();
   }
-  displaySampleData(){
+  displaySampleData() {
     const { sample } = this.props;
-    if(this.props.sample){
+    if (this.props.sample) {
       return (
         <div>
           <div className="details">
@@ -27,19 +27,23 @@ class HelloWorldPage extends Component {
         </div>
       );
     }
+    return null;
   }
   render() {
     return (
       <div className="hello-world-container">
         <div>
-          <img src='https://img07.deviantart.net/0a7b/i/2016/174/2/9/free_2_use_left_shark_by_syrcaid-da7dd49.png' />
+          <img
+            src="https://img07.deviantart.net/0a7b/i/2016/174/2/9/free_2_use_left_shark_by_syrcaid-da7dd49.png"
+            alt="Sad Shark"
+          />
           <div className="inline">
             <h1>Hello World</h1>
             <h2>Here is your sample data. </h2>
           </div>
         </div>
         {this.displaySampleData()}
-        
+
       </div>
     );
   }
@@ -48,7 +52,7 @@ class HelloWorldPage extends Component {
 HelloWorldPage.propTypes = {
   // You can declare that a prop is a specific JS primitive. By default, these
   // are all optional.
-  sample: PropTypes.object.isRequired,
+  sample: PropTypes.node,
   getSampleService: PropTypes.func.isRequired,
 };
 
