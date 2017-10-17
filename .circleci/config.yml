@@ -39,6 +39,9 @@ jobs:
       - setup_remote_docker:
           version: 17.06.0-ce
       - run:
+          name: Generate Static Bundle
+          npm run dev_build
+      - run:
           name: Build Docker Image
           command: |
             docker build . -t $AWS_ACCOUNT_ID.$AWS_ECR_ADDRESS/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
