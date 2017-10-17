@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getGeneralErrorSelector } from 'ducks/errors';
+/* eslint-disable no-unused-vars */
 import s from 'styles/styles.scss';
+/* eslint-enable */
 
 export default function errorHandlingDecorator() {
   return (InnerComponent) => {

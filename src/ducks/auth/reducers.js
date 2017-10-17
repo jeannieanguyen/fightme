@@ -5,11 +5,11 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case types.REGISTER_USER_SUCCESS: 
+    case types.REGISTER_USER_SUCCESS:
       return {
-        ...state, 
-        register: action.data
-      }
+        ...state,
+        register: action.data,
+      };
     case types.LOGIN_USER_SUCCESS:
       return {
         ...state,
@@ -18,7 +18,7 @@ export default function (state = INITIAL_STATE, action) {
     case types.SAMPLE_GET_SUCCESS:
       return {
         ...state,
-        sample: action.data.data
+        sample: action.data.data,
       };
     default:
       return state;
