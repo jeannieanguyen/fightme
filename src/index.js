@@ -29,17 +29,19 @@ const history = syncHistoryWithStore(browserHistory, store);
 const rootEl = document.getElementById('root');
 
 // renders the app inside the root element.
-let render = (approutes, revision) => ReactDOM.render(
-  <Provider store={store} key={revision}>
-    <Router
-      onUpdate={() => window.scrollTo(0, 0)}
-      history={history}
-    >
-      {approutes}
-    </Router>
-  </Provider>,
-  rootEl,
-);
+let render = (approutes, revision) => {
+  ReactDOM.render(
+    <Provider store={store} key={revision}>
+      <Router
+        onUpdate={() => window.scrollTo(0, 0)}
+        history={history}
+      >
+        {approutes}
+      </Router>
+    </Provider>,
+    rootEl,
+  );
+};
 
 // this entire section is applied only during development.
 if (module.hot) {
@@ -47,7 +49,9 @@ if (module.hot) {
   // inside any render method.
   const renderApp = render;
   const renderError = (err) => {
+    /* eslint-disable global-require */
     const RedBox = require('redbox-react');
+    /* eslint-enable */
     ReactDOM.render(<RedBox error={err} />, rootEl);
   };
   render = (approutes, revision) => {
@@ -67,10 +71,11 @@ if (module.hot) {
   // all the routes without refreshing the page. the redux store
   // remains the same, so the session is preserved.
   module.hot.accept('./routes', () => {
+    /* eslint-disable global-require */
     const approutes = require('./routes').default;
-    setTimeout(() => render(approutes, ++revision));
+    /* eslint-enable */
+    revision += 1;
+    setTimeout(() => render(approutes, revision));
   });
 }
-
-const { pathname: path } = window.location;
 render(routes, 0);

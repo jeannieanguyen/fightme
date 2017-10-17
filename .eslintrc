@@ -8,6 +8,8 @@
     "import/extensions": ["error", "never"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-named-as-default": "off",
+    "react/no-multi-comp": off,
+    "no-console": ["warn", { allow: ["error"] }],
     },
     "settings": {
     "import/resolver": {
@@ -23,8 +25,8 @@
     "describe": true,
     "window": true,
     "localStorage": true,
-    "apigClientFactory": true, 
-    "document": true, 
-    "AWS": true
+    "apigClientFactory": true,
+    "document": true,
+    "AWS": true,
   }
 }

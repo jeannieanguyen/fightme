@@ -14,7 +14,7 @@
     "bundle": "./node_modules/.bin/webpack --config webpack.config.js",
     "clean": "rm -rf content/bundle.js content/bundle.js.map npm-debug.log",
     "test": "nyc mocha-webpack --webpack-config webpack.config-test.babel.js --require babel-register --require ./testSetup.js 'src/**/*tests.js'",
-    "lint": "./node_modules/.bin/eslint ./src; exit 0"
+    "lint": "./node_modules/.bin/eslint ./src;"
   },
   "nyc": {
     "require": [

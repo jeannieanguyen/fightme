@@ -169,7 +169,7 @@ export function retrieveUserFromLocalStorage() {
         }
         // save to localStorage the jwtToken from the `session`
         localStorage.setItem('user_token', session.getIdToken().getJwtToken());
-        // Edge case, AWS Cognito does not allow for the Logins attr 
+        // Edge case, AWS Cognito does not allow for the Logins attr
         // to be dynamically generated. So we must create the loginsObj beforehand
         const loginsObj = {
           // our loginsObj will just use the jwtToken to verify our user
@@ -197,7 +197,7 @@ export function retrieveUserFromLocalStorage() {
 
 // signout the current user
 export function signOutUser() {
-  const p = new Promise((res) => {
+  const p = new Promise(() => {
     // since the user is already logged in, we can instantiate `cognitoUser` with `userPool`
     const cognitoUser = userPool.getCurrentUser();
     cognitoUser.signOut();
