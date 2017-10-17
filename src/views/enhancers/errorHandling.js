@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getGeneralErrorSelector } from 'ducks/errors';
+import PropTypes from 'prop-types';
 /* eslint-disable no-unused-vars */
 import s from 'styles/styles.scss';
 /* eslint-enable */
@@ -28,6 +29,14 @@ export default function errorHandlingDecorator() {
         );
       }
     }
+
+    ErrorHandlingHoc.propTypes = {
+      error: PropTypes.node,
+    };
+
+    ErrorHandlingHoc.defaultProps = {
+      error: null,
+    };
 
     return ErrorHandlingHoc;
   };

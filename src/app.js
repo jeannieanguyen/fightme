@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { errorHandlingDecorator } from 'views/enhancers/index';
+import PropTypes from 'prop-types';
 /* eslint-disable no-unused-vars */
 import s from 'styles/styles.scss'; // Leaving this import for now, in case error handling HOC gets moved to not wrap app.js
 /* eslint-enable */
@@ -25,3 +26,7 @@ export default class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  children: PropTypes.node.isRequired,
+};

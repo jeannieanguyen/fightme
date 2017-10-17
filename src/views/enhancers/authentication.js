@@ -25,7 +25,11 @@ export function withAuthentication(WrappedComponent) {
   }
 
   AuthenticatedComponent.propTypes = {
-    user: PropTypes.object,
+    user: PropTypes.node,
+  };
+
+  AuthenticatedComponent.defaultProps = {
+    user: null,
   };
 
   return AuthenticatedComponent;
