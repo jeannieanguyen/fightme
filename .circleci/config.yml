@@ -27,6 +27,19 @@ jobs:
           name: Running Tests
           command: npm test
       - run:
+          name: Generate Static Bundle
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "staging" ]
+            then
+              export BUNDLE_NAME=staging_build
+            elif [ "${CIRCLE_BRANCH}" == "master" ]
+            then
+              export BUNDLE_NAME=prod_build
+            else
+              export BUNDLE_NAME=dev_build
+            fi
+            npm run $BUNDLE_NAME
+      - run:
           name: Generate Code Coverage
           command: './node_modules/.bin/nyc report --reporter=text-lcov'
       - store_artifacts:
