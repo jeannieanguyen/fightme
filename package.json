@@ -32,7 +32,8 @@
       "src/api",
       "testSetup.js",
       "src/config",
-      "webpack.config-test.babel.js"
+      "webpack.config-test.babel.js",
+      "**/*reducers.js"
     ]
   },
   "devDependencies": {
@@ -49,6 +50,7 @@
     "mocha-webpack": "^0.7.0",
     "nyc": "^11.2.1",
     "react-test-renderer": "^16.0.0",
+    "sinon": "^4.0.1",
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {

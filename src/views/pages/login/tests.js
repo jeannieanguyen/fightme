@@ -1,8 +1,9 @@
+import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import { LoginPage } from './login';
 import { RegisterPage } from './index';
 
-describe('Login Page Component', () => {
+describe('<LoginPage />', () => {
   const props = LoginPage.defaultProps;
 
   it('renders the LoginPage', () => {
@@ -16,9 +17,17 @@ describe('Login Page Component', () => {
 
     expect(el.find('.email-login')).to.have.length(1);
   });
+
+  it('calls loginUser() when the Login button is clicked', () => {
+    const loginUser = sinon.spy();
+    const el = shallow(<LoginPage {...props} />);
+    el.setProps({ loginUser });
+    el.find('button.login-btn').simulate('click');
+    expect(loginUser.calledOnce).to.equal(true);
+  });
 });
 
-describe('Register Page Component', () => {
+describe('<RegisterPage />', () => {
   it('renders the Reigster Page', () => {
     const el = shallow(<RegisterPage />);
 

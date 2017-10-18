@@ -70,7 +70,12 @@ export class LoginPage extends Component {
             onChange={this.updateField}
             value={password}
           />
-          <button onClick={this.onLogin}>Login</button>
+          <button
+            onClick={this.onLogin}
+            className="login-btn"
+          >
+              Login
+          </button>
           <button>
             <Link to="/register">GO TO REGISTER</Link>
           </button>

@@ -66,10 +66,9 @@ describe('Auth - loginUserEpic', () => {
         password: 'Security1!',
       },
     });
-    const errorMsg = 'User doesn\'t exist';
     const deps = {
       AWS: {
-        login: () => Observable.throw(new Error(errorMsg)),
+        login: () => Observable.throw(new Error()),
       },
     };
 

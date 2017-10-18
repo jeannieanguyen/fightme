@@ -7,13 +7,14 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 const { JSDOM } = jsdom;
-const doc = (new JSDOM('<!doctype html><html><body></body></html>'));
-const win = doc.defaultView;
+const dom = (new JSDOM('<!doctype html><html><body></body></html>', { runScripts: "dangerously" }));
+const win = dom.window;
+const doc = dom.window.document;
 
 global.document = doc;
 global.window = win;
 global.React = React;
 global.expect = expect;
-global.apigClientFactory = { 
+global.apigClientFactory = {
 	newClient: () => {}
 };

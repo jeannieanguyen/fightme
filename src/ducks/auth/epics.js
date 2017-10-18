@@ -23,7 +23,6 @@ export const loginUserEpic = (action$, store, deps) =>
     .mergeMap(action =>
       Observable.from(deps.AWS.login(action.data))
         .map(payload => actions.setLoggedInUser(payload))
-        .do(x => console.log(x))
         .catch(error => Observable.of(setGeneralError(error.message)),
         ),
     );
