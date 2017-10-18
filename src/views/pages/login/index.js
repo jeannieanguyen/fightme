@@ -65,7 +65,11 @@ class RegisterPage extends Component {
 
 RegisterPage.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  register: PropTypes.node,
+  register: PropTypes.shape({
+    username: PropTypes.string,
+    userConfirmed: PropTypes.bool,
+    userSub: PropTypes.string,
+  }),
 };
 
 RegisterPage.defaultProps = {
