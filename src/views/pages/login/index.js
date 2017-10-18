@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const { registerUser } = authActions;
 
-class RegisterPage extends Component {
+export class RegisterPage extends Component {
   constructor(props) {
     super(props);
 

@@ -58,7 +58,7 @@ describe('Auth - loginUserEpic', () => {
     });
   });
 
-  it('should catch errors', () => {
+  it('should catch errors during login', () => {
     const action$ = ActionsObservable.of({
       type: types.LOGIN_USER,
       data: {
