@@ -65,11 +65,7 @@ class RegisterPage extends Component {
 
 RegisterPage.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  register: PropTypes.node,
-};
-
-RegisterPage.defaultProps = {
-  register: null,
+  register: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {

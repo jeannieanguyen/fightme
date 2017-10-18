@@ -4,7 +4,6 @@
 
 import { combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
-// import { login, register } from 'api/aws';
 import { setGeneralError } from 'ducks/errors';
 import * as actions from './actions';
 import * as types from './types';
@@ -13,17 +12,18 @@ const apigClient = apigClientFactory.newClient();
 
 export const registerUserEpic = (action$, store, deps) =>
   action$.ofType(types.REGISTER_USER)
-    .mergeMap(action => Observable.from(deps.register(action.data))
+    .mergeMap(action => Observable.from(deps.AWS.register(action.data))
       .map(payload => actions.setRegisteredUser(payload))
       .catch(error => Observable.of(setGeneralError(error.message)),
       ),
     );
 
-export const loginUserEpic = action$ =>
+export const loginUserEpic = (action$, store, deps) =>
   action$.ofType(types.LOGIN_USER)
     .mergeMap(action =>
-      Observable.from(login(action.data))
+      Observable.from(deps.AWS.login(action.data))
         .map(payload => actions.setLoggedInUser(payload))
+        .do(x => console.log(x))
         .catch(error => Observable.of(setGeneralError(error.message)),
         ),
     );

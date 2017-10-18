@@ -10,8 +10,8 @@ const rootReducer = combineReducers({
   errors: errorReducer,
 });
 
-export const rootEpic = (action$, store) => combineEpics(
+export const rootEpic = (action$, store, deps) => combineEpics(
   authEpics,
-)(action$, store);
+)(action$, store, deps);
 
 export default rootReducer;
