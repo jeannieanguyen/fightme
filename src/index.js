@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import reducers, { rootEpic } from 'ducks/index';
+import { register } from 'api/aws';
 import routes from 'routes';
 import promise from 'redux-promise';
 
@@ -16,7 +17,12 @@ import promise from 'redux-promise';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
+console.log(register);
+const epicMiddleware = createEpicMiddleware(rootEpic, {
+  dependencies: {
+    register,
+  },
+});
 const enhancer = composeEnhancers(
   applyMiddleware(epicMiddleware,
     thunk,

@@ -25,7 +25,15 @@
       "text"
     ],
     "sourceMap": false,
-    "instrument": false
+    "instrument": false,
+    "exclude": [
+      ".tmp",
+      "**/*tests.js",
+      "src/api",
+      "testSetup.js",
+      "src/config",
+      "webpack.config-test.babel.js"
+    ]
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
