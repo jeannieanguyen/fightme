@@ -8,8 +8,6 @@ import { setGeneralError } from 'ducks/errors';
 import * as actions from './actions';
 import * as types from './types';
 
-const apigClient = apigClientFactory.newClient();
-
 export const registerUserEpic = (action$, store, deps) =>
   action$.ofType(types.REGISTER_USER)
     .mergeMap(action => Observable.from(deps.AWS.register(action.data))
@@ -27,10 +25,10 @@ export const loginUserEpic = (action$, store, deps) =>
         ),
     );
 
-export const sampleEpic = action$ =>
+export const sampleEpic = (action$, store, deps) =>
   action$.ofType(types.SAMPLE_GET)
     .mergeMap(() =>
-      Observable.from(apigClient.v1HelloworldGet({ 'dev-auth': localStorage.getItem('user_token') }))
+      Observable.from(deps.apigClient.v1HelloworldGet({ 'dev-auth': localStorage.getItem('user_token') }))
         .map(payload => actions.setSampleData(payload)));
 
 export default combineEpics(

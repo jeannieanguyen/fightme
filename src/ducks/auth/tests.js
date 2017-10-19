@@ -9,6 +9,18 @@ const correctLoginData = {
   email: 'heyo@hey.com',
   password: 'Security1!',
 };
+const awsSuccess = {
+  AWS: {
+    register: () => Observable.of([correctLoginData]),
+    login: () => Observable.of([correctLoginData]),
+  },
+};
+const awsError = {
+  AWS: {
+    register: () => Observable.throw(new Error()),
+    login: () => Observable.throw(new Error()),
+  },
+};
 
 describe('Auth - registerUserEpic', () => {
   it('should return REGISTER_USER_SUCCESS action with correct credentials', () => {
@@ -16,18 +28,8 @@ describe('Auth - registerUserEpic', () => {
       type: types.REGISTER_USER,
       data: correctLoginData,
     });
+    const output$ = registerUserEpic(action$, null, awsSuccess);
 
-    const deps = {
-      AWS: {
-        register: () => Observable.of([{
-          user: {
-            username: 'heyo@hey.com',
-          },
-        }]),
-      },
-    };
-
-    const output$ = registerUserEpic(action$, null, deps);
     output$.toArray().subscribe((actions) => {
       expect(actions[0].type).to.equal(types.REGISTER_USER_SUCCESS);
     });
@@ -38,13 +40,8 @@ describe('Auth - registerUserEpic', () => {
       type: types.REGISTER_USER,
       data: correctLoginData,
     });
-    const deps = {
-      AWS: {
-        register: () => Observable.throw(new Error()),
-      },
-    };
+    const output$ = registerUserEpic(action$, null, awsError);
 
-    const output$ = registerUserEpic(action$, null, deps);
     output$.toArray().subscribe((actions) => {
       expect(actions[0].type).to.equal(CATCHALL_ERROR);
     });
@@ -57,18 +54,8 @@ describe('Auth - loginUserEpic', () => {
       type: types.LOGIN_USER,
       data: correctLoginData,
     });
+    const output$ = loginUserEpic(action$, null, awsSuccess);
 
-    const deps = {
-      AWS: {
-        login: () => Observable.of([{
-          sub: '999',
-          email_verified: true,
-          email: 'heyo@hey.com',
-        }]),
-      },
-    };
-
-    const output$ = loginUserEpic(action$, null, deps);
     output$.toArray().subscribe((actions) => {
       expect(actions[0].type).to.equal(types.LOGIN_USER_SUCCESS);
     });
@@ -79,13 +66,8 @@ describe('Auth - loginUserEpic', () => {
       type: types.LOGIN_USER,
       data: correctLoginData,
     });
-    const deps = {
-      AWS: {
-        login: () => Observable.throw(new Error()),
-      },
-    };
+    const output$ = loginUserEpic(action$, null, awsError);
 
-    const output$ = loginUserEpic(action$, null, deps);
     output$.toArray().subscribe((actions) => {
       expect(actions[0].type).to.equal(CATCHALL_ERROR);
     });
