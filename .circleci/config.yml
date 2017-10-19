@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-      #custom image with aws cli installed
+      #custom image with aws cli, and npm installed (https://github.com/Victorious/docker-builds-base-image)
       - image: $AWS_ACCOUNT_ID.$AWS_ECR_ADDRESS/$BUILD_IMAGE_REPO_NAME
         aws_auth:
           aws_access_key_id: $AWS_ACCESS_KEY_ID  # can specify string literal values
