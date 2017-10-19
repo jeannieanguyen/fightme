@@ -17,8 +17,6 @@ Front-end:
 * **Run `npm install` to initialize this module and install dependencies.**
 * **Run `npm start` to start a local dev server on port 3000.**
 
-```
-
 The app consists of a node/npm project that builds the application bundle that is ultimately served
 to browsers. Dependencies are managed with npm and build processes are exposed through npm scripts.
 
