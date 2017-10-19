@@ -1,13 +1,10 @@
-import { pick } from 'lodash';
+import { pick, isEmpty } from 'lodash';
 
 export const getUser = state => state.auth.user;
 export const getSample = state => state.auth.sample;
 
 export const getRegisteredUser = (state) => {
-  let registeredUser;
-  if (state.auth.registeredUser) {
-    registeredUser = pick(state.auth.registeredUser, ['user.username', 'userConfirmed', 'userSub']);
-  }
+  let registeredUser = pick(state.auth.registeredUser, ['user.username', 'userConfirmed', 'userSub']);
 
-  return registeredUser;
+  return isEmpty(registeredUser) ? undefined : registeredUser;
 };
