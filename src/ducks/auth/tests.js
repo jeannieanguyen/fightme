@@ -5,15 +5,16 @@ import { CATCHALL_ERROR } from 'ducks/errors';
 import * as types from './types';
 import { registerUserEpic, loginUserEpic } from './epics';
 
+const correctLoginData = {
+  email: 'heyo@hey.com',
+  password: 'Security1!',
+};
 
 describe('Auth - registerUserEpic', () => {
   it('should return REGISTER_USER_SUCCESS action with correct credentials', () => {
     const action$ = ActionsObservable.of({
       type: types.REGISTER_USER,
-      data: {
-        email: 'heyo@hey.com',
-        password: 'Security1!',
-      },
+      data: correctLoginData,
     });
 
     const deps = {
@@ -31,16 +32,30 @@ describe('Auth - registerUserEpic', () => {
       expect(actions[0].type).to.equal(types.REGISTER_USER_SUCCESS);
     });
   });
+
+  it('should catch errors during registration', () => {
+    const action$ = ActionsObservable.of({
+      type: types.REGISTER_USER,
+      data: correctLoginData,
+    });
+    const deps = {
+      AWS: {
+        register: () => Observable.throw(new Error()),
+      },
+    };
+
+    const output$ = registerUserEpic(action$, null, deps);
+    output$.toArray().subscribe((actions) => {
+      expect(actions[0].type).to.equal(CATCHALL_ERROR);
+    });
+  });
 });
 
 describe('Auth - loginUserEpic', () => {
   it('should return a LOGIN_USER_SUCCESS action with correct credentials', () => {
     const action$ = ActionsObservable.of({
       type: types.LOGIN_USER,
-      data: {
-        email: 'heyo@hey.com',
-        password: 'Security1!',
-      },
+      data: correctLoginData,
     });
 
     const deps = {
@@ -62,10 +77,7 @@ describe('Auth - loginUserEpic', () => {
   it('should catch errors during login', () => {
     const action$ = ActionsObservable.of({
       type: types.LOGIN_USER,
-      data: {
-        email: 'heyo@hey.com',
-        password: 'Security1!',
-      },
+      data: correctLoginData,
     });
     const deps = {
       AWS: {
