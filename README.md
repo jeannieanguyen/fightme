@@ -1,5 +1,5 @@
-# VRC Component Boilerplate
-Victorious React Component - boilerplate for component, which has common styles stripped out into another repo
+# The Quacken
+The Quacken is a boilerplate web application, meant to be a starting point for Victorious projects.  It is built using React for UI/views, Redux for state management, and Redux-Observable/RxJS to handle async actions (Thunk is also available if required).  The project is organized following the [Ducks Modular](https://github.com/alexnm/re-ducks) pattern, which provides a consistent way for redux components to interface with the rest of the app.
 
 # Prerequisites
 ---
@@ -8,35 +8,14 @@ Version numbers are provided for reference, but may not need to match exactly.
 
 Front-end:
 
-* **nodejs** ~5.10
-* **npm** ~3.8.5
+* **nodejs** ~6.2
+* **npm** ~3.8.9
 
 # app
 ---
 
-* **Run `npm install` to initialize this module.**
-
-* **Make `config.js` file at the root of the src directory. example below.**
-
-```
-module.exports = {
-    local: {
-        apiBase: "http://local.getvictorious.com:8888"
-    },
-    dev: {
-        apiBase: "http://dev.getvictorious.com"
-    },
-    qa: {
-        apiBase: "http://qa.getvictorious.com"
-    },
-    stage: {
-        apiBase: "https://staging.getvictorious.com"
-    },
-    production: {
-        apiBase: "https://api.getvictorious.com"
-    }
-}
-
+* **Run `npm install` to initialize this module and install dependencies.**
+* **Run `npm start` to start a local dev server on port 3000.**
 
 ```
 
@@ -47,15 +26,13 @@ to browsers. Dependencies are managed with npm and build processes are exposed t
 | :------------------------------------------- | :----------------------------------------------------------------------------------- |
 | ```npm start```                              | Start local dev server (port 3000) using services on remote dev server               |
 | ```npm run dev```              | Start local dev server (port 3000) connected to dev api server |
-| ```npm run qa```              | Start local dev server (port 3000) connected to qa api server |
-| ```npm run stage```              | Start local dev server (port 3000) connected to stage api server |
-| ```npm run prod```              | Start local dev server (port 3000) connected to prod api server |
 | ```npm run bundle```                         | Compile app bundle with minifcation OFF and debugging output ON                      |
 | ```npm run dev_build```  | Compile app bundle with minifcation ON and debugging output OFF (for dev deployment)     |
-| ```npm run qa_build```  | Compile app bundle with minifcation ON and debugging output OFF (for qa deployment)     |
-| ```npm run stage_build```  | Compile app bundle with minifcation ON and debugging output OFF (for stage deployment)     |
 | ```npm run prod_build```  | Compile app bundle with minifcation ON and debugging output OFF (for prod deployment)     |
 | ```npm run clean```                          | Remove all build files.                                                              |
+| ```npm test```                          | Run test suite, generate code coverage report                                  |
+| ```npm run tdd```                          | Run test suite in watch mode, will rerun on every save.               |
+| ```npm run lint```                          | Run linter on project.               |
 
 NOTE: dev builds are generated automatically once code is committed.
 
@@ -68,12 +45,25 @@ settings used by the front-end app (such as the service base URL).
 
 This is a single-page application using the following core libraries:
 
-* **[React](http://facebook.github.io/react/index.html)**: Core DOM rendering and manipulation facilities. All web compnoents are
-  ES2015+JSX classes deriving from the React.Component class (and some function-based components for simpler widgets).
+* **[React](http://facebook.github.io/react/index.html)**: Core DOM rendering and manipulation facilities. All web components are
+  ES2017+JSX classes deriving from the React.Component class (and some function-based components for simpler widgets).
 * **[Redux](https://github.com/reactjs/redux)**: Globally manages application state and state changes.
 * **[React-Router](https://github.com/reactjs/react-router)**: Uses browser history API to manage "pages" and transitions between them.
   Browser address bar will update as if this was a traditional site.
 * **Miscellaneous**: Other widget components like react-swipe. These can be swapped out or rewritten depending on visual requirements.
+
+### Test Suite
+
+This project has a starter test suite that consists of the following libraries/utilities:
+
+- Mocha/Chai for running tests and making assertions
+- Enzyme for easy React shallow rendering/syntax
+- Sinon for mocks, stubs and spies
+- Istanbul/NYC for code coverage reports
+
+### Code Style
+
+This project adheres to the [Airbnb Style Guide](https://github.com/airbnb/javascript/tree/master/react), for JavaScript and React, with certain exceptions outlined in the [Victorious Javascript Style Guide](https://github.com/Victorious/javascript).
 
 ### Stylesheets
 
@@ -102,15 +92,7 @@ leading slash, the content may not be referenced properly when deployed to produ
 * **src/app.js**: The main app component renders the header, footer, page content (based on the selected route) and any global
   components such as error message boxes. The content to be displayed is passed from the router to this component via the "children"
   property.
-* **src/pages/**: Contains components that render whole "pages" (everything between header and footer). These components are separated
-  out into this folder for clarity.
-* **src/components/**: Components that may be reused within multiple pages. Progress bars, spinners, special buttons, header, footer,
-  overlays, etc.
-* **src/actions/**: All redux actions should live here and should be exported in actions/index.js. Actions initiate application state
-  changes, either immediately or after a network call.
-* **src/reducers/**: All redux reducers should live here and should be exported in reducers/index.js. Reducers respond to actions and
-  produce a new application state based on every action. See Redux and Flux documentation for best practices. In particular, state must
-  never be mutated.
+* **src/ducks/**: Redux components, organized by feature. Each duck has its own actions, epics, reducers, selectors, tests, and types file that are exported through an index file.
+* **src/views/**: React views/templates.
 * **src/styles/**: All stylesheets live here, using whatever organization makes sense. Recommend separating stylesheets into files
   based on component.
-* **src/data/**: Static metadata such as display strings.
