@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { Observable } from 'rxjs';
 import { ActionsObservable } from 'redux-observable';
 import { CATCHALL_ERROR } from 'ducks/errors';
