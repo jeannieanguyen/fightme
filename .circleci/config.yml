@@ -1,11 +1,10 @@
 defaults: &defaults
   docker:
-      #create custom image with aws cli installed
-      - image: circleci/node:boron
-
-#  working_directory: ~/the-quacken
-  environment:
-      AWS_ECR_ADDRESS: dkr.ecr.us-west-1.amazonaws.com
+      #custom image with aws cli, and npm installed (https://github.com/Victorious/docker-builds-base-image)
+      - image: $AWS_ACCOUNT_ID.$AWS_ECR_ADDRESS/$BUILD_IMAGE_REPO_NAME
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID  # can specify string literal values
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY  # or project UI envar reference
 
 version: 2
 jobs:
@@ -58,8 +57,6 @@ jobs:
       - run:
           name: Push Image to ECR
           command: |
-            sudo apt install python-pip python-dev
-            sudo pip install awscli
             eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email | sed 's|https://||' | sed -e 's/-e none//g')
             docker push $AWS_ACCOUNT_ID.$AWS_ECR_ADDRESS/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
 
@@ -68,6 +65,7 @@ workflows:
   build_and_dockerize:
     jobs:
       - run_tests:
+          context: org-global
           filters:
               branches:
                   ignore:
@@ -75,5 +73,6 @@ workflows:
                       - master
 
       - build_image:
+          context: org-global
           requires:
             - run_tests
