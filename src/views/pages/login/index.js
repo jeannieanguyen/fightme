@@ -36,7 +36,7 @@ class RegisterPage extends Component {
       <div className="form-container">
         <div>
           <h1>REGISTER USER</h1>
-          { this.props.register && <h2> You&apos;re registered! Go to Login. </h2> }
+          { this.props.registeredUser && <h2> You&apos;re registered! Go to Login. </h2> }
           <label htmlFor="email_field">E-mail</label>
           <input
             type="text"
@@ -65,16 +65,20 @@ class RegisterPage extends Component {
 
 RegisterPage.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  register: PropTypes.node,
+  registeredUser: PropTypes.shape({
+    username: PropTypes.string,
+    userConfirmed: PropTypes.bool,
+    userSub: PropTypes.string,
+  }),
 };
 
 RegisterPage.defaultProps = {
-  register: null,
+  registeredUser: null,
 };
 
 function mapStateToProps(state) {
   return {
-    register: authSelectors.getRegister(state),
+    registeredUser: authSelectors.getRegisteredUser(state),
   };
 }
 
