@@ -52,8 +52,13 @@ class HelloWorldPage extends Component {
 HelloWorldPage.propTypes = {
   // You can declare that a prop is a specific JS primitive. By default, these
   // are all optional.
-  sample: PropTypes.node,
-  getSampleService: PropTypes.func.isRequired,
+
+  // TODO (Wendy) - DEFINE THESE PROPERLY
+  sample: PropTypes.shape({
+    statusCode: PropTypes.number,
+    greeting: PropTypes.string,
+  }),
+  // getSampleService: PropTypes.func.isRequired,
 };
 
 HelloWorldPage.defaultProps = {

@@ -3,19 +3,21 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import { authSelectors } from 'ducks/auth';
+import { isEmpty } from 'lodash';
 
 export function withAuthentication(WrappedComponent) {
   function mapStateToProps(state) {
     return {
-      user: authSelectors.getUser(state),
+      userTokens: authSelectors.getUserTokenObject(state),
     };
   }
 
   @connect(mapStateToProps)
   class AuthenticatedComponent extends Component {
     componentWillMount() {
-      const { user } = this.props;
-      if (!user) {
+      const { userTokens } = this.props;
+      console.log('userTokens in authenitcation HOC', userTokens);
+      if (isEmpty(userTokens)) {
         browserHistory.push('/login');
       }
     }
@@ -25,11 +27,11 @@ export function withAuthentication(WrappedComponent) {
   }
 
   AuthenticatedComponent.propTypes = {
-    user: PropTypes.node,
+    userTokens: PropTypes.node,
   };
 
   AuthenticatedComponent.defaultProps = {
-    user: null,
+    userTokens: null,
   };
 
   return AuthenticatedComponent;

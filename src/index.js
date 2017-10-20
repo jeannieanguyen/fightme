@@ -6,9 +6,11 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
-import reducers, { rootEpic } from 'ducks/index';
 import routes from 'routes';
 import promise from 'redux-promise';
+import { get } from 'lodash';
+import reducers, { rootEpic } from 'ducks/index';
+import { loadState, saveState } from 'utility/storage';
 
 // enable redux-devtools-extension (chrome)
 // https://github.com/zalmoxisus/redux-devtools-extension
@@ -23,7 +25,25 @@ const enhancer = composeEnhancers(
     promise,
     routerMiddleware(browserHistory)),
 );
-const store = createStore(reducers, enhancer);
+
+let persistedState = {
+  auth: {
+    user: {
+      tokensObject: loadState() || {},
+    },
+  },
+};
+
+console.log('persistedState',persistedState);
+const store = createStore(reducers, persistedState, enhancer);
+// const store = createStore(reducers, enhancer);
+
+
+store.subscribe(() => {
+  let tokensToSave = get(store.getState().auth, 'user.tokensObject', {});
+  console.log('tokensToSave', tokensToSave);
+  saveState(tokensToSave);
+});
 
 const history = syncHistoryWithStore(browserHistory, store);
 const rootEl = document.getElementById('root');

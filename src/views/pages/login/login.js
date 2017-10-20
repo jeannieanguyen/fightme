@@ -41,7 +41,7 @@ export class LoginPage extends Component {
   render() {
     const { email, password } = this.state;
     const { user } = this.props;
-    if (get(user, 'email')) {
+    if (get(user, 'tokensObject.idToken')) {
       return (
         <h1>
           <Link to="/hello_world">YAY LETS GO TO HELLO WORLD.</Link>
