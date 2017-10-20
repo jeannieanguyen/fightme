@@ -14,6 +14,7 @@
     "bundle": "./node_modules/.bin/webpack --config webpack.config.js",
     "clean": "rm -rf content/bundle.js content/bundle.js.map npm-debug.log",
     "test": "nyc mocha-webpack --webpack-config webpack.config-test.babel.js --require babel-register --require ./testSetup.js 'src/**/*tests.js'",
+    "tdd": "mocha-webpack --webpack-config webpack.config-test.babel.js --require babel-register --require ./testSetup.js 'src/**/*tests.js' --watch",
     "lint": "./node_modules/.bin/eslint ./src;"
   },
   "nyc": {
@@ -25,7 +26,16 @@
       "text"
     ],
     "sourceMap": false,
-    "instrument": false
+    "instrument": false,
+    "exclude": [
+      ".tmp",
+      "**/*tests.js",
+      "src/api",
+      "testSetup.js",
+      "src/config",
+      "webpack.config-test.babel.js",
+      "**/*reducers.js"
+    ]
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -51,6 +61,7 @@
     "nyc": "^11.2.1",
     "react-test-renderer": "^16.0.0",
     "redbox-react": "^1.2.2",
+    "sinon": "^4.0.1",
     "webpack": "^2.7.0",
     "webpack-config-loader": "^0.1.0",
     "webpack-dev-server": "^1.14.1",

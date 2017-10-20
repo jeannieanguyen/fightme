@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import reducers, { rootEpic } from 'ducks/index';
+import * as AWS from 'api/aws';
 import routes from 'routes';
 import 'rxjs';
 import promise from 'redux-promise';
@@ -17,7 +18,13 @@ import promise from 'redux-promise';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
+const apigClient = apigClientFactory.newClient();
+const epicMiddleware = createEpicMiddleware(rootEpic, {
+  dependencies: {
+    AWS,
+    apigClient,
+  },
+});
 const enhancer = composeEnhancers(
   applyMiddleware(epicMiddleware,
     thunk,
