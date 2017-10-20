@@ -7,7 +7,7 @@ export {
   epics,
   selectors,
   actions,
-  reducer
+  reducer,
 };
 
 export default reducer;
