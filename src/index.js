@@ -34,14 +34,10 @@ let persistedState = {
   },
 };
 
-console.log('persistedState',persistedState);
 const store = createStore(reducers, persistedState, enhancer);
-// const store = createStore(reducers, enhancer);
-
 
 store.subscribe(() => {
   let tokensToSave = get(store.getState().auth, 'user.tokensObject', {});
-  console.log('tokensToSave', tokensToSave);
   saveState(tokensToSave);
 });
 

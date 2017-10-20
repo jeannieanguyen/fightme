@@ -53,12 +53,11 @@ HelloWorldPage.propTypes = {
   // You can declare that a prop is a specific JS primitive. By default, these
   // are all optional.
 
-  // TODO (Wendy) - DEFINE THESE PROPERLY
   sample: PropTypes.shape({
     statusCode: PropTypes.number,
     greeting: PropTypes.string,
   }),
-  // getSampleService: PropTypes.func.isRequired,
+  getSampleService: PropTypes.func.isRequired,
 };
 
 HelloWorldPage.defaultProps = {

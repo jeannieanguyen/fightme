@@ -46,7 +46,6 @@ function buildUserObject(cognitoUser) {
       }
       // and now our user profile object is complete
       // and we resolve the promise to move on to the next step
-      console.log('userProfileObject', userProfileObject);
       res(userProfileObject);
     });
   });

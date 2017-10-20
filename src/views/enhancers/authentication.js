@@ -16,7 +16,6 @@ export function withAuthentication(WrappedComponent) {
   class AuthenticatedComponent extends Component {
     componentWillMount() {
       const { userTokens } = this.props;
-      console.log('userTokens in authenitcation HOC', userTokens);
       if (isEmpty(userTokens)) {
         browserHistory.push('/login');
       }
