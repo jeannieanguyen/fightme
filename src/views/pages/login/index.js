@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authActions, authSelectors } from 'ducks/auth';
+import * as AuthDuck from 'ducks/auth';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 
-const { registerUser } = authActions;
+const { registerUser } = AuthDuck.actions;
 
 export class RegisterPage extends Component {
   constructor(props) {
@@ -78,7 +78,7 @@ RegisterPage.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    registeredUser: authSelectors.getRegisteredUser(state),
+    registeredUser: AuthDuck.selectors.getRegisteredUser(state),
   };
 }
 

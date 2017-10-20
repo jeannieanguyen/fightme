@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import { authSelectors } from 'ducks/auth';
 import { isEmpty } from 'lodash';
+import * as AuthDuck from 'ducks/auth';
 
 export function withAuthentication(WrappedComponent) {
   function mapStateToProps(state) {
     return {
-      userTokens: authSelectors.getUserTokenObject(state),
+      userTokens: AuthDuck.selectors.getUserTokenObject(state),
     };
   }
 

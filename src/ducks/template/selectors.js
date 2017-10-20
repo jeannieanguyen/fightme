@@ -1,0 +1,1 @@
+export const getTemplateData = state => state.template;

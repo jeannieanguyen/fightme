@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import { authActions } from 'ducks/auth';
+import { get } from 'lodash';
+import * as AuthDuck from 'ducks/auth';
 
-const { loginUser } = authActions;
+const { loginUser } = AuthDuck.actions;
 
 export class LoginPage extends Component {
   constructor(props) {
@@ -78,6 +79,13 @@ LoginPage.propTypes = {
 LoginPage.defaultProps = {
   loginUser: () => {},
 };
+
+function mapStateToProps(state) {
+  return {
+    user: AuthDuck.selectors.getUser(state),
+  };
+}
+
 
 export default connect(null, { loginUser })(LoginPage);
 
