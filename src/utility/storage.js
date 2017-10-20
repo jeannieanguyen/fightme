@@ -1,7 +1,7 @@
 import store from 'store';
 import { isEmpty } from 'lodash';
 
-export const loadState = (context = 'user') => {
+export const loadState = (context = 'VictoriousUser') => {
   try {
     let returnVal = isEmpty(store.get(context)) ? undefined : store.get(context);
     return returnVal;
@@ -10,7 +10,7 @@ export const loadState = (context = 'user') => {
   }
 };
 
-export const saveState = (state, context = 'user') => {
+export const saveState = (state, context = 'VictoriousUser') => {
   try {
     store.set(context, { ...state });
     return undefined; // returning value for linting purposes (consistent-return)
