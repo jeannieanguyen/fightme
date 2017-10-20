@@ -1,0 +1,195 @@
+html
+{
+    position: relative;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+html,body,h1,h2,h3,h4,h5,h6,p,a,ul,ol,li,input,textarea,form,checkbox,radio {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body
+{
+    font-family: 'Roboto', sans-serif;
+    background-color: $appbg;
+}
+
+.maincolor
+{
+    color: $maincolor;
+}
+
+.success
+{
+    color: $brand-success;
+}
+
+.info
+{
+    color: $brand-info;
+}
+
+.warning
+{
+    color: $brand-warning;
+}
+
+.danger
+{
+    color: $brand-danger;
+}
+
+.danger-bg
+{
+    background-color: $brand-danger;
+    color: white;
+    @include border-radius(0);
+    border: none;
+}
+
+.mar-top
+{
+    margin: 5px 0 0 0;
+}
+
+.pad-right
+{
+    padding: 0 15px 0 0;
+}
+
+.pad-left
+{
+    padding: 0 0 0 15px;
+}
+
+.half-pad-right
+{
+    padding: 0 7px 0 0;
+}
+
+.half-pad-left
+{
+    padding: 0 0 0 7px;
+}
+
+.no-pad
+{
+    padding: 0;
+}
+.no-margin
+{
+    margin: 0;
+}
+
+.no-float
+{
+    float: none;
+}
+
+.with-pad
+{
+  padding: 15px;
+}
+
+.no-action
+{
+    pointer-events:none;
+}
+
+.full-page-modal
+{
+    .modal-dialog
+    {
+        width: auto;
+        margin: 20px 90px;
+    }
+}
+
+.ellipsis
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.breakword
+{
+    word-break: break-all;
+}
+
+.wrapword
+{
+    word-wrap: break-word;
+}
+
+.strong
+{
+    font-weight: 700;
+}
+
+.italic
+{
+    font-style: italic;
+    font-weight: 300;
+}
+
+hr
+{
+        border-top: 1px solid $grey5;
+}
+
+a, img, button
+{
+    text-decoration: none;
+    &:active, &:focus
+    {
+        outline:none;
+    }
+}
+
+label
+{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+}
+
+strong
+{
+    font-weight: bold;
+}
+
+.hide
+{
+    display: none;
+}
+
+.show
+{
+    display: block;
+}
+
+.hide-important
+{
+    display: none !important
+}
+
+.show-important
+{
+    display: block !important
+}
+
+.btn:focus
+{
+    outline: none !important;
+}
+
+@import "_common_768";
+

@@ -1,0 +1,246 @@
+// ############################################################################
+//
+// App :: Default
+//
+// Default layout styles
+//
+// ########################################################################## */
+
+.content-wrapper
+{
+    padding: 30px;
+    
+    &.has-error
+    {
+        margin-top: $alertHeight;
+    }
+}
+
+@media ( max-width: $screen-sm-max )
+{
+    .content-wrapper
+    {
+        padding:0;
+    }
+}
+
+.app-alert
+{
+    padding: 15px 30px;
+    position: fixed;
+    width: 100%;
+    height: $alertHeight;
+    z-index: 100;
+}
+
+.page
+{
+    padding: 0;
+}
+
+.paper
+{
+    @include box-shadow(rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px);
+    @include border-radius(2px);
+    background-color: white;
+    margin-bottom: 30px;
+
+    &.medium
+    {
+        background-color: $grey7;
+    }
+
+    &.medium-dark
+    {
+        background-color: $grey6;
+    }
+
+    &.no-rad
+    {
+        @include border-radius(0px);
+    }
+}
+
+.item-shadow
+{
+    @include box-shadow(0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12));
+}
+
+.primary-btn
+{
+    @include btn($maincolor, white, 16px, 1px, $maincolor, darken($maincolor, 20%), white, darken($maincolor, 20%), 13px, 13px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, white, 16px, 1px, $grey4, $grey4, white, $grey4, 13px, 13px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.primary-btn-medium
+{
+    font-weight: 400;
+    @include btn($maincolor, white, 13px, 1px, $maincolor, darken($maincolor, 20%), white, darken($maincolor, 20%), 7px, 7px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, white, 13px, 1px, $grey4, $grey4, white, $grey4, 7px, 7px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.primary-btn-small
+{
+    font-weight: 700;
+    @include btn($maincolor, white, 10px, 1px, $maincolor, darken($maincolor, 20%), white, darken($maincolor, 20%), 3px, 5px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, white, 10px, 1px, $grey4, $grey4, white, $grey4, 3px, 5px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.cancel-btn
+{
+    @include btn($grey3, white, 16px, 1px, $grey3, darken($grey3, 20%), white, darken($grey3, 20%), 13px, 13px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey3, white, 16px, 1px, $grey3, $grey3, white, $grey3, 13px, 13px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.cancel-btn-medium
+{
+    font-weight: 400;
+    @include btn($grey3, white, 13px, 1px, $grey3, darken($grey3, 20%), white, darken($grey3, 20%), 7px, 7px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey3, white, 13px, 1px, $grey3, $grey3, white, $grey3, 7px, 7px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.cancel-btn-small
+{
+    font-weight: 700;
+    @include btn($grey3, white, 10px, 1px, $grey3, darken($grey3, 20%), white, darken($grey3, 20%), 3px, 5px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey3, white, 10px, 1px, $grey3, $grey3, white, $grey3, 3px, 5px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.danger-btn
+{
+    @include btn($brand-danger, white, 16px, 1px, $brand-danger, darken($brand-danger, 20%), white, darken($brand-danger, 20%), 13px, 13px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, white, 16px, 1px, $grey4, $grey4, white, $grey4, 13px, 13px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.danger-btn-medium
+{
+    font-weight: 400;
+    @include btn($brand-danger, white, 13px, 1px, $brand-danger, darken($brand-danger, 20%), white, darken($brand-danger, 20%), 7px, 7px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, white, 13px, 1px, $grey4, $grey4, white, $grey4, 7px, 7px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.danger-btn-small
+{
+    font-weight: 700;
+    @include btn($brand-danger, white, 10px, 1px, $brand-danger, darken($brand-danger, 20%), white, darken($brand-danger, 20%), 3px, 5px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, white, 10px, 1px, $grey4, $grey4, white, $grey4, 3px, 5px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.clear-btn-small
+{
+    @include btn(transparent, white, 16px, 0px, transparent, transparent, $grey4, white, 0px, 0px, 0.3s, 0px);
+    text-transform: none;
+    @extend .item-shadow;
+}
+
+.border-btn-small {
+    @include btn(transparent, white, 10px, 1px, white, white, $maincolor, white, 3px, 5px, 0.3s, 0px);
+    @extend .item-shadow;
+}
+
+.light-btn
+{
+    color: black;
+    @include btn(white, $maincolor, 16px, 1px, white, darken(white, 20%), $maincolor, darken(white, 20%), 13px, 13px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, $maincolor, 16px, 1px, $grey4, $grey4, $maincolor, $grey4, 13px, 13px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.light-btn-medium
+{
+    color: black;
+    font-weight: 400;
+    @include btn(white, $maincolor, 13px, 1px, white, darken(white, 20%), $maincolor, darken(white, 20%), 7px, 7px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, $maincolor, 13px, 1px, $grey4, $grey4, $maincolor, $grey4, 7px, 7px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
+
+.light-btn-small
+{
+    color: black;
+    font-weight: 700;
+    @include btn(white, $maincolor, 10px, 1px, white, darken(white, 20%), $maincolor, darken(white, 20%), 3px, 5px, 0.3s, 2px);
+
+    &:disabled
+    {
+        @include btn($grey4, $maincolor, 10px, 1px, $grey4, $grey4, $maincolor, $grey4, 3px, 5px, 0.3s, 2px);
+        cursor: not-allowed;
+    }
+
+    @extend .item-shadow;
+}
