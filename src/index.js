@@ -9,6 +9,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import reducers, { rootEpic } from 'ducks/index';
 import * as AWS from 'api/aws';
 import routes from 'routes';
+import 'rxjs';
 import promise from 'redux-promise';
 
 // enable redux-devtools-extension (chrome)
