@@ -91,7 +91,6 @@
     "babel-preset-stage-1": "^6.3.13",
     "babel-preset-stage-2": "^6.3.13",
     "babel-preset-stage-3": "^6.3.13",
-    "bcrypt": "^1.0.3",
     "body-parser": "^1.15.0",
     "classnames": "^2.2.5",
     "compass-mixins": "^0.12.7",
