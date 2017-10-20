@@ -8,6 +8,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import reducers, { rootEpic } from 'ducks/index';
 import routes from 'routes';
+import 'rxjs';
 import promise from 'redux-promise';
 
 // enable redux-devtools-extension (chrome)
