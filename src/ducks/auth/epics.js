@@ -4,34 +4,31 @@
 
 import { combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
-import { login, register } from 'api/aws';
 import { setGeneralError } from 'ducks/errors';
 import * as actions from './actions';
 import * as types from './types';
 
-const apigClient = apigClientFactory.newClient();
-
-export const registerUserEpic = action$ =>
+export const registerUserEpic = (action$, store, deps) =>
   action$.ofType(types.REGISTER_USER)
-    .mergeMap(action => Observable.from(register(action.data))
+    .mergeMap(action => Observable.from(deps.AWS.register(action.data))
       .map(payload => actions.setRegisteredUser(payload))
       .catch(error => Observable.of(setGeneralError(error.message)),
       ),
     );
 
-export const loginUserEpic = action$ =>
+export const loginUserEpic = (action$, store, deps) =>
   action$.ofType(types.LOGIN_USER)
     .mergeMap(action =>
-      Observable.from(login(action.data))
+      Observable.from(deps.AWS.login(action.data))
         .map(payload => actions.setLoggedInUser(payload))
         .catch(error => Observable.of(setGeneralError(error.message)),
         ),
     );
 
-export const sampleEpic = action$ =>
+export const sampleEpic = (action$, store, deps) =>
   action$.ofType(types.SAMPLE_GET)
     .mergeMap(() =>
-      Observable.from(apigClient.v1HelloworldGet({ 'dev-auth': localStorage.getItem('user_token') }))
+      Observable.from(deps.apigClient.v1HelloworldGet({ 'dev-auth': localStorage.getItem('user_token') }))
         .map(payload => actions.setSampleData(payload)));
 
 export default combineEpics(

@@ -1,19 +1,15 @@
 import React from 'react';
-import { expect } from 'chai';
-import jsdom from 'jsdom';
-import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { configure } from 'enzyme';
+import { JSDOM } from 'jsdom';
+
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>', { runScripts: 'dangerously' });
+const { window } = jsdom;
 
 configure({ adapter: new Adapter() });
-
-const { JSDOM } = jsdom;
-const doc = (new JSDOM('<!doctype html><html><body></body></html>'));
-const win = doc.defaultView;
-
-global.document = doc;
-global.window = win;
-global.React = React;
-global.expect = expect;
-global.apigClientFactory = { 
-	newClient: () => {}
+global.window = window;
+global.document = window.document;
+global.navigator = {
+  userAgent: 'node.js',
 };
+global.React = React;
