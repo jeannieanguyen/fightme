@@ -26,7 +26,11 @@ export function withAuthentication(WrappedComponent) {
   }
 
   AuthenticatedComponent.propTypes = {
-    userTokens: PropTypes.node,
+    userTokens: PropTypes.shape({
+      accessToken: PropTypes.string,
+      idToken: PropTypes.string,
+      refreshToken: PropTypes.string,
+    }),
   };
 
   AuthenticatedComponent.defaultProps = {

@@ -5,13 +5,6 @@ import PropTypes from 'prop-types';
 
 const { getSampleService } = authActions;
 
-function mapStateToProps(state) {
-  return {
-    sample: authSelectors.getSample(state),
-  };
-}
-
-@connect(mapStateToProps, { getSampleService })
 class HelloWorldPage extends Component {
   componentWillMount() {
     this.props.getSampleService();
@@ -64,4 +57,10 @@ HelloWorldPage.defaultProps = {
   sample: {},
 };
 
-export default HelloWorldPage;
+function mapStateToProps(state) {
+  return {
+    sample: authSelectors.getSample(state),
+  };
+}
+
+export default connect(mapStateToProps, { getSampleService })(HelloWorldPage);

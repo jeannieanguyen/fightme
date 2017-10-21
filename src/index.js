@@ -26,7 +26,7 @@ const enhancer = composeEnhancers(
     routerMiddleware(browserHistory)),
 );
 
-let persistedState = {
+const persistedState = {
   auth: {
     user: {
       tokensObject: loadState() || {},
@@ -37,7 +37,7 @@ let persistedState = {
 const store = createStore(reducers, persistedState, enhancer);
 
 store.subscribe(() => {
-  let tokensToSave = get(store.getState().auth, 'user.tokensObject', {});
+  const tokensToSave = get(store.getState().auth, 'user.tokensObject', {});
   saveState(tokensToSave);
 });
 

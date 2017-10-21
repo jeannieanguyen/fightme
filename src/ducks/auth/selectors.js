@@ -9,6 +9,4 @@ export const getRegisteredUser = (state) => {
   return isEmpty(registeredUser) ? undefined : registeredUser;
 };
 
-export const getUserTokenObject = (state) => {
-  return get(state.auth.user, 'tokensObject', undefined);
-};
+export const getUserTokenObject = state => get(state.auth.user, 'tokensObject', undefined);
