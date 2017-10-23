@@ -33,10 +33,10 @@ echo "------ Target group complete"
 TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups --names ${PROJECT_NAME}-target-group | jq --raw-output .TargetGroups[].TargetGroupArn)
 
 # Add targetgroup listener to ALB and store the listnerArn in a variable to be used by the create rule command.
-echo "******* Create listner"
+echo "******* Create Listener"
 #aws elbv2 create-listener --load-balancer-arn ${LOAD_BALANCER_ARN} --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN}
 LISTENER_ARN=$(aws elbv2 describe-listeners --load-balancer-arn ${LOAD_BALANCER_ARN} | jq --raw-output ".Listeners | .[] | .ListenerArn")
-echo ${LISTENER_GROUP_ARN}
+echo ${LISTENER_ARN}
 echo "------- Listener Created"
 
 # Create rule for listener
