@@ -9,12 +9,12 @@ VPC_ID="vpc-2f467c46"
 REGION="us-east-2"
 
 # chage this when new alb is created
-LOAD_BALANCER_ARN="arn:aws:elasticloadbalancing:us-east-2:437326417395:loadbalancer/app/EcsAdminALB/445b627bdb241258"
+LOAD_BALANCER_ARN="arn:aws:elasticloadbalancing:us-east-2:437326417395:loadbalancer/app/PublicALB/4f5f1070e0250634"
 
 FIND_SERVICE=$(aws ecs describe-services --service ${PROJECT_NAME} --cluster ${CLUSTER_NAME} | jq --raw-output .services[].serviceName)
 PROJECT_ACTIVE=$(aws ecs describe-services --service ${PROJECT_NAME} --cluster ${CLUSTER_NAME} | jq --raw-output .services[].status)
 
-PROJECT_PATH="/quacken"
+PROJECT_PATH="/*"
 
 # Update docker-compose.yml with build tag to be used.
 sed -i -e "s;%BUILD_TAG%;${CIRCLE_BRANCH};g" ./docker-compose.yml
@@ -27,7 +27,7 @@ echo "------ Task Definition complete"
 # Create a targetgroup for the ALB. This check is idempotent. This needs to discover the VPC?? This might not be the best way to do this.
 echo "****** Creating Target Group"
 aws elbv2 create-target-group --name ${PROJECT_NAME}-target-group --protocol HTTP --port ${PORT_NUMBER} \
---vpc-id ${VPC_ID} --health-check-path /course/health
+--vpc-id ${VPC_ID} --health-check-path /
 echo "------ Target group complete"
 
 TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups --names ${PROJECT_NAME}-target-group | jq --raw-output .TargetGroups[].TargetGroupArn)
