@@ -91,7 +91,7 @@ workflows:
 
       - deploy_image:
           context: org-global
-          requres:
+          requires:
             - build_image
           # add back when its working end to end.
           # filters:
