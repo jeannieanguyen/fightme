@@ -124,16 +124,13 @@ export function login({ email, password }) {
         console.log('in login', result);
 
         const userObjectWithTokens = buildUserObject(cognitoUser)
-          .then(authenticatedUserInfo =>
-            ({ userObject: authenticatedUserInfo }),
-          )
-          .then((userObject) => {
+          .then((authenticatedUserInfo) => {
             const tokensObject = {
               accessToken: result.accessToken.jwtToken,
               idToken: result.idToken.jwtToken,
               refreshToken: result.refreshToken.token,
             };
-            return { ...userObject, tokensObject };
+            return { userObject: authenticatedUserInfo, tokensObject };
           });
 
         return userObjectWithTokens;

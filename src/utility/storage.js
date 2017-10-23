@@ -1,18 +1,19 @@
 import store from 'store';
 import { isEmpty } from 'lodash';
 
-export const loadState = (context = 'VictoriousUser') => {
+export const localStorageKey = 'VictoriousTokens';
+
+export const loadState = () => {
   try {
-    return (isEmpty(store.get(context)) ? undefined : store.get(context));
+    return (isEmpty(store.get(localStorageKey)) ? undefined : store.get(localStorageKey));
   } catch (err) {
     return undefined;
   }
 };
 
-export const saveState = (state, context = 'VictoriousUser') => {
+export const saveState = (state) => {
   try {
-    store.set(context, { ...state });
-    return { ...state }; // returning value for linting purposes (consistent-return)
+    store.set(localStorageKey, { ...state });
   } catch (err) {
     return undefined;
   }
