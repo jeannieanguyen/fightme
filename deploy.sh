@@ -9,7 +9,7 @@ VPC_ID="vpc-2f467c46"
 REGION="us-east-2"
 
 # chage this when new alb is created
-LOAD_BALANCER_ARN="arn:aws:elasticloadbalancing:us-east-2:437326417395:loadbalancer/app/PublicALB/4f5f1070e0250634"
+LOAD_BALANCER_ARN="arn:aws:elasticloadbalancing:us-east-2:437326417395:loadbalancer/app/WebALB/5413a3eaff80657d"
 
 FIND_SERVICE=$(aws ecs describe-services --service ${PROJECT_NAME} --cluster ${CLUSTER_NAME} | jq --raw-output .services[].serviceName)
 PROJECT_ACTIVE=$(aws ecs describe-services --service ${PROJECT_NAME} --cluster ${CLUSTER_NAME} | jq --raw-output .services[].status)
