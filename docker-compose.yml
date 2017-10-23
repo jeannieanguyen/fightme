@@ -1,6 +1,6 @@
 version: "2"
 services:
-  course-service:
+  the-quacken:
     image: 437326417395.dkr.ecr.us-east-2.amazonaws.com/the-quacken:dev
     mem_limit: 2048m
     ports:
