@@ -11,6 +11,8 @@ import * as AWS from 'api/aws';
 import routes from 'routes';
 import 'rxjs';
 import promise from 'redux-promise';
+import { get } from 'lodash';
+import { loadState, saveState } from 'utility/storage';
 
 // enable redux-devtools-extension (chrome)
 // https://github.com/zalmoxisus/redux-devtools-extension
@@ -31,7 +33,21 @@ const enhancer = composeEnhancers(
     promise,
     routerMiddleware(browserHistory)),
 );
-const store = createStore(reducers, enhancer);
+
+const persistedState = {
+  auth: {
+    user: {
+      tokensObject: loadState() || {},
+    },
+  },
+};
+
+const store = createStore(reducers, persistedState, enhancer);
+
+store.subscribe(() => {
+  const tokensToSave = get(store.getState().auth, 'user.tokensObject', {});
+  saveState(tokensToSave);
+});
 
 const history = syncHistoryWithStore(browserHistory, store);
 const rootEl = document.getElementById('root');

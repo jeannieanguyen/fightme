@@ -4,6 +4,8 @@
 
 import { combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
+import { get } from 'lodash';
+import { browserHistory } from 'react-router';
 import { setGeneralError } from 'ducks/errors';
 import * as actions from './actions';
 import * as types from './types';
@@ -25,14 +27,39 @@ export const loginUserEpic = (action$, store, deps) =>
         ),
     );
 
+export const routeToDashboardEpic = action$ =>
+  action$.ofType(types.LOGIN_USER_SUCCESS)
+    .mapTo(actions.reroutedToDashboard())
+    .do(() => {
+      browserHistory.push('/hello_world');
+    });
+
 export const sampleEpic = (action$, store, deps) =>
   action$.ofType(types.SAMPLE_GET)
     .mergeMap(() =>
-      Observable.from(deps.apigClient.v1HelloworldGet({ 'dev-auth': localStorage.getItem('user_token') }))
-        .map(payload => actions.setSampleData(payload)));
+      Observable.from(deps.apigClient.v1HelloworldGet({ 'dev-auth': get(store.getState(), 'auth.user.tokensObject.idToken') }))
+        .map(payload => actions.setSampleData(payload))
+        .catch((error) => {
+          if (error.status === 401) {
+            return Observable.merge(
+              Observable.of(actions.logoutUser()),
+              Observable.of(setGeneralError(get(error, 'data.message', 'User is unauthorized'))),
+            );
+          }
+        }),
+    );
+
+export const logoutUserEpic = action$ =>
+  action$.ofType(types.LOGOUT)
+    .mapTo(actions.logoutUserSuccess())
+    .do(() => {
+      browserHistory.push('/login');
+    });
 
 export default combineEpics(
   registerUserEpic,
   loginUserEpic,
   sampleEpic,
+  routeToDashboardEpic,
+  logoutUserEpic,
 );

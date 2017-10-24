@@ -5,13 +5,6 @@ import PropTypes from 'prop-types';
 
 const { getSampleService } = authActions;
 
-function mapStateToProps(state) {
-  return {
-    sample: authSelectors.getSample(state),
-  };
-}
-
-@connect(mapStateToProps, { getSampleService })
 class HelloWorldPage extends Component {
   componentWillMount() {
     this.props.getSampleService();
@@ -52,7 +45,11 @@ class HelloWorldPage extends Component {
 HelloWorldPage.propTypes = {
   // You can declare that a prop is a specific JS primitive. By default, these
   // are all optional.
-  sample: PropTypes.node,
+
+  sample: PropTypes.shape({
+    statusCode: PropTypes.number,
+    greeting: PropTypes.string,
+  }),
   getSampleService: PropTypes.func.isRequired,
 };
 
@@ -60,4 +57,10 @@ HelloWorldPage.defaultProps = {
   sample: {},
 };
 
-export default HelloWorldPage;
+function mapStateToProps(state) {
+  return {
+    sample: authSelectors.getSample(state),
+  };
+}
+
+export default connect(mapStateToProps, { getSampleService })(HelloWorldPage);

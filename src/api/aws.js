@@ -122,8 +122,18 @@ export function login({ email, password }) {
     authenticateUser(cognitoUser, authenticationDetails)
       .then((result) => {
         console.log('in login', result);
-        // if successfully authenticated, build the user object to return to the Redux state to use
-        return buildUserObject(cognitoUser);
+
+        const userObjectWithTokens = buildUserObject(cognitoUser)
+          .then((authenticatedUserInfo) => {
+            const tokensObject = {
+              accessToken: result.accessToken.jwtToken,
+              idToken: result.idToken.jwtToken,
+              refreshToken: result.refreshToken.token,
+            };
+            return { userObject: authenticatedUserInfo, tokensObject };
+          });
+
+        return userObjectWithTokens;
       })
       .then((userProfileObject) => {
         console.log('successfully built object');

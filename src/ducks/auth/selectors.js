@@ -1,4 +1,4 @@
-import { pick, isEmpty } from 'lodash';
+import { get, pick, isEmpty } from 'lodash';
 
 export const getUser = state => state.auth.user;
 export const getSample = state => state.auth.sample;
@@ -8,3 +8,5 @@ export const getRegisteredUser = (state) => {
 
   return isEmpty(registeredUser) ? undefined : registeredUser;
 };
+
+export const getUserTokenObject = state => get(state.auth.user, 'tokensObject', undefined);
