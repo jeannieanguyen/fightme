@@ -45,12 +45,6 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
-  build_image:
-    <<: *defaults
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 17.06.0-ce
       - run:
           name: Build Docker Image
           command: |
@@ -72,8 +66,3 @@ workflows:
                   ignore:
                       - staging
                       - master
-
-      - build_image:
-          context: org-global
-          requires:
-            - run_tests
