@@ -45,6 +45,8 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
+      - setup_remote_docker:
+          version: 17.06.0-ce
       - run:
           name: Build Docker Image
           command: |
