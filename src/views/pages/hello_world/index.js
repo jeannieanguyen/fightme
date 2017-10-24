@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authSelectors, authActions } from 'ducks/auth';
+import * as AuthDuck from 'ducks/auth';
 import PropTypes from 'prop-types';
 
-const { getSampleService } = authActions;
+const { getSampleService } = AuthDuck.actions;
 
 class HelloWorldPage extends Component {
   componentWillMount() {
@@ -59,7 +59,7 @@ HelloWorldPage.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    sample: authSelectors.getSample(state),
+    sample: AuthDuck.selectors.getSample(state),
   };
 }
 

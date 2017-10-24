@@ -1,17 +1,23 @@
 import { combineReducers } from 'redux';
 import { combineEpics } from 'redux-observable';
 import { routerReducer } from 'react-router-redux';
-import authReducer, { authEpics } from 'ducks/auth/index';
 import errorReducer from 'ducks/errors';
+import * as TemplateDuck from 'ducks/template/index';
+import * as AuthDuck from 'ducks/auth/index';
+// ADD NEW DUCK IMPORT
 
 const rootReducer = combineReducers({
   routing: routerReducer,
-  auth: authReducer,
+  auth: AuthDuck.reducer,
   errors: errorReducer,
+  template: TemplateDuck.reducer,
+  // ADD NEW DUCK REDUCER
 });
 
 export const rootEpic = (action$, store, deps) => combineEpics(
-  authEpics,
+  AuthDuck.epics,
+  TemplateDuck.epics,
+  // ADD NEW DUCK EPIC
 )(action$, store, deps);
 
 export default rootReducer;
