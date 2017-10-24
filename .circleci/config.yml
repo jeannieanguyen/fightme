@@ -8,7 +8,7 @@ defaults: &defaults
 
 version: 2
 jobs:
-  run_tests:
+  run_tests_and_build:
     <<: *defaults
     steps:
       - checkout
@@ -72,7 +72,7 @@ workflows:
   version: 2
   build_and_dockerize:
     jobs:
-      - run_tests:
+      - run_tests_and_build:
           context: org-global
           filters:
               branches:
@@ -82,7 +82,7 @@ workflows:
       - deploy_image:
           context: org-global
           requires:
-            - build_image
+            - run_tests_and_build
           filters:
               branches:
                 only:
