@@ -56,6 +56,17 @@ jobs:
           command: |
             eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email | sed 's|https://||' | sed -e 's/-e none//g')
             docker push $AWS_ACCOUNT_ID.$AWS_ECR_ADDRESS/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+  deploy_image:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          version: 17.06.0-ce
+
+      - run:
+          name: Deploy to ECS
+          command: ./deploy.sh
 
 workflows:
   version: 2
@@ -68,3 +79,13 @@ workflows:
                   ignore:
                       - staging
                       - master
+      - deploy_image:
+          context: org-global
+          requires:
+            - build_image
+          filters:
+              branches:
+                only:
+                  - dev
+                  - staging
+                  - master
