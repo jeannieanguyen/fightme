@@ -41,7 +41,10 @@ export const sampleEpic = (action$, store, deps) =>
         .map(payload => actions.setSampleData(payload))
         .catch((error) => {
           if (error.status === 401) {
-            return Observable.of(actions.logoutUser(error.message));
+            return Observable.merge(
+              Observable.of(actions.logoutUser()),
+              Observable.of(setGeneralError(error.data.message)),
+            );
           }
         }),
     );
