@@ -27,7 +27,7 @@ echo "------ Task Definition complete"
 # Create a targetgroup for the ALB. This check is idempotent. This needs to discover the VPC?? This might not be the best way to do this.
 echo "****** Creating Target Group"
 aws elbv2 create-target-group --name ${PROJECT_NAME}-target-group --protocol HTTP --port ${PORT_NUMBER} \
---vpc-id ${VPC_ID} --health-check-path /
+--vpc-id ${VPC_ID} --health-check-path /health
 echo "------ Target group complete"
 
 TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups --names ${PROJECT_NAME}-target-group | jq --raw-output .TargetGroups[].TargetGroupArn)
