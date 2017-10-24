@@ -43,7 +43,7 @@ export const sampleEpic = (action$, store, deps) =>
           if (error.status === 401) {
             return Observable.merge(
               Observable.of(actions.logoutUser()),
-              Observable.of(setGeneralError(error.data.message)),
+              Observable.of(setGeneralError(get(error, 'data.message', 'User is unauthorized'))),
             );
           }
         }),
