@@ -78,7 +78,7 @@ export const register = ({ email, password }) => {
       }
       res(result);
     });
-  }).catch(err => err);
+  });
   return p;
 };
 
