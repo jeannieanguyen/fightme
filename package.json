@@ -15,8 +15,8 @@
     "clean": "rm -rf content/bundle.js content/bundle.js.map npm-debug.log",
     "test": "nyc mocha-webpack --webpack-config webpack.config-test.babel.js --require babel-register --require ./testSetup.js 'src/**/*tests.js'",
     "tdd": "mocha-webpack --webpack-config webpack.config-test.babel.js --require babel-register --require ./testSetup.js 'src/**/*tests.js' --watch",
-    "lint": "./node_modules/.bin/eslint ./src;", 
-    "spawn_duck": "./scripts/spawn_duck.sh", 
+    "lint": "./node_modules/.bin/eslint ./src;",
+    "spawn_duck": "./scripts/spawn_duck.sh",
     "spawn_view": "./scripts/spawn_view.sh"
   },
   "nyc": {
@@ -107,7 +107,7 @@
     "node-uuid": "^1.4.7",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-bootstrap": "^0.31.0",
+    "react-bootstrap": "~0.31.5",
     "react-cookie": "^0.4.5",
     "react-dom": "^16.0.0",
     "react-redux": "^4.4.0",
