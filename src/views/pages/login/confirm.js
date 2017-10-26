@@ -84,7 +84,7 @@ ConfirmPage.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    confirmUserEmail: authSelectors.getRegisteredUser(state)
+    confirmUserEmail: AuthDuck.selectors.getRegisteredUser(state)
   }
 }
 
