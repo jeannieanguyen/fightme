@@ -1,8 +1,13 @@
 export const CATCHALL_ERROR = 'CATCHALL_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const setGeneralError = errorMessage => ({
   type: CATCHALL_ERROR,
   error: errorMessage,
+});
+
+export const clearError = () => ({
+  type: CLEAR_ERROR,
 });
 
 const INITIAL_STATE = {
@@ -16,10 +21,14 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         error: action.error,
       };
-    default:
+    case CLEAR_ERROR:
       return {
         ...state,
         error: null,
+      };
+    default:
+      return {
+        ...state,
       };
   }
 }

@@ -2,16 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import { get } from 'lodash';
-import { authActions, authSelectors } from 'ducks/auth';
+import * as AuthDuck from 'ducks/auth';
 
-const { loginUser } = authActions;
-
-function mapStateToProps(state) {
-  return {
-    user: authSelectors.getUser(state),
-  };
-}
+const { loginUser } = AuthDuck.actions;
 
 export class LoginPage extends Component {
   constructor(props) {
@@ -40,14 +33,7 @@ export class LoginPage extends Component {
 
   render() {
     const { email, password } = this.state;
-    const { user } = this.props;
-    if (get(user, 'email')) {
-      return (
-        <h1>
-          <Link to="/hello_world">YAY LETS GO TO HELLO WORLD.</Link>
-        </h1>
-      );
-    }
+
     return (
       <div className="form-container">
         <div>
@@ -87,25 +73,11 @@ export class LoginPage extends Component {
 
 LoginPage.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    email: PropTypes.string,
-    email_verified: PropTypes.string,
-    sub: PropTypes.string,
-  }),
 };
 
 LoginPage.defaultProps = {
   loginUser: () => {},
-  user: {
-    email: '',
-    email_verified: '',
-    sub: '',
-  },
 };
 
-@connect(mapStateToProps, { loginUser })
-export default class LoginPageContainer extends Component {
-  render() {
-    return <LoginPage {...this.props} />;
-  }
-}
+export default connect(null, { loginUser })(LoginPage);
+

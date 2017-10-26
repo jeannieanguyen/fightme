@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import { authSelectors } from 'ducks/auth';
+import { isEmpty } from 'lodash';
+import * as AuthDuck from 'ducks/auth';
 
 export function withAuthentication(WrappedComponent) {
   function mapStateToProps(state) {
     return {
-      user: authSelectors.getUser(state),
+      userTokens: AuthDuck.selectors.getUserTokenObject(state),
     };
   }
 
   @connect(mapStateToProps)
   class AuthenticatedComponent extends Component {
     componentWillMount() {
-      const { user } = this.props;
-      if (!user) {
+      const { userTokens } = this.props;
+      if (isEmpty(userTokens)) {
         browserHistory.push('/login');
       }
     }
@@ -25,11 +26,15 @@ export function withAuthentication(WrappedComponent) {
   }
 
   AuthenticatedComponent.propTypes = {
-    user: PropTypes.node,
+    userTokens: PropTypes.shape({
+      accessToken: PropTypes.string,
+      idToken: PropTypes.string,
+      refreshToken: PropTypes.string,
+    }),
   };
 
   AuthenticatedComponent.defaultProps = {
-    user: null,
+    userTokens: null,
   };
 
   return AuthenticatedComponent;

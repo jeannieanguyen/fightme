@@ -31,6 +31,9 @@ to browsers. Dependencies are managed with npm and build processes are exposed t
 | ```npm test```                          | Run test suite, generate code coverage report                                  |
 | ```npm run tdd```                          | Run test suite in watch mode, will rerun on every save.               |
 | ```npm run lint```                          | Run linter on project.               |
+| ```npm run spawn_duck```                          | Creates a new duck folder with boilerplate. See below for details|
+| ```npm run spawn_view```                          | Creates a react component file with boilerplate. See below for details|
+
 
 NOTE: dev builds are generated automatically once code is committed.
 
@@ -78,6 +81,30 @@ controlled by webpack.config.js.
 Files should be placed in the src/content/ folder under an appropriate sub-folder (e.g., content/fonts/, content/img/, etc.). When
 linking to static files (either from HTML/JSX or from stylesheets) always use an absolute path: /content/img/foo.png. Without the
 leading slash, the content may not be referenced properly when deployed to production.
+
+### Spawning boilerplate
+Spawn scripts simply copy `ducks/template` or `views/pages/template` into a new file so you can develop new redux or react modules with less boilerplate. 
+
+#### Spawn Duck
+
+`spawn_duck` can be used with a single argument which is the name of the new folder under ducks. If you do not specify an argument, you will be prompted to enter a name after. 
+
+The following command will create actions epics, reducers, selectors, tests and type templates in `src/ducks/my_new_folder_name`.
+ 
+```
+npm run spawn_duck my_new_folder_name
+```
+**NOTE : Do not forget to add your new duck to the ducks/index file**
+
+#### Spawn View
+
+`spawn_view` does not take an argument. Instead, when run, it will prompt you first for the desired folder name under pages/views. This can be a new or existing folder. The script will then prompt you for the full filename including the '.js' extension.
+
+**CAUTION : If the file already exists, it will be overridden.**
+ 
+```
+npm run spawn_view
+```
 
 ### Key source files and folders
 

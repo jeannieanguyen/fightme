@@ -8,3 +8,6 @@ export const CONFIRM_USER_EMAIL_SUCCESS = 'auth/CONFIRM_USER_EMAIL_SUCCESS';
 export const SAMPLE_GET = 'auth/SAMPLE_GET';
 export const SAMPLE_GET_SUCCESS = 'auth/SAMPLE_GET_SUCCESS';
 export const SAMPLE_GET_ERROR = 'auth/SAMPLE_GET_ERROR';
+export const REROUTED_TO_DASHBOARD = 'auth/REROUTED_TO_DASHBOARD';
+export const LOGOUT = 'auth/LOGOUT';
+export const LOGOUT_USER_SUCCESS = 'auth/LOGOUT_USER_SUCCESS';

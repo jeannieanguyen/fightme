@@ -44,3 +44,16 @@ export const confirmUserEmail = data =>
       type: types.CONFIRM_USER_EMAIL,
       data,
     });
+
+export const reroutedToDashboard = () => ({
+  type: types.REROUTED_TO_DASHBOARD,
+});
+
+export const logoutUser = () => ({
+  type: types.LOGOUT,
+});
+
+export const logoutUserSuccess = () => ({
+  type: types.LOGOUT_USER_SUCCESS,
+});
+
