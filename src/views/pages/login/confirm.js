@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { get } from 'lodash';
-import { authActions, authSelectors } from 'ducks/auth';
+import * as AuthDuck from 'ducks/auth';
 
-const { confirmUserEmail } = authActions;
+const { confirmUserEmail } = AuthDuck.actions;
 
 export class ConfirmPage extends Component {
   constructor(props) {
