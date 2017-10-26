@@ -2,9 +2,9 @@ import AWSCognito from 'aws-sdk';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 
-const REGION = 'us-west-2';
-const USER_POOL_ID = 'us-west-2_g66KEU85e';
-const CLIENT_ID = '6o3eojh3upbnsmietk7pgck0hr';
+const REGION = 'us-east-2';
+const USER_POOL_ID = 'us-east-2_tLqkFIwT8';
+const CLIENT_ID = '12dqjs4d861uqe4roii43j241i';
 
 AWSCognito.config.update({
   region: REGION,

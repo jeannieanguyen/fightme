@@ -10,10 +10,41 @@ export function register({ email, password }) {
       if (err) {
         rej(err);
       }
+      localStorage.setItem("unconfirmed_email", email);
+      localStorage.setItem("unconfirmed_password", password);
       res(result);
     });
   }).catch(err => err);
   return p;
+}
+
+export function confirmUserEmail({email, code}) {
+  const p = new Promise((res, rej) => {
+    const attributeList = [];
+    const userData = {
+      Username: email,
+      Pool: userPool
+    };
+
+    const cognitoUser = new CognitoUser(userData);
+    cognitoUser.confirmRegistration(code, true, function(err, result) {
+      if (err) {
+        alert(err);
+        return;
+      }
+      console.log('call result:' + result);
+
+      const email = localStorage.getItem("unconfirmed_email");
+      const password = localStorage.getItem("unconfirmed_password");
+      console.log("Email: ", email);
+      console.log("Password: ", password);
+
+      // TODO route from here login(email, password);
+
+      res(result);
+
+    });
+  });
 }
 
 // buildUserObject() gets the user attributes from Cognito
@@ -167,6 +198,16 @@ export function retrieveUserFromLocalStorage() {
         if (err) {
           rej(err);
         }
+
+        // NOTE: getSession must be called to authenticate user before calling getUserAttributes
+        cognitoUser.getUserAttributes(function(err, attributes) {
+            if (err) {
+                // Handle error
+            } else {
+                console.dir("Attributes: ", attributes);
+            }
+        });
+
         // save to localStorage the jwtToken from the `session`
         localStorage.setItem('user_token', session.getIdToken().getJwtToken());
         // Edge case, AWS Cognito does not allow for the Logins attr

@@ -37,3 +37,10 @@ export const setSampleData = data => ({
   type: types.SAMPLE_GET_SUCCESS,
   data,
 });
+
+export const confirmUserEmail = data =>
+  dispatch =>
+    dispatch({
+      type: types.CONFIRM_USER_EMAIL,
+      data,
+    });
