@@ -11,12 +11,12 @@ export const confirmUserEmail = ({ email, code }) => {
     };
 
     const cognitoUser = new CognitoUser(userData);
-    cognitoUser.confirmRegistration(code, true, (err /* , result */) => {
+    cognitoUser.confirmRegistration(code, true, (err, result) => {
       if (err) {
         rej(err);
         return;
       }
-      res(true);
+      res(result);
     });
   });
 

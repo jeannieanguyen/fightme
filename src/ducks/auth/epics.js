@@ -31,7 +31,7 @@ export const confirmUserEmailEpic = (action$, store, deps) =>
   action$.ofType(types.CONFIRM_USER_EMAIL)
     .mergeMap(action =>
       Observable.from(deps.AWS.confirmUserEmail(action.data))
-        .map(confirmed => actions.setConfirmedUserEmail(confirmed))
+        .do(() => browserHistory.push('/login'))
         .catch(error => Observable.of(setGeneralError(error.message))),
     );
 

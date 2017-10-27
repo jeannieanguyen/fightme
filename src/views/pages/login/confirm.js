@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { get } from 'lodash';
 import * as AuthDuck from 'ducks/auth';
+import PropTypes from 'views/propTypes';
 
 const { confirmUserEmail } = AuthDuck.actions;
 
@@ -37,39 +37,28 @@ export class ConfirmPage extends Component {
 
     return (
       <div className="form-container">
-        { this.props.confirmed &&
-          <div>
-            <h1>EMAIL CONFIRMED</h1>
-            <button>
-              <Link to="/login">GO LOGIN</Link>
-            </button>
-          </div>
-        }
-
-        { !this.props.confirmed &&
-          <div>
-            <h1>CONFIRM EMAIL!</h1>
-            <label htmlFor="email_field">E-mail</label>
-            <input
-              type="text"
-              name="email"
-              className="form-input"
-              placeholder="E-mail address"
-              onChange={this.updateField}
-              value={email}
-            />
-            <label htmlFor="password">Code</label>
-            <input
-              type="text"
-              name="code"
-              className="form-input"
-              placeholder="Code"
-              onChange={this.updateField}
-              value={code}
-            />
-            <button onClick={this.onConfirmUserEmail}>Confirm</button>
-          </div>
-        }
+        <div>
+          <h1>CONFIRM EMAIL!</h1>
+          <label htmlFor="email_field">E-mail</label>
+          <input
+            type="text"
+            name="email"
+            className="form-input"
+            placeholder="E-mail address"
+            onChange={this.updateField}
+            value={email}
+          />
+          <label htmlFor="password">Code</label>
+          <input
+            type="text"
+            name="code"
+            className="form-input"
+            placeholder="Code"
+            onChange={this.updateField}
+            value={code}
+          />
+          <button onClick={this.onConfirmUserEmail}>Confirm</button>
+        </div>
       </div>
     );
   }
@@ -77,19 +66,12 @@ export class ConfirmPage extends Component {
 
 ConfirmPage.propTypes = {
   confirmUserEmail: PropTypes.func.isRequired,
-  confirmed: PropTypes.boolean,
-  location: PropTypes.shape({
-    query: PropTypes.shape({
-      email: PropTypes.string,
-      code: PropTypes.string,
-    }),
-  }),
+  location: PropTypes.location,
 };
 
 ConfirmPage.defaultProps = {
   email: '',
   code: '',
-  confirmed: false,
   location: {
     query: {},
   },
@@ -101,9 +83,4 @@ function mapStateToProps(state) {
   };
 }
 
-@connect(mapStateToProps, { confirmUserEmail })
-export default class ConfirmPageContainer extends Component {
-  render() {
-    return <ConfirmPage {...this.props} />;
-  }
-}
+export default connect(mapStateToProps, { confirmUserEmail })(ConfirmPage)
