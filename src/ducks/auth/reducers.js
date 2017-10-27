@@ -15,6 +15,11 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         user: action.data,
       };
+    case types.CONFIRM_USER_EMAIL_SUCCESS:
+      return {
+        ...state,
+        userEmailConfirmed: action.data
+      }
     case types.SAMPLE_GET_SUCCESS:
       return {
         ...state,

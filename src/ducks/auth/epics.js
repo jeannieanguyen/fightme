@@ -26,13 +26,13 @@ export const loginUserEpic = (action$, store, deps) =>
         .catch(error => Observable.of(setGeneralError(error.message)),
         ),
     );
+
 export const confirmUserEmailEpic = (action$, store, deps) =>
   action$.ofType(types.CONFIRM_USER_EMAIL)
-    .mergeMap(action=>
-      Observable.from(deps.AWS.confirmUserEmail(action.data))
-      .map(payload => actions.setConfirmedUser(payload))
-      .catch(error => Observable.of(setGeneralError(error.message)),
-        ),
+    .mergeMap(action =>
+          Observable.from(deps.AWS.confirmUserEmail(action.data))
+            .map(confirmed => actions.setConfirmedUserEmail(confirmed))
+            .catch(error => Observable.of(setGeneralError(error.message))),
     );
 
 export const routeToDashboardEpic = action$ =>

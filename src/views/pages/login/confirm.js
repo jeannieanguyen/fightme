@@ -10,11 +10,8 @@ const { confirmUserEmail } = AuthDuck.actions;
 export class ConfirmPage extends Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props.location.query);
     this.onConfirmUserEmail = this.onConfirmUserEmail.bind(this);
     this.updateField = this.updateField.bind(this);
-    console.log(this.props.location.query);
   }
 
   onConfirmUserEmail() {
@@ -24,7 +21,7 @@ export class ConfirmPage extends Component {
 
   componentWillMount() {
       this.setState({
-        email: decodeURI(get(this.props.location.query, 'email')),
+        email:  decodeURI(get(this.props.location.query, 'email')),
         code: get(this.props.location.query, 'code')
       });
   }
@@ -36,32 +33,45 @@ export class ConfirmPage extends Component {
   }
 
   render() {
-    const { email, code } = this.state;
+    const { email, code, confirmed } = this.state;
+
     return (
-      <div className="form-container">
-        <div>
-          <h1>EMAIL CONFIRMING!</h1>
-          <label htmlFor="email_field">E-mail</label>
-          <input
-            type="text"
-            name="email"
-            className="form-input"
-            placeholder="E-mail address"
-            onChange={this.updateField}
-            value={email}
-          />
-          <label htmlFor="password">Code</label>
-          <input
-            type="text"
-            name="code"
-            className="form-input"
-            placeholder="Code"
-            onChange={this.updateField}
-            value={code}
-          />
-          <button onClick={this.onConfirmUserEmail}>Confirm</button>
-        </div>
-      </div>
+            <div className="form-container">
+          { this.props.confirmed &&
+              <div>
+                <h1>EMAIL CONFIRMED</h1>
+                <button>
+                  <Link to="/login">GO LOGIN</Link>
+                </button>
+              </div>
+          }
+
+          { !this.props.confirmed &&
+
+              <div>
+                <h1>CONFIRM EMAIL!</h1>
+                <label htmlFor="email_field">E-mail</label>
+                <input
+                  type="text"
+                  name="email"
+                  className="form-input"
+                  placeholder="E-mail address"
+                  onChange={this.updateField}
+                  value={email}
+                />
+                <label htmlFor="password">Code</label>
+                <input
+                  type="text"
+                  name="code"
+                  className="form-input"
+                  placeholder="Code"
+                  onChange={this.updateField}
+                  value={code}
+                />
+                <button onClick={this.onConfirmUserEmail}>Confirm</button>
+              </div>
+          }
+          </div>
     );
   }
 }
@@ -70,22 +80,23 @@ ConfirmPage.propTypes = {
   confirmUserEmail: PropTypes.func.isRequired,
   user: PropTypes.shape({
     email: PropTypes.string,
-    email_verified: PropTypes.string,
-    sub: PropTypes.string,
+    code: PropTypes.string,
+    confirmed: PropTypes.boolean
   }),
 };
 
 ConfirmPage.defaultProps = {
   user: {
     email: '',
-    code: ''
   },
+  code: '',
+  confirmed: false
 };
 
 function mapStateToProps(state) {
   return {
-    confirmUserEmail: AuthDuck.selectors.getRegisteredUser(state)
-  }
+    confirmed: AuthDuck.selectors.getUserEmailConfirmed(state),
+  };
 }
 
 @connect(mapStateToProps, { confirmUserEmail })
