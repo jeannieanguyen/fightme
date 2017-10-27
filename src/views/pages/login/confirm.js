@@ -14,16 +14,16 @@ export class ConfirmPage extends Component {
     this.updateField = this.updateField.bind(this);
   }
 
+  componentWillMount() {
+    this.setState({
+      email: decodeURI(get(this.props.location.query, 'email')),
+      code: get(this.props.location.query, 'code'),
+    });
+  }
+
   onConfirmUserEmail() {
     // talk to cognito
     this.props.confirmUserEmail(this.state);
-  }
-
-  componentWillMount() {
-      this.setState({
-        email:  decodeURI(get(this.props.location.query, 'email')),
-        code: get(this.props.location.query, 'code')
-      });
   }
 
   updateField(e) {
@@ -33,64 +33,66 @@ export class ConfirmPage extends Component {
   }
 
   render() {
-    const { email, code, confirmed } = this.state;
+    const { email, code } = this.state;
 
     return (
-            <div className="form-container">
-          { this.props.confirmed &&
-              <div>
-                <h1>EMAIL CONFIRMED</h1>
-                <button>
-                  <Link to="/login">GO LOGIN</Link>
-                </button>
-              </div>
-          }
-
-          { !this.props.confirmed &&
-
-              <div>
-                <h1>CONFIRM EMAIL!</h1>
-                <label htmlFor="email_field">E-mail</label>
-                <input
-                  type="text"
-                  name="email"
-                  className="form-input"
-                  placeholder="E-mail address"
-                  onChange={this.updateField}
-                  value={email}
-                />
-                <label htmlFor="password">Code</label>
-                <input
-                  type="text"
-                  name="code"
-                  className="form-input"
-                  placeholder="Code"
-                  onChange={this.updateField}
-                  value={code}
-                />
-                <button onClick={this.onConfirmUserEmail}>Confirm</button>
-              </div>
-          }
+      <div className="form-container">
+        { this.props.confirmed &&
+          <div>
+            <h1>EMAIL CONFIRMED</h1>
+            <button>
+              <Link to="/login">GO LOGIN</Link>
+            </button>
           </div>
+        }
+
+        { !this.props.confirmed &&
+          <div>
+            <h1>CONFIRM EMAIL!</h1>
+            <label htmlFor="email_field">E-mail</label>
+            <input
+              type="text"
+              name="email"
+              className="form-input"
+              placeholder="E-mail address"
+              onChange={this.updateField}
+              value={email}
+            />
+            <label htmlFor="password">Code</label>
+            <input
+              type="text"
+              name="code"
+              className="form-input"
+              placeholder="Code"
+              onChange={this.updateField}
+              value={code}
+            />
+            <button onClick={this.onConfirmUserEmail}>Confirm</button>
+          </div>
+        }
+      </div>
     );
   }
 }
 
 ConfirmPage.propTypes = {
   confirmUserEmail: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    email: PropTypes.string,
-    code: PropTypes.string,
-    confirmed: PropTypes.boolean
+  confirmed: PropTypes.boolean,
+  location: PropTypes.shape({
+    query: PropTypes.shape({
+      email: PropTypes.string,
+      code: PropTypes.string,
+    }),
   }),
 };
 
 ConfirmPage.defaultProps = {
-  user: {
-    email: '',
-  },
+  email: '',
   code: '',
-  confirmed: false
+  confirmed: false,
+  location: {
+    query: {},
+  },
 };
 
 function mapStateToProps(state) {

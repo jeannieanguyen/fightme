@@ -18,8 +18,8 @@ export default function (state = INITIAL_STATE, action) {
     case types.CONFIRM_USER_EMAIL_SUCCESS:
       return {
         ...state,
-        userEmailConfirmed: action.data
-      }
+        userEmailConfirmed: action.data,
+      };
     case types.SAMPLE_GET_SUCCESS:
       return {
         ...state,

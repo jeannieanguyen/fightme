@@ -3,16 +3,15 @@ import 'amazon-cognito-js';
 import { userPool, USERPOOL_ID } from 'config/aws';
 import { Observable } from 'rxjs';
 
-export const confirmUserEmail = ({email, code}) => {
+export const confirmUserEmail = ({ email, code }) => {
   const p = new Promise((res, rej) => {
-    const attributeList = [];
     const userData = {
       Username: email,
-      Pool: userPool
+      Pool: userPool,
     };
 
     const cognitoUser = new CognitoUser(userData);
-    cognitoUser.confirmRegistration(code, true, function(err, result) {
+    cognitoUser.confirmRegistration(code, true, (err /* , result */) => {
       if (err) {
         rej(err);
         return;
@@ -22,7 +21,7 @@ export const confirmUserEmail = ({email, code}) => {
   });
 
   return p;
-}
+};
 
 // buildUserObject() gets the user attributes from Cognito
 // and creates an object to represent our user
@@ -78,7 +77,6 @@ const authenticateUser = (cognitoUser, authenticationDetails) => {
         });
 
         AWS.config.credentials.refresh(() => {
-          console.info(AWS.config.credentials);
         });
 
         res(result);
@@ -141,8 +139,6 @@ export const retrieveUserFromLocalStorage = () => {
           Logins: loginsObj,
         });
         AWS.config.credentials.refresh(() => {
-          console.info(AWS.config.credentials);
-
           res(buildUserObject(cognitoUser));
         });
       });
