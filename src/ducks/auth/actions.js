@@ -45,13 +45,9 @@ export const confirmUserEmail = data =>
       data,
     });
 
-export const setConfirmedUserEmail = data => ({
-  type: types.CONFIRM_USER_EMAIL_SUCCESS,
+export const rerouted = data => ({
+  type: types.REROUTED,
   data,
-});
-
-export const reroutedToDashboard = () => ({
-  type: types.REROUTED_TO_DASHBOARD,
 });
 
 export const logoutUser = () => ({
