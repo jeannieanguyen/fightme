@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { LoginPage } from './login';
 import { RegisterPage } from './index';
+import { ConfirmPage } from './confirm';
 
 describe('<LoginPage />', () => {
   const props = LoginPage.defaultProps;
@@ -35,3 +36,21 @@ describe('<RegisterPage />', () => {
     expect(el).to.have.length(1);
   });
 });
+
+describe('<ConfirmPage />', () => {
+  const props = ConfirmPage.defaultProps;
+  it('renders the Confirmation Page', () => {
+    const el = shallow(<ConfirmPage />);
+
+    expect(el).to.have.length(1);
+  });
+
+  it('calls confirm whtn the confirm button is clicked', () => {
+    const confirmUserEmail = sinon.spy();
+    const el = shallow(<ConfirmPage {...props} />);
+    el.setProps({ confirmUserEmail });
+    el.find('button.confirm-btn').simulate('click');
+    expect(confirmUserEmail.calledOnce).to.equal(true);
+  });
+});
+

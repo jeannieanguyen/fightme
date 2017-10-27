@@ -7,6 +7,6 @@ export const CONFIRM_USER_EMAIL = 'auth/CONFIRM_USER_EMAIL';
 export const SAMPLE_GET = 'auth/SAMPLE_GET';
 export const SAMPLE_GET_SUCCESS = 'auth/SAMPLE_GET_SUCCESS';
 export const SAMPLE_GET_ERROR = 'auth/SAMPLE_GET_ERROR';
-export const REROUTED= 'auth/REROUTED';
+export const REROUTED = 'auth/REROUTED';
 export const LOGOUT = 'auth/LOGOUT';
 export const LOGOUT_USER_SUCCESS = 'auth/LOGOUT_USER_SUCCESS';

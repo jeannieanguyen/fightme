@@ -8,5 +8,5 @@ const location = PropTypes.shape({
 });
 
 export default {
-  location
+  location,
 };

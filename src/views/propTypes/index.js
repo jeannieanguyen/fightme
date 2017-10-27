@@ -3,5 +3,5 @@ import LocationTypes from './location';
 
 export default {
   ...PropTypes,
-  ...LocationTypes
-}
+  ...LocationTypes,
+};

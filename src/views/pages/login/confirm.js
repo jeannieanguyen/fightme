@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { get } from 'lodash';
 import * as AuthDuck from 'ducks/auth';
 import PropTypes from 'views/propTypes';
@@ -57,7 +56,9 @@ export class ConfirmPage extends Component {
             onChange={this.updateField}
             value={code}
           />
-          <button onClick={this.onConfirmUserEmail}>Confirm</button>
+          <button className="confirm-btn" onClick={this.onConfirmUserEmail}>
+            Confirm
+          </button>
         </div>
       </div>
     );
@@ -83,4 +84,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { confirmUserEmail })(ConfirmPage)
+export default connect(mapStateToProps, { confirmUserEmail })(ConfirmPage);
