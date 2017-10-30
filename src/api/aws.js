@@ -3,6 +3,29 @@ import 'amazon-cognito-js';
 import { userPool, USERPOOL_ID } from 'config/aws';
 import { Observable } from 'rxjs';
 
+export const confirmUserEmail = ({ email, code }) => {
+  const p = new Promise((res, rej) => {
+    const userData = {
+      Username: email,
+      Pool: userPool,
+    };
+
+    const cognitoUser = new CognitoUser(userData);
+    cognitoUser.confirmRegistration(code, true, (err, result) => {
+      if (err) {
+        rej(err);
+        return;
+      }
+      res(result);
+    });
+  });
+
+  return p;
+};
+
+// buildUserObject() gets the user attributes from Cognito
+// and creates an object to represent our user
+// this will be used by the Redux state so that we can reference the user
 const buildUserObject = (cognitoUser, authResult = null) => {
   const p = new Promise((res, rej) => {
     cognitoUser.getUserAttributes((err, result) => {
@@ -54,7 +77,6 @@ const authenticateUser = (cognitoUser, authenticationDetails) => {
         });
 
         AWS.config.credentials.refresh(() => {
-          console.info(AWS.config.credentials);
         });
 
         res(result);
@@ -109,8 +131,6 @@ export const retrieveUserFromLocalStorage = () => {
           rej(err);
         }
 
-        localStorage.setItem('user_token', session.getIdToken().getJwtToken());
-
         const loginsObj = {
           [USERPOOL_ID]: session.getIdToken().getJwtToken(),
         };
@@ -119,8 +139,6 @@ export const retrieveUserFromLocalStorage = () => {
           Logins: loginsObj,
         });
         AWS.config.credentials.refresh(() => {
-          console.info(AWS.config.credentials);
-
           res(buildUserObject(cognitoUser));
         });
       });

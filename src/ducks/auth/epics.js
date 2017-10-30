@@ -27,9 +27,18 @@ export const loginUserEpic = (action$, store, deps) =>
         ),
     );
 
+export const confirmUserEmailEpic = (action$, store, deps) =>
+  action$.ofType(types.CONFIRM_USER_EMAIL)
+    .mergeMap(action =>
+      Observable.from(deps.AWS.confirmUserEmail(action.data))
+        .map(() => actions.rerouted('/login'))
+        .do(() => browserHistory.push('/login'))
+        .catch(error => Observable.of(setGeneralError(error.message))),
+    );
+
 export const routeToDashboardEpic = action$ =>
   action$.ofType(types.LOGIN_USER_SUCCESS)
-    .mapTo(actions.reroutedToDashboard())
+    .mapTo(actions.rerouted('/hello_world'))
     .do(() => {
       browserHistory.push('/hello_world');
     });
@@ -59,6 +68,7 @@ export const logoutUserEpic = action$ =>
 export default combineEpics(
   registerUserEpic,
   loginUserEpic,
+  confirmUserEmailEpic,
   sampleEpic,
   routeToDashboardEpic,
   logoutUserEpic,

@@ -38,8 +38,16 @@ export const setSampleData = data => ({
   data,
 });
 
-export const reroutedToDashboard = () => ({
-  type: types.REROUTED_TO_DASHBOARD,
+export const confirmUserEmail = data =>
+  dispatch =>
+    dispatch({
+      type: types.CONFIRM_USER_EMAIL,
+      data,
+    });
+
+export const rerouted = data => ({
+  type: types.REROUTED,
+  data,
 });
 
 export const logoutUser = () => ({
@@ -49,3 +57,4 @@ export const logoutUser = () => ({
 export const logoutUserSuccess = () => ({
   type: types.LOGOUT_USER_SUCCESS,
 });
+

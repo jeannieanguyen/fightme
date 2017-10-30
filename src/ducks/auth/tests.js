@@ -9,6 +9,7 @@ const correctLoginData = {
   email: 'heyo@hey.com',
   password: 'Security1!',
 };
+
 const awsSuccess = {
   AWS: {
     register: () => Observable.of([correctLoginData]),
