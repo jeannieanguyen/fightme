@@ -1,0 +1,46 @@
+#match-page {
+  height: 100vh;
+  width: 100vw;
+  color: white;
+
+  font-family: 'Oswald', sans-serif;
+
+  h1 {
+    text-align: center;
+    margin: 25px auto 10px auto;
+  }
+  .instructions {
+    text-align: center;
+    display:block;
+    width: 100%;
+    margin: 0 auto 25px auto;
+    font-size: 18px;
+  }
+
+  .background {
+    background-image: url("https://s-cdn.sportbox.ru/images/styles/upload/fp_fotos/24/27/54c0d588ebc87.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px) grayscale(60%);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .content {
+    padding: 25px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    h1 {
+       font-family: 'Oswald', sans-serif;
+    }
+  }
+}
+
+@import "weightclasses";

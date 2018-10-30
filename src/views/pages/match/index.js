@@ -1,40 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import WeightClasses from 'views/pages/match/weightClasses';
+import * as Fighters from 'ducks/fighters';
+
+const { getFighters } = Fighters.actions;
 
 function mapStateToProps(state) {
-  return {
-    ...state,
-  };
+  return {};
 }
 
 export class Match extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      prop_key: '',
-    };
+  componentWillMount() {
+    this.props.getFighters();
   }
 
   render() {
     return (
-      <div id="template-page">
-        <h1>Match</h1>
-        {this.props.prop_key}
+      <div id="match-page">
+        <div className="background" />
+        <div className="content">
+          <h1>MMA MATCHMAKER</h1>
+          <span className="instructions">Select a Weight Class</span>
+          <WeightClasses />
+        </div>
       </div>
     );
   }
 }
 
-Match.propTypes = {
-  prop_key: PropTypes.string,
-};
-
-Match.defaultProps = {
-  prop_key: '',
-};
-
 export default connect(
   mapStateToProps,
-  {},
+  { getFighters },
 )(Match);

@@ -12,6 +12,7 @@ import 'rxjs';
 import promise from 'redux-promise';
 import { get } from 'lodash';
 import { loadState, saveState } from 'utility/storage';
+import * as UFC from 'api/ufc';
 
 // enable redux-devtools-extension (chrome)
 // https://github.com/zalmoxisus/redux-devtools-extension
@@ -20,7 +21,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
 const epicMiddleware = createEpicMiddleware(rootEpic, {
-  dependencies: {},
+  dependencies: { UFC },
 });
 const enhancer = composeEnhancers(
   applyMiddleware(

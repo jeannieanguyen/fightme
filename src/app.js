@@ -13,17 +13,14 @@ function mapStateToProps(state) {
 }
 
 @errorHandlingDecorator()
-@connect(mapStateToProps, { })
+@connect(
+  mapStateToProps,
+  {},
+)
 export default class App extends Component {
   render() {
     const { children } = this.props;
-    return (
-      <div className="col-xs-12 no-pad">
-        <div className="content-wrapper">
-          {children}
-        </div>
-      </div>
-    );
+    return <div className="content-wrapper">{children}</div>;
   }
 }
 
