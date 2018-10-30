@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import reducers, { rootEpic } from 'ducks/index';
-import * as AWS from 'api/aws';
 import routes from 'routes';
 import 'rxjs';
 import promise from 'redux-promise';
@@ -20,18 +19,16 @@ import { loadState, saveState } from 'utility/storage';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
-const apigClient = apigClientFactory.newClient();
 const epicMiddleware = createEpicMiddleware(rootEpic, {
-  dependencies: {
-    AWS,
-    apigClient,
-  },
+  dependencies: {},
 });
 const enhancer = composeEnhancers(
-  applyMiddleware(epicMiddleware,
+  applyMiddleware(
+    epicMiddleware,
     thunk,
     promise,
-    routerMiddleware(browserHistory)),
+    routerMiddleware(browserHistory),
+  ),
 );
 
 const persistedState = {
@@ -56,10 +53,7 @@ const rootEl = document.getElementById('root');
 let render = (approutes, revision) => {
   ReactDOM.render(
     <Provider store={store} key={revision}>
-      <Router
-        onUpdate={() => window.scrollTo(0, 0)}
-        history={history}
-      >
+      <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
         {approutes}
       </Router>
     </Provider>,

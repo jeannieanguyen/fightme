@@ -8,7 +8,7 @@ function mapStateToProps(state) {
   };
 }
 
-export class TemplateView extends Component {
+export class Match extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,22 +19,22 @@ export class TemplateView extends Component {
   render() {
     return (
       <div id="template-page">
-        <h1>TemplateView</h1>
+        <h1>Match</h1>
         {this.props.prop_key}
       </div>
     );
   }
 }
 
-TemplateView.propTypes = {
+Match.propTypes = {
   prop_key: PropTypes.string,
 };
 
-TemplateView.defaultProps = {
+Match.defaultProps = {
   prop_key: '',
 };
 
 export default connect(
   mapStateToProps,
   {},
-)(TemplateView);
+)(Match);
